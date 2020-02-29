@@ -217,7 +217,7 @@ def model_5k(df):
 
 # START
 start = timer()
-
+10
 
 
 sigma = 0.5  # Standard deviation.
@@ -287,7 +287,7 @@ print("Математическое ожидание в %: ", np.mean(profits_ge
 # size, scale = 1000, 10
 commutes = pd.Series(profits_generated)
 
-commutes.plot.hist(grid=True, bins=50, rwidth=0.9,
+commutes.plot.hist(grid=True, bins=100, rwidth=0.9,
                    color='#607c8e')
 plt.title('Commute Times Commuters')
 plt.xlabel('Counts')

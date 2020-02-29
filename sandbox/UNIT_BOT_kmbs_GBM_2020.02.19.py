@@ -222,7 +222,7 @@ count_step = [0]*(len(amounts_S) + 1)
 size_profit = [0]*(len(amounts_S) + 1)
 count_days = [0]*(len(amounts_S) + 1)
 
-file_result_name = 'Result_Coins_2020_02_17_Art.csv'
+file_result_name = '/data_result/Result_Coins_2020_02_25_Art.csv'
 
 print("Процент самого глубокого снижения (от стартовой цены): \n", prod(steps, procent)*100, "\n")
 
