@@ -9,19 +9,20 @@ speed=0.5
 mean=10
 vol=0.7
 tau=1 #GaussianNoise(t)
-t=365
+t=1
 T = 3.65
 mu = 0.00
 sigma = 0.1
 gamma = 0.3
 S0 = 10
 dt = 0.01
+n_times = 365
 
 
 for i in range(0, count_experiment):
     stoch = stochastic.diffusion.ConstantElasticityVarianceProcess(mu, sigma, gamma, t)
-    s = stoch.sample(32)
-    times = stoch.times(32)
+    s = stoch.sample(n_times)
+    times = stoch.times(n_times)
     plt.plot(times, s, linewidth=0.1)
 
 plt.show()

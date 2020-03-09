@@ -2,26 +2,35 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.pyplot as plt
 import stochastic.continuous
-import stochastic.diffusion
+# import stochastic.diffusion
 
-count_experiment = 100
-speed=0.05
-mean=0
-vol=0.7
-tau=1 #GaussianNoise(t)
-t=100
-T = 3.65
-mu = 0.00
-sigma = 0.01
-gamma = 0.3
-S0 = 10
-dt = 0.01
+count_experiment = 1000
+# speed=0.5
+# mean=10
+# vol=0.7
+# tau=1 #GaussianNoise(t)
+# t=20
+# times=365
+# T = 3.65
+# mu = 0.0
+# sigma = 0.2
+# S0 = 10
+# dt = 0.01
 
+
+t = 1
+n_times = 365
+drift = 0.1
+variance = 0.1
+scale = 1
+sample = 1
+sample_at = 1
 
 for i in range(0, count_experiment):
-    stoch = stochastic.continuous.GeometricBrownianMotion(mu, sigma, t)
-    s = stoch.sample(32)
-    times = stoch.times(32)
+    stoch = stochastic.continuous.VarianceGammaProcess(t, drift, variance, scale)
+    s = stoch.sample(n_times)
+    times = stoch.times(n_times)
+
     plt.plot(times, s, linewidth=0.1)
 
 plt.show()
