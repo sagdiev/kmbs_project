@@ -1,46 +1,6 @@
-import pandas as pd
-import math as m
 import numpy as np
 import matplotlib.pyplot as plt
-from timeit import default_timer as timer
-
-
-def  GBM_generator(mu, sigma, T, dt, S0):
-    N = round(T / dt)
-    t = np.linspace(0, T, N)
-    W = np.random.standard_normal(size=N)
-    W = np.cumsum(W) * np.sqrt(dt)  ### standard brownian motion ###
-    X = (mu - 0.5 * sigma ** 2) * t + sigma * W
-    S = S0 * np.exp(X)  ### geometric brownian motion ###
-
-    return t, S
-
-def prod(j, array):
-    p = 1
-    if j == 0:
-        return p * (1 - array[0])
-    else:
-        return prod(j-1, array) * (1-array[j])
-
-
-def transform_csv(df):
-
-    # print("Кол-во строк в таблице (старт): \n", len(df), "\n")
-    # print("Таблица (оглавление) (старт): \n", df.head(10), "\n")
-
-    df['p_sell'] = 0
-    df['p_buy'] = 0
-    df['day_profit'] = 0
-    df['total_profit'] = 0
-    df['sell/buy'] = 0
-    df['count_sell'] = 0
-    df['count_buy'] = 0
-    df['count_total_buy'] = 0
-    df['costs_of_bying'] = 0
-    df['sum_invested'] = 0
-
-    # print("Таблица (оглавление) (после добавления столбцов): \n", df.head(), "\n")
-
+from model.constants import *
 
 
 def model_5k(df):
@@ -59,7 +19,6 @@ def model_5k(df):
     column_ticker = 'ticker'
 
     p0 = df.loc[0, column_price]
-    # print(p0)
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування
     number = []
@@ -200,82 +159,4 @@ def model_5k(df):
     df['costs_of_bying'] = round(df['costs_of_bying'], 2)
     df['sum_invested'] = round(df['sum_invested'], 2)
 
-    return df, Profit, p0
-
-
-# START
-start = timer()
-
-T = 2
-mu = 0.0
-sigma = 0.4
-S0 = 1000
-dt = 0.01
-count_experiment = 100
-
-steps = 4
-procent = [0, 0.15, 0.20, 0.25, 0.30]
-amounts_S = [1000,1000,2000,4000,8000]
-r_fin = 5
-procent_loss = 2
-r = 5
-count_step = [0]*(len(amounts_S) + 1)
-size_profit = [0]*(len(amounts_S) + 1)
-count_days = [0]*(len(amounts_S) + 1)
-
-file_result_name = 'Result_Coins_2020_02_17_Art.csv'
-
-print("Процент самого глубокого снижения (от стартовой цены): \n", prod(steps, procent)*100, "%\n")
-
-# d = {'Date': [1, 2], 'Price': [3, 4]}
-# df = pd.DataFrame(data=d)
-
-profits_generated = np.zeros(count_experiment)
-total_profit = 0
-
-for i in range(0, count_experiment):
-    gbm_t, gbm_s  = GBM_generator(mu, sigma, T, dt, S0)
-    d = {'Date': gbm_t, 'Price': gbm_s}
-    df = pd.DataFrame(data=d)
-    transform_csv(df)
-    df, profit, p0 = model_5k(df)
-    profits_generated[i] = profit
-    total_profit = total_profit + profit
-    #print(total_profit)
-    print(p0)
-    # print(np.mean(profits_generated))
-    # plt.plot(gbm_t, gbm_t, linewidth=0.1)
-
-
-duration = timer() - start
-print("Время расчетов в секундах: ", duration)
-
-print("Result TAB \n", df.head(), "\n")
-
-df.to_csv(file_result_name, sep = ';', index=False,)
-print("Файл создан: \n", file_result_name, "\n")
-
-
-Result = df[['Date','total_profit']]
-print(Result, profit)
-print(profits_generated)
-print(total_profit)
-print(np.mean(profits_generated))
-
-print("Математическое ожидание: ", np.mean(profits_generated))
-print("Математическое ожидание в %: ", np.mean(profits_generated)/sum(amounts_S)*100, " %")
-
-
-
-
-# Generate data on commute times.
-# size, scale = 1000, 10
-commutes = pd.Series(profits_generated)
-
-commutes.plot.hist(grid=True, bins=50, rwidth=0.9,
-                   color='#607c8e')
-plt.title('Commute Times Commuters')
-plt.xlabel('Counts')
-plt.ylabel('Commute Time')
-plt.grid(axis='y', alpha=0.75)
-plt.show()
+    return df, Profit
