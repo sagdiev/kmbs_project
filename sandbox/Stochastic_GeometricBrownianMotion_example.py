@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import stochastic.continuous
 import stochastic.diffusion
 
-count_experiment = 100
+count_experiment = 1000
 speed=0.05
 mean=0
 vol=0.7
