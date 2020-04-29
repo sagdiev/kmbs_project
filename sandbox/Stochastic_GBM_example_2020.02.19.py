@@ -6,7 +6,7 @@ mu = 0.0
 sigma = 0.2
 S0 = 10
 dt = 0.01
-count_experiment = 1000
+count_experiment = 1
 
 def  GBM_generator(mu, sigma, T, dt, S0):
     N = round(T / dt)
@@ -21,6 +21,6 @@ def  GBM_generator(mu, sigma, T, dt, S0):
 
 for i in range(0, count_experiment):
     gbm_t, gbm_S  = GBM_generator(mu, sigma, T, dt, S0)
-    plt.plot(gbm_t, gbm_S, linewidth=0.1)
+    plt.plot(gbm_t, gbm_S, linewidth=1)
 
 plt.show()
