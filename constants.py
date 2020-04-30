@@ -1,12 +1,34 @@
 from datetime import date
+from typing import Dict
+
 
 # input main
 ticker = 'AAPL'
 #ticker = str(input('Input ticker: '))
 
-# main constants
-type_stochastic_process = ['arma', 'garch', 'gbm', 'oup', 'cev']
+
+STOCHASTIC_PROCESS_TYPES: Dict[str, int] = {
+    'ARMA': 0,
+    'GARCH': 1,
+    'GBM': 2,
+    'OUP': 3,
+    'CEV': 4
+}
+print(STOCHASTIC_PROCESS_TYPES)
+
+BOT_TYPES: Dict[str, int] = {
+    'MARTINGALE': 0,
+    'ANTIMARTINGALE': 1
+}
+print(BOT_TYPES)
+
+#type_stochastic_process = ['arma', 'garch', 'gbm', 'oup', 'cev']
 #print(type_stochastic_process[0])
+
+# main constants
+
+period = 365 # период, на котором рассматриваем поведение бота
+dt = 1 # единица времени, пучть будет 1 день
 
 # date calculation
 today = date.today()
