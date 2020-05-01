@@ -1,8 +1,12 @@
 import numpy as np
+import csv
 import matplotlib.pyplot as plt
 import stochastic.continuous
 import stochastic.diffusion
 from constants import *
+
+
+
 
 
 class StochasticProcess():
@@ -20,7 +24,7 @@ class StochasticProcess():
         """GBR Геометрическое Броневское движение"""
         N = round(self.period / self.dt)
         print(N)
-        t = np.linspace(0, self.period, N)
+        t = np.linspace(1, self.period, N)
         W = np.random.standard_normal(size=N)
         W = np.cumsum(W) * np.sqrt(self.dt)  # standard brownian motion ###
         X = (self.mu - 0.5 * self.sigma ** 2) * t + self.sigma * W
@@ -38,3 +42,38 @@ class StochasticProcess():
         return t, s
 
 
+def path_out_csv (prefix):
+    path = 'data_research_del/outfile'
+    path_prefix = path + '_' + str(prefix) + '.csv'
+
+    return path_prefix
+
+
+#Start
+
+# checking consnants
+print("count_experiments_global = ", count_experiments_global)
+print("period = ", period)
+print("dt = ", dt)
+
+# setting parameters
+mu = 0
+sigma = 0.02
+s0 = 1000
+# path = 'outfile'
+
+for i in range (count_experiments_global):
+    t_curve, s_curve = StochasticProcess(mu, sigma, period, dt).generator_gbm(s0)
+
+    plt.plot(t_curve, s_curve, linewidth=0.1)
+
+print(type(t_curve))
+print(s_curve)
+for i in range (len(t_curve)):
+    for j in range(len(s_curve)):
+    # print(i, j)
+        with open(path_out_csv(i), "w", newline='') as csv_file:
+            writer = csv.writer(csv_file, delimiter=',')
+            writer.writerow([i,j])
+
+#plt.show()
