@@ -27,9 +27,11 @@ print(BOT_TYPES)
 
 # main constants
 
-period = 5 # период, на котором рассматриваем поведение бота
+period = 365 # период, на котором рассматриваем поведение бота
 dt = 1 # единица времени, пучть будет 1 день
-count_experiments_global = 10 # к-во экспериментов - сгенерированных крывых
+count_experiments_global = 100 # к-во экспериментов - сгенерированных крывых
+path_folder = 'data_research/'
+path_file = 'outfile'
 
 # date calculation
 today = date.today()

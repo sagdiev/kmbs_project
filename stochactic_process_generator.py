@@ -42,9 +42,9 @@ class StochasticProcess():
         return t, s
 
 
-def path_out_csv (prefix):
-    path = 'data_research_del/outfile'
-    path_prefix = path + '_' + str(prefix) + '.csv'
+def path_csv_curve (ticker_def, prefix_def):
+    path_prefix = path_folder + str(ticker_def) + '/' + path_file + '_' + str(prefix_def) + '.csv'
+    print(path_prefix)
 
     return path_prefix
 
@@ -64,16 +64,12 @@ s0 = 1000
 
 for i in range (count_experiments_global):
     t_curve, s_curve = StochasticProcess(mu, sigma, period, dt).generator_gbm(s0)
-
+    with open(path_csv_curve(ticker, i + 1), "w", newline='') as csv_file:
+        writer = csv.writer(csv_file, delimiter=',')
+        writer.writerow(['Date', 'Price'])
+        for k, j in zip(t_curve, s_curve):
+            writer.writerow([k, j])
     plt.plot(t_curve, s_curve, linewidth=0.1)
 
-print(type(t_curve))
-print(s_curve)
-for i in range (len(t_curve)):
-    for j in range(len(s_curve)):
-    # print(i, j)
-        with open(path_out_csv(i), "w", newline='') as csv_file:
-            writer = csv.writer(csv_file, delimiter=',')
-            writer.writerow([i,j])
 
-#plt.show()
+plt.show()

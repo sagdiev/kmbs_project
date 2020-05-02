@@ -248,7 +248,7 @@ count_step = [0]*(len(amounts_S) + 1)
 size_profit = [0]*(len(amounts_S) + 1)
 count_days = [0]*(len(amounts_S) + 1)
 
-print("Процент салого глубокого снижения (от стартовой цены): \n", prod(4, procent)*100, "%\n")
+print("Процент самого глубокого снижения (от стартовой цены): \n", prod(4, procent)*100, "%\n")
 
 df = pd.read_csv(file_start_name, sep=',')
 print("Файл считан: \n", file_result_name, "\n")
