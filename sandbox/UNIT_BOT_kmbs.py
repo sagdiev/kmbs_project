@@ -244,6 +244,7 @@ amounts_S = [1000,1000,2000,4000,8000]
 r_fin = 10
 procent_loss = 10
 r = 10
+
 count_step = [0]*(len(amounts_S) + 1)
 size_profit = [0]*(len(amounts_S) + 1)
 count_days = [0]*(len(amounts_S) + 1)

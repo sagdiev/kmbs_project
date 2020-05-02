@@ -233,8 +233,8 @@ profits_generated = np.zeros(count_experiment)
 total_profit = 0
 
 for i in range(0, count_experiment):
-    gbm_t, gbm_t  = GBM_generator(mu, sigma, T, dt, S0)
-    d = {'Date': gbm_t, 'Price': gbm_t}
+    gbm_t, gbm_s  = GBM_generator(mu, sigma, T, dt, S0)
+    d = {'Date': gbm_t, 'Price': gbm_s}
     df = pd.DataFrame(data=d)
     transform_csv(df)
     df, profit = model_5k(df)

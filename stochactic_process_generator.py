@@ -7,9 +7,6 @@ import stochastic.diffusion
 from constants import *
 
 
-
-
-
 class StochasticProcess():
     """Генерируется одна из случайных реализаций стохастических процессов"""
     def __init__(self, mu, sigma, period, dt):
@@ -43,11 +40,25 @@ class StochasticProcess():
         return t, s
 
 
-def path_csv_curve (ticker_def, prefix_def):
-    path_prefix = path_folder + str(ticker_def) + '/' + path_file + '_' + str(prefix_def) + '.csv'
+def path_csv_curve (prefix_def): # генерирование название соответствующего файла
+    path_prefix = path_folder_ticker + '/' + path_file + '_' + str(prefix_def) + '.csv'
     print(path_prefix)
 
     return path_prefix
+
+
+def path_folder_create(ticker_def): # создание папки, если еще не существует
+
+    path_folder_ticker = path_folder + '/' + ticker_def
+    dirName = path_folder_ticker
+
+    try:
+        os.mkdir(dirName)
+        print("Directory ", dirName, " Created ")
+    except FileExistsError:
+        print("Directory ", dirName, " already exists")
+
+    return path_folder_ticker
 
 
 #Start
@@ -63,30 +74,23 @@ sigma = 0.02
 s0 = 1000
 # path = 'outfile'
 
-#create dir if not exsit yet
-dirName = path_folder + '/' + ticker
-
-try:
-    # Create target Directory
-    os.mkdir(dirName)
-    print("Directory ", dirName, " Created ")
-except FileExistsError:
-    print("Directory ", dirName, " already exists")
-
-
+path_folder_ticker = path_folder_create(ticker)
 
 for i in range (count_experiments_global):
     t_curve, s_curve = StochasticProcess(mu, sigma, period, dt).generator_gbm(s0)
 
-    with open(path_csv_curve(ticker, i + 1), "w", newline='') as csv_file:
+    with open(path_csv_curve(i + 1), "w", newline='') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow(['count', 'Date', 'Price'])
 
         for k, j in zip(t_curve, s_curve):
+            print(k)
             date_k = date_experiment_start + timedelta(days = k - 1)
             writer.writerow([k, date_k, j])
+        # writer.close()
 
     plt.plot(t_curve, s_curve, linewidth=0.1)
 
-
+print(t_curve)
+print(s_curve)
 plt.show()

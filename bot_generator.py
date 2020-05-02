@@ -1,9 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from model.constants import *
+from constants import *
 
 
-def model_5k(df):
+
+def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
 
     column_p_sell = 'p_sell'
     column_p_buy = 'p_buy'
@@ -18,7 +19,13 @@ def model_5k(df):
     column_sum_invested = 'sum_invested'
     column_ticker = 'ticker'
 
+    count_step = [0] * (len(amounts_S) + 1)
+    size_profit = [0] * (len(amounts_S) + 1)
+    count_days = [0] * (len(amounts_S) + 1)
+
     p0 = df.loc[0, column_price]
+    # p0 = 327.40
+    # print(p0)
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування
     number = []
@@ -154,9 +161,25 @@ def model_5k(df):
     df['p_buy'] = round(df['p_buy'], 2)
     df['p_sell'] = round(df['p_sell'], 2)
     df['count_buy'] = round(df['count_buy'], 2)
-    df['count_sell'] = round(df['count_sell'], 2)
+    #print('count_sell = ', df['count_sell'])
+    #df['count_sell'] = round(df['count_sell'], 2)
     df['count_total_buy'] = round(df['count_total_buy'], 2)
     df['costs_of_bying'] = round(df['costs_of_bying'], 2)
     df['sum_invested'] = round(df['sum_invested'], 2)
 
     return df, Profit
+
+
+def prod(j, array):
+    p = 1
+    if j == 0:
+        return p * (1 - array[0])
+    else:
+        return prod(j-1, array) * (1-array[j])
+
+
+# procent = [0, 0.15, 0.20, 0.25, 0.30]
+# amounts_S = [1000,1000,2000,4000,8000]
+# r_fin = 10
+# procent_loss = 10
+# r = 10
