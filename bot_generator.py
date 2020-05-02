@@ -1,3 +1,5 @@
+from os.path import exists
+
 import numpy as np
 import matplotlib.pyplot as plt
 from constants import *
@@ -24,8 +26,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     count_days = [0] * (len(amounts_S) + 1)
 
     p0 = df.loc[0, column_price]
-    # p0 = 327.40
-    # print(p0)
+
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування
     number = []
@@ -39,7 +40,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     K = k0
     S0 = k0 * p0
     C = S0
-    Profit = 0
+    profit = 0
     t = 0
     p_sell = p0 * (1 + r / 100)
     p_buy = p0 * (1 - procent[1])
@@ -48,11 +49,12 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     df.loc[0, column_p_buy] = p_buy
     df.loc[0, column_sell_buy] = 'buy'
     df.loc[0, column_day_profit] = K * df.loc[0, column_price] - C
-    df.loc[0, column_profit] = Profit
+    df.loc[0, column_profit] = profit
     df.loc[0, column_count_buy] = k0
     df.loc[0, column_count_total_buy] = K
     df.loc[0, column_costs_of_bying] = S0
     df.loc[0, column_sum_invested] = C
+    df.loc[0, column_count_sell] = 0
 
     for i in range(1, len(df)):
         count_days[t] = count_days[t] + 1
@@ -66,8 +68,8 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
                 # size_profit
             else:
                 pass
-            Profit = Profit + (K * df[column_price][i] - C)
-            df.loc[i, column_profit] = Profit
+            profit = profit + (K * df[column_price][i] - C)
+            df.loc[i, column_profit] = profit
             df.loc[i, column_count_sell] = K
 
             p0 = df[column_price][i]
@@ -111,7 +113,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
 
                 df.loc[i, column_p_sell] = p_sell
                 df.loc[i, column_p_buy] = p_buy
-                df.loc[i, column_profit] = Profit
+                df.loc[i, column_profit] = profit
                 df.loc[i, column_sell_buy] = 'buy'
                 df.loc[i, column_count_buy] = k0
                 df.loc[i, column_count_total_buy] = K
@@ -127,8 +129,8 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
                 df.loc[i, column_count_sell] = K
                 df.loc[i, column_sum_invested] = C
 
-                Profit = Profit + K * df[column_price][i] - C
-                df.loc[i, column_profit] = Profit
+                profit = profit + K * df[column_price][i] - C
+                df.loc[i, column_profit] = profit
 
                 p0 = df[column_price][i]
                 p_sell = p0 * (1 + r / 100)
@@ -151,7 +153,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
         else:
             df.loc[i, column_p_sell] = df.loc[i - 1, column_p_sell]
             df.loc[i, column_p_buy] = df.loc[i - 1, column_p_buy]
-            df.loc[i, column_profit] = Profit
+            df.loc[i, column_profit] = profit
             df.loc[i, column_sum_invested] = C
             df.loc[i, column_sell_buy] = 'waiting'
 
@@ -161,13 +163,12 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     df['p_buy'] = round(df['p_buy'], 2)
     df['p_sell'] = round(df['p_sell'], 2)
     df['count_buy'] = round(df['count_buy'], 2)
-    #print('count_sell = ', df['count_sell'])
-    #df['count_sell'] = round(df['count_sell'], 2)
+    df['count_sell'] = round(df['count_sell'], 2)
     df['count_total_buy'] = round(df['count_total_buy'], 2)
     df['costs_of_bying'] = round(df['costs_of_bying'], 2)
     df['sum_invested'] = round(df['sum_invested'], 2)
 
-    return df, Profit
+    return df, profit
 
 
 def prod(j, array):

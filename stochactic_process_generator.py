@@ -4,6 +4,7 @@ import csv
 import matplotlib.pyplot as plt
 import stochastic.continuous
 import stochastic.diffusion
+from timeit import default_timer as timer
 from constants import *
 
 
@@ -61,7 +62,8 @@ def path_folder_create(ticker_def): # создание папки, если ещ
     return path_folder_ticker
 
 
-#Start
+# START
+start = timer()
 
 # checking consnants
 print("count_experiments_global = ", count_experiments_global)
@@ -86,7 +88,7 @@ for i in range (count_experiments_global):
         for k, j in zip(t_curve, s_curve):
             print(k)
             date_k = date_experiment_start + timedelta(days = k - 1)
-            writer.writerow([k, date_k, j])
+            writer.writerow([k, date_k, round(j, 2)])
         # writer.close()
 
     plt.plot(t_curve, s_curve, linewidth=0.1)
@@ -94,3 +96,6 @@ for i in range (count_experiments_global):
 print(t_curve)
 print(s_curve)
 plt.show()
+
+duration = timer() - start
+print('Время обработки алгоритма = ', duration)

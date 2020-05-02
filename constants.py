@@ -3,7 +3,7 @@ from typing import Dict
 
 
 # input main
-ticker = 'FB'
+ticker = 'AAPL'
 #ticker = str(input('Input ticker: '))
 
 
@@ -29,8 +29,8 @@ ticker = 'FB'
 
 period = 365 # период, на котором рассматриваем поведение бота
 dt = 1 # единица времени, пучть будет 1 день
-count_experiments_global = 100 # к-во экспериментов - сгенерированных крывых
-path_folder = 'data_research/'
+count_experiments_global = 10 # к-во экспериментов - сгенерированных крывых
+path_folder = 'data_curve/'
 path_file = 'curve'
 
 # date calculation now
