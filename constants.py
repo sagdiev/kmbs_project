@@ -30,12 +30,14 @@ ticker = 'AAPL'
 
 period = 365*5 # период, на котором рассматриваем поведение бота
 dt = 1 # единица времени, пучть будет 1 день
-count_experiments_global = 10 # к-во экспериментов - сгенерированных крывых
+count_experiments_global = 100 # к-во экспериментов - сгенерированных крывых
 path_folder_curve = 'data_curve'
 path_file_curve = 'curve'
 
 path_folder_bot = 'data_bot'
 path_file_bot = 'bot'
+
+path_folder_bi = 'data_bi'
 
 # date calculation now
 date_today = date.today()

@@ -17,9 +17,9 @@ path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experi
 # параметры бота
 procent = [0, 0.15, 0.20, 0.25, 0.30]
 amounts_S = [1000, 1000, 2000, 4000, 8000]
-r_fin = 10
-procent_loss = 10
-r = 10
+r_fin = 4
+procent_loss = 3
+r = 5
 # print("Процент самого глубокого снижения (от стартовой цены): \n", prod(4, procent) * 100, "%\n")
 
 # старт применения алгоритма бота
@@ -40,7 +40,7 @@ for i in range (count_experiments_global):
 
     # запись в файл бота
     path_bot_i = path_file(path_bot, i + 1)
-    df.to_csv(path_bot_i, sep = ';', index=False,)
+    df.to_csv(path_bot_i, sep = ',', index=False,)
     print("Файл создан: ", path_bot_i, "\n")
 
 # таймер

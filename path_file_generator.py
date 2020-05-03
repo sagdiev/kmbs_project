@@ -17,12 +17,23 @@ def path_file_without_prefix(folder_name, file_name, experiment, ticker): # ге
 
 def path_folder(folder_name, experiment, ticker): # создание папки, если еще не существует
     path_folder_ticker = folder_name + '/' + ticker + '/' + experiment + '/'
-    dirName = path_folder_ticker
+    folder_check(folder_name)
 
+    return path_folder_ticker
+
+
+def folder_check(dirName):
     try:
         os.makedirs(dirName)
         print("Directory ", dirName, " Created ")
     except FileExistsError:
         print("Directory ", dirName, " already exists")
 
-    return path_folder_ticker
+    return dirName
+
+def file_clear(file):
+    try:
+        os.remove(file)
+    except:
+        pass
+    return file
