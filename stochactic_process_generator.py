@@ -6,6 +6,8 @@ import stochastic.continuous
 import stochastic.diffusion
 from timeit import default_timer as timer
 from constants import *
+from path_file_generator import *
+
 
 
 class StochasticProcess():
@@ -41,25 +43,25 @@ class StochasticProcess():
         return t, s
 
 
-def path_csv_curve (prefix_def): # генерирование название соответствующего файла
-    path_prefix = path_folder_ticker + '/' + path_file + '_' + str(prefix_def) + '.csv'
-    print(path_prefix)
-
-    return path_prefix
-
-
-def path_folder_create(ticker_def): # создание папки, если еще не существует
-
-    path_folder_ticker = path_folder + '/' + ticker_def
-    dirName = path_folder_ticker
-
-    try:
-        os.mkdir(dirName)
-        print("Directory ", dirName, " Created ")
-    except FileExistsError:
-        print("Directory ", dirName, " already exists")
-
-    return path_folder_ticker
+# def path_csv_curve (prefix_def): # генерирование название соответствующего файла
+#     path_prefix = path_folder_ticker + '/' + path_file + '_' + str(prefix_def) + '.csv'
+#     print(path_prefix)
+#
+#     return path_prefix
+# #
+#
+# def path_folder_create(ticker_def): # создание папки, если еще не существует
+#
+#     path_folder_ticker = path_folder + '/' + ticker_def
+#     dirName = path_folder_ticker
+#
+#     try:
+#         os.mkdir(dirName)
+#         print("Directory ", dirName, " Created ")
+#     except FileExistsError:
+#         print("Directory ", dirName, " already exists")
+#
+#     return path_folder_ticker
 
 
 # START
@@ -74,14 +76,15 @@ print("dt = ", dt)
 mu = 0
 sigma = 0.02
 s0 = 1000
-# path = 'outfile'
 
-path_folder_ticker = path_folder_create(ticker)
+# path
+path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 
+# Starting curves generation
 for i in range (count_experiments_global):
     t_curve, s_curve = StochasticProcess(mu, sigma, period, dt).generator_gbm(s0)
 
-    with open(path_csv_curve(i + 1), "w", newline='') as csv_file:
+    with open(path_file(path_curve, i + 1), "w", newline='') as csv_file:
         writer = csv.writer(csv_file, delimiter=',')
         writer.writerow(['count', 'Date', 'Price'])
 
@@ -89,7 +92,6 @@ for i in range (count_experiments_global):
             print(k)
             date_k = date_experiment_start + timedelta(days = k - 1)
             writer.writerow([k, date_k, round(j, 2)])
-        # writer.close()
 
     plt.plot(t_curve, s_curve, linewidth=0.1)
 
@@ -97,5 +99,6 @@ print(t_curve)
 print(s_curve)
 plt.show()
 
+# timer
 duration = timer() - start
 print('Время обработки алгоритма = ', duration)

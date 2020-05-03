@@ -3,6 +3,7 @@ from typing import Dict
 
 
 # input main
+experiment = 'experiment_1'
 ticker = 'AAPL'
 #ticker = str(input('Input ticker: '))
 
@@ -30,8 +31,11 @@ ticker = 'AAPL'
 period = 365 # период, на котором рассматриваем поведение бота
 dt = 1 # единица времени, пучть будет 1 день
 count_experiments_global = 10 # к-во экспериментов - сгенерированных крывых
-path_folder = 'data_curve/'
-path_file = 'curve'
+path_folder_curve = 'data_curve'
+path_file_curve = 'curve'
+
+path_folder_bot = 'data_bot'
+path_file_bot = 'bot'
 
 # date calculation now
 date_today = date.today()
