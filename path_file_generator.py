@@ -1,13 +1,13 @@
 import os
 
 
-def path_file (path_file_without_prefix, prefix): # генерирование название соответствующего файла
+def path_file(path_file_without_prefix, prefix): # генерирование название соответствующего файла
     path_file_prefix = path_file_without_prefix + '_' + str(prefix) + '.csv'
 
     return path_file_prefix
 
 
-def path_file_without_prefix (folder_name, file_name, experiment, ticker): # генерирование название соответствующего файла
+def path_file_without_prefix(folder_name, file_name, experiment, ticker): # генерирование название соответствующего файла
     path_folder_ticker = path_folder(folder_name, experiment, ticker)
 
     path_file_without_prefix = path_folder_ticker + file_name
@@ -15,7 +15,7 @@ def path_file_without_prefix (folder_name, file_name, experiment, ticker): # г�
     return path_file_without_prefix
 
 
-def path_folder (folder_name, experiment, ticker): # создание папки, если еще не существует
+def path_folder(folder_name, experiment, ticker): # создание папки, если еще не существует
     path_folder_ticker = folder_name + '/' + ticker + '/' + experiment + '/'
     dirName = path_folder_ticker
 
@@ -26,5 +26,3 @@ def path_folder (folder_name, experiment, ticker): # создание папки
         print("Directory ", dirName, " already exists")
 
     return path_folder_ticker
-
-

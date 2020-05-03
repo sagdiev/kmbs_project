@@ -1,7 +1,7 @@
 from os.path import exists
-
 import numpy as np
 import matplotlib.pyplot as plt
+
 from constants import *
 
 
@@ -179,8 +179,3 @@ def prod(j, array):
         return prod(j-1, array) * (1-array[j])
 
 
-# procent = [0, 0.15, 0.20, 0.25, 0.30]
-# amounts_S = [1000,1000,2000,4000,8000]
-# r_fin = 10
-# procent_loss = 10
-# r = 10

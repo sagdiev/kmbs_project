@@ -1,5 +1,4 @@
 import numpy as np
-import os
 import csv
 import matplotlib.pyplot as plt
 import stochastic.continuous
@@ -43,27 +42,6 @@ class StochasticProcess():
         return t, s
 
 
-# def path_csv_curve (prefix_def): # генерирование название соответствующего файла
-#     path_prefix = path_folder_ticker + '/' + path_file + '_' + str(prefix_def) + '.csv'
-#     print(path_prefix)
-#
-#     return path_prefix
-# #
-#
-# def path_folder_create(ticker_def): # создание папки, если еще не существует
-#
-#     path_folder_ticker = path_folder + '/' + ticker_def
-#     dirName = path_folder_ticker
-#
-#     try:
-#         os.mkdir(dirName)
-#         print("Directory ", dirName, " Created ")
-#     except FileExistsError:
-#         print("Directory ", dirName, " already exists")
-#
-#     return path_folder_ticker
-
-
 # START
 start = timer()
 
@@ -95,8 +73,6 @@ for i in range (count_experiments_global):
 
     plt.plot(t_curve, s_curve, linewidth=0.1)
 
-print(t_curve)
-print(s_curve)
 plt.show()
 
 # timer
