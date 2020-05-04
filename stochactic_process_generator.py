@@ -52,18 +52,19 @@ print("dt = ", dt)
 
 # setting parameters
 mu = 0
-sigma = 0.02
+sigma = 0.1
 s0 = 1000
 
 # path
 path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
+# os.makedirs(path_curve)
 
 # Starting curves generation
 for i in range (count_experiments_global):
     t_curve, s_curve = StochasticProcess(mu, sigma, period, dt).generator_gbm(s0)
 
-    with open(path_file(path_curve, i + 1), "w", newline='') as csv_file:
-        writer = csv.writer(csv_file, delimiter=',')
+    with open(path_file(path_curve, i + 1), "w", newline='') as f:
+        writer = csv.writer(f, delimiter=',')
         writer.writerow(['count', 'Date', 'Price'])
 
         for k, j in zip(t_curve, s_curve):

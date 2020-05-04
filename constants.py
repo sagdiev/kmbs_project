@@ -3,7 +3,7 @@ from typing import Dict
 
 
 # input main
-experiment = 'experiment_1'
+experiment = 'experiment_3'
 ticker = 'AAPL'
 #ticker = str(input('Input ticker: '))
 
