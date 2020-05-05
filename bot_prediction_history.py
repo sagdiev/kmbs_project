@@ -12,12 +12,13 @@ start = timer()
 
 # папки и файлы
 path_bot = path_file_without_prefix(path_folder_bot, path_file_bot, experiment, ticker)
-path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
+# path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
+# path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
 # os.makedirs(path_bot)
 
 # параметры бота
-procent = [0, 0.15, 0.20, 0.25, 0.30]
-amounts_S = [1000, 1000, 2000, 4000, 8000]
+procent = [0, 0.10, 0.15]
+amounts_S = [1000, 1000, 2000]
 r_fin = 4
 procent_loss = 3
 r = 5
@@ -31,9 +32,12 @@ for i in range (count_experiments_global):
     count_days = [0] * (len(amounts_S) + 1)
 
     # считываение крывых
-    path_curve_i = path_file(path_curve, i + 1)
+    path_curve_i = path_file_history(path_folder_history, history_ticker, i)
     df = pd.read_csv(path_curve_i, sep=',')
+    # df.sort_index(ascending=False, inplace=True)
+    df.reset_index(drop=True, inplace=True)
     print("Файл считан: ", path_curve_i)
+    print(df)
 
     # применение бота
     df, profit = bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss)

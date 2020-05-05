@@ -1,5 +1,6 @@
 import os
 
+## curve generated
 
 def path_file(path_file_without_prefix, prefix): # генерирование название соответствующего файла
     path_file_prefix = path_file_without_prefix + '_' + str(prefix) + '.csv'
@@ -37,3 +38,14 @@ def file_clear(file):
     except:
         pass
     return file
+
+
+## history
+
+def path_file_history(folder_name, history_ticker, prefix): # генерирование название соответствующего файла из history ticker
+    path_file_history = folder_name + '/' + str(history_ticker[prefix]) + '.csv'
+    print(path_file_history)
+
+    return path_file_history
+
+

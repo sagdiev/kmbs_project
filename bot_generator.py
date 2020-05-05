@@ -10,7 +10,8 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
 
     column_p_sell = 'p_sell'
     column_p_buy = 'p_buy'
-    column_price = 'Price'
+    # column_price = 'Price'
+    column_price = 'Open'
     column_sell_buy = 'sell/buy'
     column_day_profit = 'day_profit'
     column_profit = 'total_profit'
@@ -26,6 +27,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     count_days = [0] * (len(amounts_S) + 1)
 
     p0 = df.loc[0, column_price]
+    print(p0)
 
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування

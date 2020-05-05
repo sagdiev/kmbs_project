@@ -31,7 +31,8 @@ with open(path_bi, 'a') as f:
         print(df)
 
         df['curve_number'] = 'curve_' + str(i + 1)
-        df['ticker'] = ticker
+        # df['ticker'] = ticker
+        df['ticker'] = history_ticker[i]
         print(df)
 
         df.to_csv(f, index=False) if i == 0 else df.to_csv(f, index=False, header=0)
