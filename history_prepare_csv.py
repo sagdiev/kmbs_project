@@ -2,7 +2,7 @@ import pandas as pd
 from constants import *
 from path_file_generator import *
 
-path_folder_history_source = path_folder_history + '/source/currency'
+path_folder_history_source = path_folder_history + '/source'
 
 for i in range (count_experiments_global):
 

@@ -3,37 +3,44 @@ from typing import Dict
 
 
 # input main
-experiment = 'experiment_10_history_currency'
-# ticker = 'history'
-ticker = 'history_history'
+experiment = 'experiment_9_history'
+ticker = 'history'
+# ticker = 'history_currency'
 
 # history_ticker = ['aapl', 'amzn', 'bac', 'bp', 'brk.b', 'c', 'f', 'fb', 'goog', 'googl',
                   # 'jnj', 'jpm', 'msft',  'nflx', 'pfe', 'spx', 't', 'tsla', 'twtr', 'xom']
-# history_ticker_1 = ['AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AMGN', 'AMZN', 'AVGO', 'AXP',
-#                   'BA', 'BAC', 'BKNG', 'BLK', 'BMY', 'BRK.B',
-#                   'C', 'CAT', 'CB', 'CELG', 'CHTR', 'CMCSA', 'COP', 'COST', 'CRM', 'CSCO', 'CVS', 'CVX',
-#                   'DIS', 'FB', 'GE', 'GILD', 'GOOG', 'GOOGL', 'GS', 'HD', 'HON', 'IBM', 'INTC',
-#                   'JNJ', 'JPM', 'KO', 'LLY', 'LMT', 'LOW',
-#                   'MA', 'MCD', 'MDLZ', 'MDT', 'MMM', 'MO', 'MRK', 'MS', 'MSFT', 'MU', 'NEE', 'NFLX', 'NKE', 'NVDA',
-#                   'ORCL', 'PEP', 'PFE', 'PG', 'PM', 'PNC', 'PYPL', 'QCOM', 'SBUX', 'SCHW', 'SLB',
-#                   'T', 'TMO', 'TWX', 'TXN', 'UNH', 'UNP', 'UPS', 'USB', 'V', 'VZ', 'WFC', 'WMT', 'XOM']
-#
-# history_ticker_2 = ['ADP', 'AGN', 'AIG', 'AMAT', 'AMT', 'ANTM', 'AON', 'APD', 'ATVI',
-#                   'BDX', 'BIIB', 'BK', 'BSX', 'CCI', 'CI', 'CL', 'CME', 'COF', 'CSX', 'CTSH',
-#                   'D', 'DAL', 'DE', 'DHR', 'DUK', 'EA', 'EBAY', 'EMR', 'EOG', 'ESRX', 'ETN', 'EXC',
-#                   'F', 'FDX', 'FOXA', 'GD', 'GM', 'HAL', 'HPQ', 'HUM',
-#                   'ICE', 'ILMN', 'INTU', 'ISRG', 'ITW', 'JCI', 'KHC', 'KMB', 'LRCX',
-#                   'MAR', 'MET', 'MMC', 'NOC', 'NSC', 'OXY', 'PRU', 'PSX',
-#                   'SO', 'SPG', 'SPGI', 'STT', 'STZ', 'SYK', 'TEL', 'TGT', 'TJX', 'TRV',
-#                   'VLO', 'VRTX', 'WBA', 'ZTS']
-#
-# history_ticker = history_ticker_1 + history_ticker_2
+history_ticker_1 = ['AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AMGN', 'AMZN', 'AVGO', 'AXP',
+                  'BA', 'BAC', 'BKNG', 'BLK', 'BMY', 'BRK.B',
+                  'C', 'CAT', 'CB', 'CELG', 'CHTR', 'CMCSA', 'COP', 'COST', 'CRM', 'CSCO', 'CVS', 'CVX',
+                  'DIS', 'FB', 'GE', 'GILD', 'GOOG', 'GOOGL', 'GS', 'HD', 'HON', 'IBM', 'INTC',
+                  'JNJ', 'JPM', 'KO', 'LLY', 'LMT', 'LOW',
+                  'MA', 'MCD', 'MDLZ', 'MDT', 'MMM', 'MO', 'MRK', 'MS', 'MSFT', 'MU', 'NEE', 'NFLX', 'NKE', 'NVDA',
+                  'ORCL', 'PEP', 'PFE', 'PG', 'PM', 'PNC', 'PYPL', 'QCOM', 'SBUX', 'SCHW', 'SLB',
+                  'T', 'TMO', 'TWX', 'TXN', 'UNH', 'UNP', 'UPS', 'USB', 'V', 'VZ', 'WFC', 'WMT', 'XOM']
+
+history_ticker_2 = ['ADP', 'AGN', 'AIG', 'AMAT', 'AMT', 'ANTM', 'AON', 'APD', 'ATVI',
+                  'BDX', 'BIIB', 'BK', 'BSX', 'CCI', 'CI', 'CL', 'CME', 'COF', 'CSX', 'CTSH',
+                  'D', 'DAL', 'DE', 'DHR', 'DUK', 'EA', 'EBAY', 'EMR', 'EOG', 'ESRX', 'ETN', 'EXC',
+                  'F', 'FDX', 'FOXA', 'GD', 'GM', 'HAL', 'HPQ', 'HUM',
+                  'ICE', 'ILMN', 'INTU', 'ISRG', 'ITW', 'JCI', 'KHC', 'KMB', 'LRCX',
+                  'MAR', 'MET', 'MMC', 'NOC', 'NSC', 'OXY', 'PRU', 'PSX',
+                  'SO', 'SPG', 'SPGI', 'STT', 'STZ', 'SYK', 'TEL', 'TGT', 'TJX', 'TRV',
+                  'VLO', 'VRTX', 'WBA', 'ZTS']
+
+history_ticker_3 = ['A', 'AAL', 'AAP', 'ABC', 'ABMD', 'ADI', 'ADM', 'ADS', 'ADSK', 'AEE', 'AEP',
+                    'AFL', 'AIV', 'AIZ', 'AJG', 'AKAM', 'ALB', 'ALGN', 'ALK', 'ALL', 'ALLE', 'ALXN',
+                    'AMCR', 'AMD', 'AME', 'AMP', 'ANET', 'ANSS', 'AOS', 'APA', 'APH', 'APTV', 'ARE',
+                    'ATO', 'AVB', 'AVY', 'AWK', 'AZO', 'BAX', 'BBY', 'BF.B', 'BKR', 'BLL', 'BR', 'BWA', 'BXP',
+                    'CDNS', 'CHRW', 'COG', 'CPB', 'ECL', 'LNT', 'LYB', 'PGR', 'SHW', 'WM']
+
+history_ticker = history_ticker_1 + history_ticker_2 + history_ticker_3
+# history_ticker = history_ticker_3
 
 # history_ticker = ['aapl', 'amzn', 'bac', 'twtr']
 # history_ticker = ['t']
 #ticker = str(input('Input ticker: '))
 
-history_ticker = ['^USDZAR', '^USDAUD', '^USDCAD', '^USDCHF', '^USDDKK', '^USDEUR', '^USDGBP', '^USDJPY', '^USDNOK', '^USDSEK', '^USDSGD']
+# history_ticker = ['^USDZAR', '^USDAUD', '^USDCAD', '^USDCHF', '^USDDKK', '^USDEUR', '^USDGBP', '^USDJPY', '^USDNOK', '^USDSEK', '^USDSGD']
 
 
 # STOCHASTIC_PROCESS_TYPES: Dict[str, int] = {
