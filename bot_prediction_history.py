@@ -17,11 +17,18 @@ path_bot = path_file_without_prefix(path_folder_bot, path_file_bot, experiment, 
 # os.makedirs(path_bot)
 
 # параметры бота
-procent = [0, 0.10, 0.15]
+# procent = [0, 0.15, 0.20]
+# amounts_S = [1000, 1000, 2000]
+# r_fin = 4
+# procent_loss = 3
+# r = 5
+
+procent = [0, 0.02, 0.04]
 amounts_S = [1000, 1000, 2000]
-r_fin = 4
-procent_loss = 3
-r = 5
+r_fin = 0.005
+procent_loss = 0.01
+r = 0.005
+
 # print("Процент самого глубокого снижения (от стартовой цены): \n", prod(4, procent) * 100, "%\n")
 
 # старт применения алгоритма бота
