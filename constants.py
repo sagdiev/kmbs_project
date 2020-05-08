@@ -3,13 +3,14 @@ from typing import Dict
 
 
 # input main
-experiment = 'experiment_9_history'
+experiment = 'experiment_14__history'
 ticker = 'history'
 # ticker = 'history_currency'
 
-# history_ticker = ['aapl', 'amzn', 'bac', 'bp', 'brk.b', 'c', 'f', 'fb', 'goog', 'googl',
-                  # 'jnj', 'jpm', 'msft',  'nflx', 'pfe', 'spx', 't', 'tsla', 'twtr', 'xom']
-history_ticker_1 = ['AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AMGN', 'AMZN', 'AVGO', 'AXP',
+# history_ticker = ['aapl', 'amzn', 'bac', 'brk.b', 'c', 'f', 'fb', 'goog', 'googl',
+#                   'msft',  'nflx', 'pfe', 't', 'xom']
+
+history_SP500_ticker_1 = ['AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AMGN', 'AMZN', 'AVGO', 'AXP',
                   'BA', 'BAC', 'BKNG', 'BLK', 'BMY', 'BRK.B',
                   'C', 'CAT', 'CB', 'CELG', 'CHTR', 'CMCSA', 'COP', 'COST', 'CRM', 'CSCO', 'CVS', 'CVX',
                   'DIS', 'FB', 'GE', 'GILD', 'GOOG', 'GOOGL', 'GS', 'HD', 'HON', 'IBM', 'INTC',
@@ -18,7 +19,7 @@ history_ticker_1 = ['AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AMGN', 'AMZN', 'AVGO'
                   'ORCL', 'PEP', 'PFE', 'PG', 'PM', 'PNC', 'PYPL', 'QCOM', 'SBUX', 'SCHW', 'SLB',
                   'T', 'TMO', 'TWX', 'TXN', 'UNH', 'UNP', 'UPS', 'USB', 'V', 'VZ', 'WFC', 'WMT', 'XOM']
 
-history_ticker_2 = ['ADP', 'AGN', 'AIG', 'AMAT', 'AMT', 'ANTM', 'AON', 'APD', 'ATVI',
+history_SP500_ticker_2 = ['ADP', 'AGN', 'AIG', 'AMAT', 'AMT', 'ANTM', 'AON', 'APD', 'ATVI',
                   'BDX', 'BIIB', 'BK', 'BSX', 'CCI', 'CI', 'CL', 'CME', 'COF', 'CSX', 'CTSH',
                   'D', 'DAL', 'DE', 'DHR', 'DUK', 'EA', 'EBAY', 'EMR', 'EOG', 'ESRX', 'ETN', 'EXC',
                   'F', 'FDX', 'FOXA', 'GD', 'GM', 'HAL', 'HPQ', 'HUM',
@@ -27,16 +28,16 @@ history_ticker_2 = ['ADP', 'AGN', 'AIG', 'AMAT', 'AMT', 'ANTM', 'AON', 'APD', 'A
                   'SO', 'SPG', 'SPGI', 'STT', 'STZ', 'SYK', 'TEL', 'TGT', 'TJX', 'TRV',
                   'VLO', 'VRTX', 'WBA', 'ZTS']
 
-history_ticker_3 = ['A', 'AAL', 'AAP', 'ABC', 'ABMD', 'ADI', 'ADM', 'ADS', 'ADSK', 'AEE', 'AEP',
+history_SP500_ticker_3 = ['A', 'AAL', 'AAP', 'ABC', 'ABMD', 'ADI', 'ADM', 'ADS', 'ADSK', 'AEE', 'AEP',
                     'AFL', 'AIV', 'AIZ', 'AJG', 'AKAM', 'ALB', 'ALGN', 'ALK', 'ALL', 'ALLE', 'ALXN',
                     'AMCR', 'AMD', 'AME', 'AMP', 'ANET', 'ANSS', 'AOS', 'APA', 'APH', 'APTV', 'ARE',
                     'ATO', 'AVB', 'AVY', 'AWK', 'AZO', 'BAX', 'BBY', 'BF.B', 'BKR', 'BLL', 'BR', 'BWA', 'BXP',
                     'CDNS', 'CHRW', 'COG', 'CPB', 'ECL', 'LNT', 'LYB', 'PGR', 'SHW', 'WM']
 
-history_ticker = history_ticker_1 + history_ticker_2 + history_ticker_3
-# history_ticker = history_ticker_3
+history_ticker = history_SP500_ticker_1 + history_SP500_ticker_2 + history_SP500_ticker_3
+# history_ticker = history_SP500_ticker_1
 
-# history_ticker = ['aapl', 'amzn', 'bac', 'twtr']
+# history_ticker = ['BBY']
 # history_ticker = ['t']
 #ticker = str(input('Input ticker: '))
 
@@ -66,7 +67,7 @@ history_ticker = history_ticker_1 + history_ticker_2 + history_ticker_3
 period = 365*5 # период, на котором рассматриваем поведение бота
 dt = 1 # единица времени, пучть будет 1 день
 
-# count_experiments_global = 3 # к-во экспериментов - сгенерированных крывых
+# count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 count_experiments_global = len(history_ticker)
 
 path_folder_curve = 'data_curve'
@@ -86,10 +87,10 @@ date_today = date.today()
 # date_today_format = date_today.strftime("%Y_%m_%d")
 
 # date calculation start of experiment
-# date_year_start = 2017
-# date_month_start = 1
-# date_day_start = 1
-# date_experiment_start = datetime(date_year_start, date_month_start, date_day_start)
+date_year_start = 2020
+date_month_start = 5
+date_day_start = 1
+date_experiment_start = datetime(date_year_start, date_month_start, date_day_start)
 # date_experiment_start_format = date_experiment_start.strftime("%Y_%m_%d")
 #
 

@@ -33,6 +33,8 @@ with open(path_bi, 'a') as f:
         df['curve_number'] = 'curve_' + str(i + 1)
         # df['ticker'] = ticker
         df['ticker'] = history_ticker[i]
+        # df['ticker'] = history_ticker[0]
+
         print(df)
 
         df.to_csv(f, index=False) if i == 0 else df.to_csv(f, index=False, header=0)

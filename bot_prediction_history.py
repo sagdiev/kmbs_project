@@ -14,7 +14,7 @@ start = timer()
 path_bot = path_file_without_prefix(path_folder_bot, path_file_bot, experiment, ticker)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-# os.makedirs(path_bot)
+os.makedirs(path_bot)
 
 # параметры бота
 procent = [0, 0.15, 0.20]
@@ -51,7 +51,8 @@ for i in range (count_experiments_global):
     print('profit = ', profit)
 
     # запись в файл бота
-    path_bot_i = path_file(path_bot, i + 1 + 153)
+    path_bot_i = path_file(path_bot, i + 1)
+    # path_bot_i = path_file(path_bot, i + 1 + 153)
     df.to_csv(path_bot_i, sep = ',', index=False,)
     print("Файл создан: ", path_bot_i, "\n")
 
