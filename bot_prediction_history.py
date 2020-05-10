@@ -14,7 +14,7 @@ start = timer()
 path_bot = path_file_without_prefix(path_folder_bot, path_file_bot, experiment, ticker)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-os.makedirs(path_bot)
+# os.makedirs(path_bot)
 
 # параметры бота
 procent = [0, 0.15, 0.20]

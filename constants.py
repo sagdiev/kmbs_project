@@ -3,7 +3,7 @@ from typing import Dict
 
 
 # input main
-experiment = 'experiment_14__history'
+experiment = 'experiment_15__history'
 ticker = 'history'
 # ticker = 'history_currency'
 
@@ -35,9 +35,10 @@ history_SP500_ticker_3 = ['A', 'AAL', 'AAP', 'ABC', 'ABMD', 'ADI', 'ADM', 'ADS',
                     'CDNS', 'CHRW', 'COG', 'CPB', 'ECL', 'LNT', 'LYB', 'PGR', 'SHW', 'WM']
 
 history_ticker = history_SP500_ticker_1 + history_SP500_ticker_2 + history_SP500_ticker_3
+
 # history_ticker = history_SP500_ticker_1
 
-# history_ticker = ['BBY']
+# history_ticker = ['AAPL', 'ABBV', 'BBY']
 # history_ticker = ['t']
 #ticker = str(input('Input ticker: '))
 

@@ -21,6 +21,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     column_costs_of_bying = 'costs_of_bying'
     column_sum_invested = 'sum_invested'
     column_cost_of_sum_investment = 'cost_of_sum_investment'
+    column_reserved_sum_investment = 'reserved_sum_investment'
     column_ticker = 'ticker'
 
     count_step = [0] * (len(amounts_S) + 1)
@@ -33,7 +34,9 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування
     number = []
+    S = 0
     for j in range(0, len(amounts_S)):
+        S = S + amounts_S[j]
         if j == 0:
             number.append(amounts_S[j] / p0)
         else:
@@ -59,6 +62,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     df.loc[0, column_costs_of_bying] = S0
     df.loc[0, column_sum_invested] = C
     df.loc[0, column_cost_of_sum_investment] = B
+    df.loc[0, column_reserved_sum_investment] = S
     df.loc[0, column_count_sell] = 0
 
     for i in range(1, len(df)):
@@ -87,6 +91,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
             df.loc[i, column_day_profit] = K * df.loc[i, column_price] - C
             df.loc[i, column_sum_invested] = C
             df.loc[i, column_cost_of_sum_investment] = B
+            df.loc[i, column_reserved_sum_investment] = S
 
             number = []
             for j in range(0, len(amounts_S)):
@@ -128,6 +133,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
                 df.loc[i, column_costs_of_bying] = S0
                 df.loc[i, column_sum_invested] = C
                 df.loc[i, column_cost_of_sum_investment] = B
+                df.loc[i, column_reserved_sum_investment] = S
 
             elif t == len(amounts_S):
                 count_step[t] = count_step[t] + 1
@@ -138,6 +144,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
                 df.loc[i, column_count_sell] = K
                 df.loc[i, column_sum_invested] = C
                 df.loc[i, column_cost_of_sum_investment] = B
+                df.loc[i, column_reserved_sum_investment] = S
 
                 profit = profit + K * df[column_price][i] - C
                 df.loc[i, column_profit] = profit
@@ -167,6 +174,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
             df.loc[i, column_profit] = profit
             df.loc[i, column_sum_invested] = C
             df.loc[i, column_cost_of_sum_investment] = B
+            df.loc[i, column_reserved_sum_investment] = S
             df.loc[i, column_sell_buy] = 'waiting'
 
     df['day_profit'] = round(df['day_profit'], 0)
@@ -180,6 +188,7 @@ def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
     df['costs_of_bying'] = round(df['costs_of_bying'], 2)
     df['sum_invested'] = round(df['sum_invested'], 2)
     df['cost_of_sum_investment'] = round(df['cost_of_sum_investment'], 2)
+    df['reserved_sum_investment'] = round(df['reserved_sum_investment'], 2)
 
     return df, profit
 
