@@ -11,8 +11,8 @@ from path_file_generator import *
 start = timer()
 
 # папки и файлы
-path_bot = path_file_without_prefix(path_folder_bot, path_file_bot, experiment, ticker)
-path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
+path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
+path_curve = path_file_without_prefix(PATH_FOLDER_CURVE, PATH_FILE_CURVE, EXPERIMENT, TICKER)
 # os.makedirs(path_bot)
 
 # параметры бота
@@ -31,7 +31,7 @@ r = 5
 # print("Процент самого глубокого снижения (от стартовой цены): \n", prod(4, procent) * 100, "%\n")
 
 # старт применения алгоритма бота
-for i in range (count_experiments_global):
+for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
     count_step = [0] * (len(amounts_S) + 1)
     size_profit = [0] * (len(amounts_S) + 1)
@@ -48,7 +48,7 @@ for i in range (count_experiments_global):
 
     # запись в файл бота
     path_bot_i = path_file(path_bot, i + 1)
-    df.to_csv(path_bot_i, sep = ',', index=False,)
+    df.to_csv(path_bot_i, sep=',', index=False,)
     print("Файл создан: ", path_bot_i, "\n")
 
 # таймер

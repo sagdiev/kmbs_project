@@ -11,9 +11,9 @@ from path_file_generator import *
 start = timer()
 
 # папки и файлы
-path_bot = path_file_without_prefix(path_folder_bot, path_file_bot, experiment, ticker)
-path_folder_bi = folder_check(path_folder_bi)
-path_bi = path_folder_bi + '/' + experiment +'.csv'
+path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
+path_folder_bi = folder_check(PATH_FOLDER_BI)
+path_bi = path_folder_bi + '/' + EXPERIMENT +'.csv'
 print(path_bi)
 
 r = file_clear(path_bi)
@@ -22,7 +22,7 @@ r = file_clear(path_bi)
 
 with open(path_bi, 'a') as f:
 
-    for i in range (count_experiments_global):
+    for i in range (COUNT_EXPERIMENTS_GLOBAL):
 
         # считываение файлы
         path_bot_i = path_file(path_bot, i + 1)
@@ -32,7 +32,7 @@ with open(path_bi, 'a') as f:
 
         df['curve_number'] = 'curve_' + str(i + 1)
         # df['ticker'] = ticker
-        df['ticker'] = history_ticker[i]
+        df['ticker'] = TICKER_HISTORY_LIST[i]
         # df['ticker'] = history_ticker[0]
 
         print(df)
