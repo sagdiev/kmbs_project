@@ -96,4 +96,10 @@ date_experiment_start = datetime(date_year_start, date_month_start, date_day_sta
 #
 
 
+# Базоыве параметы бота, на основе которых определюяются относительные параметры всех ботов
+PROCENT_BASE = [0, 15, 20, 25, 30]
+R_BASE = 5
+R_FIN_BASE = 4
+PROCENT_LOSS_BASE = 3
+
 
