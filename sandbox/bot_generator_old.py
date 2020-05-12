@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 from constants import *
 
 
-def bot_martingale(df, param_dict_def):
+
+def bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss):
 
     column_p_sell = 'p_sell'
     column_p_buy = 'p_buy'
@@ -23,24 +24,13 @@ def bot_martingale(df, param_dict_def):
     column_reserved_sum_investment = 'reserved_sum_investment'
     column_ticker = 'ticker'
 
-    # df['STD_rolling'] = rolling_std(df)
-    # print(df['STD_rolling'])
-    # param_dict_def = param_rebalance(param_dict_def, df['STD_rolling'][1])
-    # print('df[STD_rolling][1] = ', df['STD_rolling'][1])
-
-    procent = param_dict_def.get('procent')
-    amounts_S = param_dict_def.get('amounts_S')
-    r = param_dict_def.get('r')
-    r_fin = param_dict_def.get('r_fin')
-    procent_loss = param_dict_def.get('procent_loss')
-
     count_step = [0] * (len(amounts_S) + 1)
     size_profit = [0] * (len(amounts_S) + 1)
     count_days = [0] * (len(amounts_S) + 1)
 
-
     p0 = df.loc[0, column_price]
     print(p0)
+
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування
     number = []
@@ -211,31 +201,3 @@ def prod(j, array):
         return prod(j-1, array) * (1-array[j])
 
 
-def param_rebalance(param_dict_rebalance_def, rolling_std_def):
-
-    print('param_dict_def = ', param_dict_rebalance_def)
-
-    coef = rolling_std_def / 0.37195826601590254
-    param_dict_rebalance_def['procent'] = [x * coef for x in param_dict_rebalance_def['procent']]
-
-    print('rebalanced_param_dict_def[procent] = ', param_dict_rebalance_def['procent'])
-
-    # r = param_dict_def.get('r')
-    # r_fin = param_dict_def.get('r_fin')
-    # procent_loss = param_dict_def.get('procent_loss')
-
-    return param_dict_rebalance_def
-
-
-def rolling_std(df_def):
-    # расчет скользящего среднего приведенного к годовому c окном WINDOW_ROLLING_STD
-    # ВНИМАНИЕ! первый период временно обогощается средними данными периода - в идеале надо наполнять историческими данными прошлых периодов
-    global WINDOW_ROLLING_STD
-
-    rolling_std_calc = df_def['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0) * 252 ** 0.5
-    rolling_std_mean = np.mean(rolling_std_calc)
-
-    for i in range(WINDOW_ROLLING_STD):  # первый период обогощаем средними данными периода
-        rolling_std_calc[i] = rolling_std_mean
-
-    return rolling_std_calc
