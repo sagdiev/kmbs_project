@@ -3,10 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from constants import *
+from base_functions import *
 
 
 def bot_martingale(df, param_dict_def):
 
+    # column_date = 'Time'
     column_p_sell = 'p_sell'
     column_p_buy = 'p_buy'
     # column_price = 'Price'
@@ -74,6 +76,7 @@ def bot_martingale(df, param_dict_def):
     df.loc[0, column_cost_of_sum_investment] = B
     df.loc[0, column_reserved_sum_investment] = S
     df.loc[0, column_count_sell] = 0
+    # df.loc[0, column_date] = date_convert(df.loc[0, column_date])
 
     for i in range(1, len(df)):
         count_days[t] = count_days[t] + 1
@@ -85,8 +88,8 @@ def bot_martingale(df, param_dict_def):
                 # count_step
                 size_profit[t] = size_profit[t] + K * df[column_price][i] - C
                 # size_profit
-            else:
-                pass
+            # else:
+            #     pass
             profit = profit + (K * df[column_price][i] - C)
             df.loc[i, column_profit] = profit
             df.loc[i, column_count_sell] = K
@@ -102,6 +105,7 @@ def bot_martingale(df, param_dict_def):
             df.loc[i, column_sum_invested] = C
             df.loc[i, column_cost_of_sum_investment] = B
             df.loc[i, column_reserved_sum_investment] = S
+            # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
 
             number = []
             for j in range(0, len(amounts_S)):
@@ -144,10 +148,12 @@ def bot_martingale(df, param_dict_def):
                 df.loc[i, column_sum_invested] = C
                 df.loc[i, column_cost_of_sum_investment] = B
                 df.loc[i, column_reserved_sum_investment] = S
+                # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
+
 
             elif t == len(amounts_S):
                 count_step[t] = count_step[t] + 1
-                count_step
+                # count_step
                 df.loc[i, column_day_profit] = K * df.loc[i, column_price] - C
                 size_profit[t] = size_profit[t] + K * df[column_price][i] - C
                 df.loc[i, column_sell_buy] = 'StopLoss'
@@ -155,6 +161,7 @@ def bot_martingale(df, param_dict_def):
                 df.loc[i, column_sum_invested] = C
                 df.loc[i, column_cost_of_sum_investment] = B
                 df.loc[i, column_reserved_sum_investment] = S
+                # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
 
                 profit = profit + K * df[column_price][i] - C
                 df.loc[i, column_profit] = profit
@@ -186,6 +193,8 @@ def bot_martingale(df, param_dict_def):
             df.loc[i, column_cost_of_sum_investment] = B
             df.loc[i, column_reserved_sum_investment] = S
             df.loc[i, column_sell_buy] = 'waiting'
+            # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
+
 
     df['day_profit'] = round(df['day_profit'], 0)
     df['total_profit'] = round(df['total_profit'], 0)
@@ -212,6 +221,10 @@ def prod(j, array):
 
 
 def param_rebalance(param_dict_rebalance_def, rolling_std_def):
+    PROCENT_BASE = [0, 0.05, 0.10, 0.25, 0.30]  # эксперимент 17
+    R_BASE = 5
+    R_FIN_BASE = 7
+    PROCENT_LOSS_BASE = 3
 
     print('param_dict_def = ', param_dict_rebalance_def)
 

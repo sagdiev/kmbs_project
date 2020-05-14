@@ -5,7 +5,16 @@ from timeit import default_timer as timer
 from constants import *
 from bot_generator import *
 from path_file_generator import *
+from base_functions import *
 
+
+def integral_indicators_bot_sigle(df_def):
+    # подсчет интегральных показателей результатов работы конкретного бота на конкретной кривой
+
+    # подсчет прибыльности по годам
+    df_cacl = 1
+
+    return df_cacl
 
 # START
 start = timer()
@@ -33,9 +42,11 @@ with open(path_bi, 'a') as f:
         df['curve_number'] = 'curve_' + str(i + 1)
         # df['ticker'] = ticker
         df['ticker'] = TICKER_HISTORY_LIST[i]
-        # df['ticker'] = history_ticker[0]
-
-        print(df)
+        # for j in range(len(list(df['Ticker']))):
+        #     print(df['Ticker'][j])
+        #     df['Ticker'][j] = date_convert(df['Ticker'][j])
+        #
+        # print(df)
 
         df.to_csv(f, index=False) if i == 0 else df.to_csv(f, index=False, header=0)
 

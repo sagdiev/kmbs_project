@@ -66,7 +66,7 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
         for k, j in zip(t_curve, s_curve):
             print(k)
-            date_k = date_experiment_start + timedelta(days=k - 1)
+            date_k = DATE_EXPERIMENT_START + timedelta(days=k - 1)
             writer.writerow([k, date_k, round(j, 2)])
 
     plt.plot(t_curve, s_curve, linewidth=0.1)

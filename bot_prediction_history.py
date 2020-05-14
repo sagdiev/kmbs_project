@@ -9,13 +9,14 @@ from parameters_generator import *
 
 
 # START
+
 start = timer()
 
 # папки и файлы
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-os.makedirs(path_bot)
+# os.makedirs(path_bot)
 
 # параметры бота
 
@@ -63,15 +64,18 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     print("Файл считан: ", path_curve_i)
     print(df)
 
+    rolling_std_cacl = df['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
+    rolling_std_mean = np.mean(rolling_std_cacl)
+
     # x = param_rebalance(param_dict, 0.37195826601590254)
-    # print('param_rebalance = ', x)
+    print('rolling_std_mean = ', rolling_std_mean)
 
     # применение бота
     # df, profit = bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss)
     df, profit = bot_martingale(df, param_dict)
     print('profit = ', profit)
 
-
+    df['Curve'] = str(TICKER_HISTORY_LIST[i])
 
     # запись в файл бота
     path_bot_i = path_file(path_bot, i + 1)
