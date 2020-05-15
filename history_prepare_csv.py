@@ -2,6 +2,7 @@ import pandas as pd
 from constants import *
 from path_file_generator import *
 
+# приведение файлов исторических данных к стандартизированному формату
 path_folder_history_source = PATH_FOLDER_HISTORY + '/source'
 
 for i in range(COUNT_EXPERIMENTS_GLOBAL):

@@ -8,14 +8,6 @@ from path_file_generator import *
 from base_functions import *
 
 
-def integral_indicators_bot_sigle(df_def):
-    # подсчет интегральных показателей результатов работы конкретного бота на конкретной кривой
-
-    # подсчет прибыльности по годам
-    df_cacl = 1
-
-    return df_cacl
-
 # START
 start = timer()
 

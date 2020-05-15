@@ -22,40 +22,43 @@ def date_convert_inverse(datetime_object):
 
 
 def find_last_days_year(df_def):
+
     time_list = df_def['Time'].to_list()
+
     date_start = date_convert(time_list[0])
     date_end = date_convert(time_list[-1])
+
     year_start = date_start.year
     year_end = date_end.year
 
-    date_last_list = {}
-    date_first_list = {}
+    date_last_list = []
+    date_first_list = []
+    year_list = []
 
-
-    for year_i in range(year_start - 1, year_end):
+    for year_i in range(year_start, year_end + 1):
         item_in_year = [x for x in time_list
-                        if date_convert(x) > datetime(year_i, 12, 31)
+                        if date_convert(x) >= datetime(year_i, 1, 1)
                         and date_convert(x) < datetime(year_i + 1, 12, 31)]
         # print(date_convert(min(item_in_year)))
         date_first = min(item_in_year)
         date_last = max(item_in_year)
+        date_first_list.append(date_first)
+        date_last_list.append(date_last)
+        year_list.append(year_i)
         # item_in_year = [date_convert(x) for x in time_list]
         # print(r)
         # item_in_year = date_convert(item_in_year_str)
         # list_last_days.append(min(item_in_year))
-        date_last_list[year_i + 1] = date_last
-        date_first_list[year_i + 1] = date_first
+        # date_last_list[year_i] = date_last
+        # date_first_list[year_i] = date_first
+    # print(date_last_list)
+    # print(date_first_list)
+
+    return date_first_list, date_last_list, year_list
 
 
-    print(date_last_list)
-    print(date_first_list)
-
-
-    return date_last_list
-
-
-path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
-
+# path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
+#
 # rrr = {}
 # for i in range(2):
 #     path_bot_i = path_file(path_bot, i + 1)

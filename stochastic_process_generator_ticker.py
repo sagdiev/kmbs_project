@@ -59,7 +59,7 @@ print(df)
 start_price = df['Open'][len(df) - 1]  # ціна, з якої стартує генерування
 # print(start_price)
 
-T = 365*3
+T = 252*3
 mu = np.mean(df['Open'].pct_change())
 sigma = np.std(df['Open'].pct_change())
 s0 = start_price  # ціна, з якої стартує генерування

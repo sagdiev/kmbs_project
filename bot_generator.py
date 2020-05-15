@@ -23,6 +23,7 @@ def bot_martingale(df, param_dict_def):
     column_sum_invested = 'sum_invested'
     column_cost_of_sum_investment = 'cost_of_sum_investment'
     column_reserved_sum_investment = 'reserved_sum_investment'
+    column_fee_count = 'fee_count'
     column_ticker = 'ticker'
 
     # df['STD_rolling'] = rolling_std(df)
@@ -63,6 +64,7 @@ def bot_martingale(df, param_dict_def):
     t = 0
     p_sell = p0 * (1 + r / 100)
     p_buy = p0 * (1 - procent[1])
+    fee_count = int(1)
 
     df.loc[0, column_p_sell] = p_sell
     df.loc[0, column_p_buy] = p_buy
@@ -76,20 +78,22 @@ def bot_martingale(df, param_dict_def):
     df.loc[0, column_cost_of_sum_investment] = B
     df.loc[0, column_reserved_sum_investment] = S
     df.loc[0, column_count_sell] = 0
+    df.loc[0, column_fee_count] = fee_count
     # df.loc[0, column_date] = date_convert(df.loc[0, column_date])
 
     for i in range(1, len(df)):
         count_days[t] = count_days[t] + 1
-        # count_days
 
         if df[column_price][i] > p_sell:
+            # случай, когда цена выше уровня продажи, т.е. мы выходим из позиции и докумаем ее снова
+
+            fee_count += 1  # довавляем 1 в счетчик комиссий, так как в этих случаях будут выполнен
+                            # один ордер на продажу - выход части акций из позиции (не 2 ордера продажи и покупки)
+
             if t < len(amounts_S):
                 count_step[t] = count_step[t] + 1
-                # count_step
                 size_profit[t] = size_profit[t] + K * df[column_price][i] - C
-                # size_profit
-            # else:
-            #     pass
+
             profit = profit + (K * df[column_price][i] - C)
             df.loc[i, column_profit] = profit
             df.loc[i, column_count_sell] = K
@@ -105,6 +109,7 @@ def bot_martingale(df, param_dict_def):
             df.loc[i, column_sum_invested] = C
             df.loc[i, column_cost_of_sum_investment] = B
             df.loc[i, column_reserved_sum_investment] = S
+            df.loc[i, column_fee_count] = fee_count
             # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
 
             number = []
@@ -121,16 +126,20 @@ def bot_martingale(df, param_dict_def):
             t = 0
 
         elif df[column_price][i] < p_buy:
+            # цена опустилась ниже уровня ордера на покупку => тогда бот докупает еще или выходит в stop loss
+
             t = t + 1
+            fee_count += 1 # довавляем 1 к счетчику комиссий, так как в этих случаях будет выполнен ордер на покупку
 
             if t < len(amounts_S):
+                # случай, когда мы докупаем актив, так как это еще не последний шаг алгоритма
+
                 k0 = number[t]
                 K = K + k0
                 p0 = df[column_price][i]
                 S0 = k0 * p0
                 C = C + S0
                 B = K * p0
-
                 p_sell = (C / K) * (1 + r_fin / 100)
 
                 if (t + 1) < len(amounts_S):
@@ -148,12 +157,16 @@ def bot_martingale(df, param_dict_def):
                 df.loc[i, column_sum_invested] = C
                 df.loc[i, column_cost_of_sum_investment] = B
                 df.loc[i, column_reserved_sum_investment] = S
+                df.loc[i, column_fee_count] = fee_count
+
                 # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
 
 
             elif t == len(amounts_S):
+                # случай stop loss, так как это последний шаг алгоритма
+
                 count_step[t] = count_step[t] + 1
-                # count_step
+
                 df.loc[i, column_day_profit] = K * df.loc[i, column_price] - C
                 size_profit[t] = size_profit[t] + K * df[column_price][i] - C
                 df.loc[i, column_sell_buy] = 'StopLoss'
@@ -161,6 +174,8 @@ def bot_martingale(df, param_dict_def):
                 df.loc[i, column_sum_invested] = C
                 df.loc[i, column_cost_of_sum_investment] = B
                 df.loc[i, column_reserved_sum_investment] = S
+                df.loc[i, column_fee_count] = fee_count
+
                 # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
 
                 profit = profit + K * df[column_price][i] - C
@@ -186,6 +201,7 @@ def bot_martingale(df, param_dict_def):
                 B = K * p0
                 t = 0
         else:
+
             df.loc[i, column_p_sell] = df.loc[i - 1, column_p_sell]
             df.loc[i, column_p_buy] = df.loc[i - 1, column_p_buy]
             df.loc[i, column_profit] = profit
@@ -193,6 +209,8 @@ def bot_martingale(df, param_dict_def):
             df.loc[i, column_cost_of_sum_investment] = B
             df.loc[i, column_reserved_sum_investment] = S
             df.loc[i, column_sell_buy] = 'waiting'
+            df.loc[i, column_fee_count] = fee_count
+
             # df.loc[i, column_date] = date_convert(df.loc[i, column_date])
 
 
@@ -245,7 +263,7 @@ def rolling_std(df_def):
     # ВНИМАНИЕ! первый период временно обогощается средними данными периода - в идеале надо наполнять историческими данными прошлых периодов
     global WINDOW_ROLLING_STD
 
-    rolling_std_calc = df_def['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0) * 252 ** 0.5
+    rolling_std_calc = df_def['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
     rolling_std_mean = np.mean(rolling_std_calc)
 
     for i in range(WINDOW_ROLLING_STD):  # первый период обогощаем средними данными периода

@@ -20,11 +20,14 @@ path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, 
 
 # параметры бота
 
-point = 1
-amount_first = 1000
-step_count = 3
+point_bot = 1
+step_count_bot = 3
+total_amount_bot = 10000
+# amount_first = 1000
 
-param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
+
+# param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
+param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot, step_count_bot)
 
 # procent = param_dict.get('procent')
 # amounts_S = param_dict.get('amounts_S')
