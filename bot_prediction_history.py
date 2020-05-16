@@ -16,7 +16,7 @@ start = timer()
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-os.makedirs(path_bot)
+# os.makedirs(path_bot)
 
 # параметры бота
 point_bot = 1
@@ -51,6 +51,8 @@ print(param_dict)
 # старт применения алгоритма бота
 for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
+    timer_start = timer()
+
     # count_step = [0] * (len(amounts_S) + 1)
     # size_profit = [0] * (len(amounts_S) + 1)
     # count_days = [0] * (len(amounts_S) + 1)
@@ -82,9 +84,11 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     df.to_csv(path_bot_i, sep=',', index=False,)
     print("Файл создан: ", path_bot_i, "\n")
 
+    duration = timer() - timer_start
+    print('Время обработки одного бота = ', duration)
     duration = timer() - start
-    print('Время обработки алгоритма = ', duration)
+    print('Время обработки всего = ', duration)
 
 # таймер
 duration = timer() - start
-print('Время обработки алгоритма = ', duration)
+print('Время обработки всего алгоритма = ', duration)

@@ -23,6 +23,7 @@ def bot_martingale(df, param_dict_def):
     column_sum_invested = 'sum_invested'
     column_cost_of_sum_investment = 'cost_of_sum_investment'
     column_reserved_sum_investment = 'reserved_sum_investment'
+    column_portfolio_cost_in_day = 'portfolio_cost_in_day'
     column_fee_count = 'fee_count'
     column_ticker = 'ticker'
 
@@ -60,6 +61,7 @@ def bot_martingale(df, param_dict_def):
     S0 = k0 * p0
     C = S0
     B = K * p0
+    PC = K * p0
     profit = 0
     t = 0
     p_sell = p0 * (1 + r / 100)
@@ -83,6 +85,7 @@ def bot_martingale(df, param_dict_def):
 
     for i in range(1, len(df)):
         count_days[t] = count_days[t] + 1
+        price_current = df[column_price][i]
 
         if df[column_price][i] > p_sell:
             # случай, когда цена выше уровня продажи, т.е. мы выходим из позиции и докумаем ее снова
@@ -201,6 +204,7 @@ def bot_martingale(df, param_dict_def):
                 B = K * p0
                 t = 0
         else:
+            B = K * price_current
 
             df.loc[i, column_p_sell] = df.loc[i - 1, column_p_sell]
             df.loc[i, column_p_buy] = df.loc[i - 1, column_p_buy]
