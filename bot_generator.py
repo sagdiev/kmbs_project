@@ -26,7 +26,7 @@ def bot_martingale(df, param_dict_def):
     column_fee_count = 'fee_count'
     column_ticker = 'ticker'
 
-    # df['STD_rolling'] = rolling_std(df)
+    df['STD_rolling'] = rolling_std(df)
     # print(df['STD_rolling'])
     # param_dict_def = param_rebalance(param_dict_def, df['STD_rolling'][1])
     # print('df[STD_rolling][1] = ', df['STD_rolling'][1])

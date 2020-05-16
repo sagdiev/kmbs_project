@@ -16,18 +16,15 @@ start = timer()
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-# os.makedirs(path_bot)
+os.makedirs(path_bot)
 
 # параметры бота
-
 point_bot = 1
 step_count_bot = 3
 total_amount_bot = 10000
-# amount_first = 1000
-
-
-# param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
 param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot, step_count_bot)
+# amount_first = 1000
+# param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
 
 # procent = param_dict.get('procent')
 # amounts_S = param_dict.get('amounts_S')
@@ -36,7 +33,6 @@ param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot,
 # procent_loss = param_dict.get('procent_loss')
 
 print(param_dict)
-
 
 # procent = [0, 0.15, 0.20]
 # amounts_S = [1000, 1000, 2000]
@@ -85,6 +81,9 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     # path_bot_i = path_file(path_bot, i + 1 + 153)
     df.to_csv(path_bot_i, sep=',', index=False,)
     print("Файл создан: ", path_bot_i, "\n")
+
+    duration = timer() - start
+    print('Время обработки алгоритма = ', duration)
 
 # таймер
 duration = timer() - start

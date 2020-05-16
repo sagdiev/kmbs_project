@@ -40,6 +40,7 @@ def find_last_days_year(df_def):
                         if date_convert(x) >= datetime(year_i, 1, 1)
                         and date_convert(x) < datetime(year_i + 1, 12, 31)]
         # print(date_convert(min(item_in_year)))
+        # print('item_in_year = ', item_in_year)
         date_first = min(item_in_year)
         date_last = max(item_in_year)
         date_first_list.append(date_first)

@@ -78,13 +78,13 @@ def param_to_dict(procent_def, amounts_S_def, r_def, r_fin_def, procent_loss_def
 #     return procent_def, amounts_S_def, r_def, r_fin_def, procent_loss_def
 
 
-# тест генерирования упрощенных параметров
+# # тест генерирования упрощенных параметров
 # point = 1
-# amount_first = 1000
-# step_count = 4
+# # amount_first = 1000
+# step_count = 3
 #
-# total_amount = 100000  # возможен вариант подсчета параметром исходя из Общей суммы резерва
+# total_amount = 10000  # возможен вариант подсчета параметром исходя из Общей суммы резерва
 #
-# print(param_generate_base_point_amount_first(point, amount_first, step_count)) # вариант генерирования параметров по первой сумме amounts_S
+# # print(param_generate_base_point_amount_first(point, amount_first, step_count)) # вариант генерирования параметров по первой сумме amounts_S
 #
 # print(param_generate_base_point_total_amount(point, total_amount, step_count)) # вариант генерирования параметров по Общей сумме amounts_S

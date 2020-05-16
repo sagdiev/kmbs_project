@@ -3,7 +3,7 @@ from typing import Dict
 
 
 # input main
-EXPERIMENT = 'experiment_22_history'
+EXPERIMENT = 'experiment_23_history'
 EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
 TICKER = 'history'
@@ -29,11 +29,11 @@ history_SP500_ticker_2 = ['ADP', 'AGN', 'AIG', 'AMAT', 'AMT', 'ANTM', 'AON', 'AP
 history_SP500_ticker_3 = ['A', 'AAL', 'AAP', 'ABC', 'ABMD', 'ADI', 'ADM', 'ADS', 'ADSK', 'AEE', 'AEP',
                           'AFL', 'AIV', 'AIZ', 'AJG', 'AKAM', 'ALB', 'ALGN', 'ALK', 'ALL', 'ALLE', 'ALXN',
                           'AMCR', 'AMD', 'AME', 'AMP', 'ANET', 'ANSS', 'AOS', 'APA', 'APH', 'APTV', 'ARE',
-                          'ATO', 'AVB', 'AVY', 'AWK', 'AZO', 'BAX', 'BBY', 'BF.B', 'BKR', 'BLL', 'BR', 'BWA', 'BXP',
+                          'ATO', 'AVB', 'AVY', 'AWK', 'AZO', 'BAX', 'BBY', 'BF.B', 'BLL', 'BR', 'BWA', 'BXP',
                           'CDNS', 'CHRW', 'COG', 'CPB', 'ECL', 'LNT', 'LYB', 'PGR', 'SHW', 'WM']
 
 history_SP500_ticker_4 = ['BEN', 'ES', 'EXPD', 'EXPE', 'EXR', 'FAST', 'FBHS', 'FCX', 'FE', 'FFIV', 'FIS',
-                          'FISV', 'FITB', 'FLIR', 'FLS', 'FLT', 'FMC', 'FOX', 'FRC', 'FRT', 'FTNT', 'FTV',
+                          'FISV', 'FITB', 'FLIR', 'FLS', 'FLT', 'FMC', 'FRC', 'FRT', 'FTNT', 'FTV',
                           'GIS', 'GL', 'GPC', 'GPN', 'GPS', 'GRMN', 'GWW',
                           'HAS', 'HBAN', 'HBI', 'HCA', 'HES', 'HFC', 'HIG', 'HII', 'HLT', 'HOG', 'HOLX',
                           'HP', 'HPE', 'HRB', 'HRL', 'HSIC', 'HST', 'HSY', 'HWM',
@@ -57,8 +57,8 @@ history_SP500_ticker_6 = ['UAA', 'DPZ', 'DXCM', 'TSN', 'UA', 'UAL', 'UDR', 'UHS'
                           'WELL', 'WHR', 'WLTW', 'WMB', 'WRB', 'WRK', 'WU', 'WY', 'WYNN',
                           'XEL', 'XLNX', 'XRX', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZION']
 
-# TICKER_HISTORY_LIST = history_SP500_ticker_1 + history_SP500_ticker_2 + history_SP500_ticker_3 + history_SP500_ticker_4
-TICKER_HISTORY_LIST = history_SP500_ticker_6
+TICKER_HISTORY_LIST = history_SP500_ticker_1 + history_SP500_ticker_2 + history_SP500_ticker_3 + history_SP500_ticker_4 + history_SP500_ticker_5 + history_SP500_ticker_6
+# TICKER_HISTORY_LIST = history_SP500_ticker_6
 
 # TICKER_HISTORY_LIST = ['BAC']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN']
@@ -118,9 +118,9 @@ DATE_EXPERIMENT_START = datetime(date_year_start, date_month_start, date_day_sta
 # Базоыве параметы бота, на основе которых определюяются относительные параметры всех ботов
 
 # PROCENT_BASE = [0, 0.05, 0.10, 0.25, 0.30] # эксперимент 17
-# PROCENT_BASE = [0, 0.15, 0.20, 0.25, 0.30] # эксперимент 18
+PROCENT_BASE = [0, 0.15, 0.20, 0.25, 0.30] # эксперимент 18
 # PROCENT_BASE = [0, 0.10, 0.15, 0.25, 0.30] # эксперимент
-PROCENT_BASE = [0, 0.07, 0.14, 0.25, 0.30] # эксперимент 19
+# PROCENT_BASE = [0, 0.07, 0.14, 0.25, 0.30] # эксперимент 19
 # PROCENT_BASE = [0, 0.035, 0.07, 0.25, 0.30] # эксперимент 20
 
 R_BASE = 5
@@ -129,3 +129,8 @@ PROCENT_LOSS_BASE = 3
 
 # параметры биржи
 FEE = 7  # стоимость одного выполненного ордера на бирже
+
+
+# experiment_22_history = PROCENT_BASE = [0, 0.07, 0.14] total_bot = 10000
+# experiment_23_history = PROCENT_BASE = [0, 0.05, 0.10] total_bot = 10000
+# experiment_24_history = PROCENT_BASE = [0, 0.15, 0.20] total_bot = 10000
