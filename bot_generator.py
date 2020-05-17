@@ -66,7 +66,7 @@ def bot_martingale(df, param_dict_def):
     t = 0
     p_sell = p0 * (1 + r / 100)
     p_buy = p0 * (1 - procent[1])
-    fee_count = int(1)
+    fee_count = 1
 
     df.loc[0, column_p_sell] = p_sell
     df.loc[0, column_p_buy] = p_buy
@@ -90,7 +90,7 @@ def bot_martingale(df, param_dict_def):
         if df[column_price][i] > p_sell:
             # случай, когда цена выше уровня продажи, т.е. мы выходим из позиции и докумаем ее снова
 
-            fee_count += 1  # довавляем 1 в счетчик комиссий, так как в этих случаях будут выполнен
+            fee_count = 1  # довавляем 1 в счетчик комиссий, так как в этих случаях будут выполнен
                             # один ордер на продажу - выход части акций из позиции (не 2 ордера продажи и покупки)
 
             if t < len(amounts_S):
@@ -132,7 +132,7 @@ def bot_martingale(df, param_dict_def):
             # цена опустилась ниже уровня ордера на покупку => тогда бот докупает еще или выходит в stop loss
 
             t = t + 1
-            fee_count += 1 # довавляем 1 к счетчику комиссий, так как в этих случаях будет выполнен ордер на покупку
+            fee_count = 1 # довавляем 1 к счетчику комиссий, так как в этих случаях будет выполнен ордер на покупку
 
             if t < len(amounts_S):
                 # случай, когда мы докупаем актив, так как это еще не последний шаг алгоритма
@@ -204,6 +204,7 @@ def bot_martingale(df, param_dict_def):
                 B = K * p0
                 t = 0
         else:
+            fee_count = 0
             B = K * price_current
 
             df.loc[i, column_p_sell] = df.loc[i - 1, column_p_sell]

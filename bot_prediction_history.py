@@ -84,6 +84,7 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     df.to_csv(path_bot_i, sep=',', index=False,)
     print("Файл создан: ", path_bot_i, "\n")
 
+    # таймеры
     duration = timer() - timer_start
     print('Время обработки одного бота = ', duration)
     duration = timer() - start

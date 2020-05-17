@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_27_losers'
+EXPERIMENT = 'experiment_28_history'
 EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
 TICKER = 'history'
@@ -17,14 +17,12 @@ TICKER = 'history'
 #     sp500_2020_05_01_part_5 +\
 #     sp500_2020_05_01_part_6
 
-TICKER_HISTORY_LIST = losers_2000
+# TICKER_HISTORY_LIST = losers_2000
 # TICKER_HISTORY_LIST = crypto_history
+# TICKER_HISTORY_LIST = ['BAC']
+TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN']
 
 print('len TICKER_HISTORY_LIST = ', len(TICKER_HISTORY_LIST))
-
-# TICKER_HISTORY_LIST = history_SP500_ticker_6
-# TICKER_HISTORY_LIST = ['BAC']
-# TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN']
 
 # STOCHASTIC_PROCESS_TYPES: Dict[str, int] = {
 #     'ARMA': 0,
@@ -41,13 +39,13 @@ print('len TICKER_HISTORY_LIST = ', len(TICKER_HISTORY_LIST))
 # }
 # print(BOT_TYPES)
 
-#type_stochastic_process = ['arma', 'garch', 'gbm', 'oup', 'cev']
-#print(type_stochastic_process[0])
+# type_stochastic_process = ['arma', 'garch', 'gbm', 'oup', 'cev']
+# print(type_stochastic_process[0])
 
 # main constants
 
-PERIOD = 252*5 # период, на котором рассматриваем поведение бота
-DT = 1 # единица времени, пучть будет 1 день
+PERIOD = 252*5  # период, на котором рассматриваем поведение бота
+DT = 1  # единица времени, пучть будет 1 день
 
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
@@ -76,12 +74,12 @@ DATE_EXPERIMENT_START = datetime(date_year_start, date_month_start, date_day_sta
 
 # Базоыве параметы бота, на основе которых определюяются относительные параметры всех ботов
 
-PROCENT_BASE = [0, 0.05, 0.10, 0, 0] # эксперимент 17
-# PROCENT_BASE = [0, 0.15, 0.20, 0, 0] # эксперимент 18
-# PROCENT_BASE = [0, 0.10, 0.15, 0, 0] # эксперимент
-# PROCENT_BASE = [0, 0.07, 0.14, 0, 0] # эксперимент 19
-# PROCENT_BASE = [0, 0.035, 0.07, 0, 0] # эксперимент 20
-# PROCENT_BASE = [0, 0.15, 0.20, 0.25, 0.30] # эксперимент
+# PROCENT_BASE = [0, 0.05, 0.10, 0, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.15, 0.20, 0, 0]  # эксперимент
+PROCENT_BASE = [0, 0.10, 0.15, 0, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.07, 0.14, 0, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.035, 0.07, 0, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.15, 0.20, 0.25, 0.30]  # эксперимент
 
 R_BASE = 5
 R_FIN_BASE = 7
@@ -93,3 +91,4 @@ FEE = 7  # стоимость одного выполненного ордера
 # experiment_22_history = PROCENT_BASE = [0, 0.07, 0.14] total_bot = 10000
 # experiment_23_history = PROCENT_BASE = [0, 0.05, 0.10] total_bot = 10000
 # experiment_24_history = PROCENT_BASE = [0, 0.15, 0.20] total_bot = 10000
+# experiment_25_history = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000

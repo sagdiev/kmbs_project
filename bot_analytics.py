@@ -11,29 +11,62 @@ from base_functions import *
 def integral_indicators_bot_sigle(df_def, df_integral_total_def, ticker_def):
     # подсчет интегральных показателей результатов работы конкретного бота на конкретной кривой
 
-    # подсчет прибыльности по годам
+    # подсчет прибыльности бота по годам
     date_first_list, date_last_list, year_list = find_last_days_year(df_def)
 
-    year_profit_list = []
-    year_profit_start = 0
-    return_year_list = []
+    profit_year_list = []
+    profit_start = 0
+    profit_end = 0
+    return_bot_year_list = []
     reserved_sum_investment_max = df_def['reserved_sum_investment'][0]
+    sum_invested_end = 0
     sum_invested_max = max(df_def['sum_invested'])
-                        # [j]
-                        # for j in range(len(df_def))])
-                        # if date_convert(df_def['Time'][j]).year == year_i])
+    cost_sum_invested_end = 0
+    cost_sum_invested_list = []
+    temporary_down_list =[]
+    fee_count_start = 0
+    fee_count_year = 0
+    fee_count_list = []
+    fee_list =[]
+    profit_year_corrected_list = []
+    profit_year_corrected_fee_list = []
+
     print(reserved_sum_investment_max)
     print(sum_invested_max)
 
     for i in range(len(year_list)):
         year_i = year_list[i]
         date_last_i = date_last_list[i]
+        fee_count_year = 0
 
-        year_profit_end = [df_def['total_profit'][j] for j in range(len(df_def)) if df_def['Time'][j] == date_last_i][0]
+        for j in range(len(df_def)):
+            if df_def['Time'][j] == date_last_i:
+                profit_end = df_def['total_profit'][j]
+                sum_invested_end = df_def['sum_invested'][j]
+                cost_sum_invested_end = df_def['cost_of_sum_investment'][j]
+                # fee_count_end = df_def['fee_count'][j]
+                # TODO переделать на sum когда переведем fee_count из суммы в кол-во
+            if date_convert(df_def['Time'][j]).year == year_i:
+                # print(date_convert(df_def['Time'][j]).year)
+                fee_count_year = fee_count_year + df_def['fee_count'][j]
+                print(fee_count_year)
 
-        year_profit = year_profit_end - year_profit_start
-        year_profit_list.append(year_profit)
-        year_profit_start = year_profit_end
+        temporary_down_end = cost_sum_invested_end - sum_invested_end
+        fee_end = fee_count_year * FEE
+
+
+        profit_year = profit_end - profit_start
+        profit_year_corrected = profit_year + temporary_down_end
+        profit_year_corrected_fee = profit_year_corrected - fee_end
+        profit_start = profit_end
+
+        profit_year_list.append(profit_year)
+        cost_sum_invested_list.append(cost_sum_invested_end)
+        temporary_down_list.append(temporary_down_end)
+        fee_count_list.append(fee_count_year)
+        fee_list.append(fee_end)
+        profit_year_corrected_list.append(profit_year_corrected)
+        profit_year_corrected_fee_list.append(profit_year_corrected_fee)
 
         # sum_invested_max = max([df_def['sum_invested'][j]
         #                         for j in range(len(df_def))
@@ -42,32 +75,41 @@ def integral_indicators_bot_sigle(df_def, df_integral_total_def, ticker_def):
         # print(reserved_sum_investment_max)
         # print(sum_invested_max)
 
-        return_year_i = year_profit/reserved_sum_investment_max
-        return_year_list.append(return_year_i)
-        print('return_year ', year_i, '= ', return_year_i)
+        return_bot_year_i = profit_year/reserved_sum_investment_max
+        return_bot_year_list.append(return_bot_year_i)
+        print('return_bot_year ', year_i, '= ', return_bot_year_i)
 
-    return_year_mean = np.mean(return_year_list)
-    return_year_std = np.std(return_year_list)
-    sharpe = return_year_mean/return_year_std
-    # print('return_year_list = ', return_year_list)
-    # print('return_year_mean = ', return_year_mean)
-    # print('return_year_std = ', return_year_std)
+        # year_profit_end = [df_def['total_profit'][j] for j in range(len(df_def)) if df_def['Time'][j] == date_last_i][0]
+
+
+    return_bot_year_mean = np.mean(return_bot_year_list)
+    return_bot_year_std = np.std(return_bot_year_list)
+    sharpe = return_bot_year_mean/return_bot_year_std
+    # print('return_bot_year_list = ', return_bot_year_list)
+    # print('return_bot_year_mean = ', return_bot_year_mean)
+    # print('return_bot_year_std = ', return_bot_year_std)
     # print('sharpe = ', sharpe)
     # print('year_profit_list = ', year_profit_list)
     # print('total_profit = ', sum(year_profit_list))
 
     df_integral = pd.DataFrame()
     df_integral['year'] = year_list
-    df_integral['return_year'] = return_year_list
-    df_integral['year_profit'] = year_profit_list
+    df_integral['return_bot_year'] = return_bot_year_list
+    df_integral['profit_year'] = profit_year_list
+    df_integral['profit_year_corrected'] = profit_year_corrected_list
+    df_integral['profit_year_corrected_fee'] = profit_year_corrected_fee_list
+    df_integral['cost_sum_invested'] = cost_sum_invested_list
+    df_integral['temporary_down'] = temporary_down_list
+    df_integral['fee_count'] = fee_count_list
+    df_integral['fee'] = fee_list
     df_integral['ticker'] = ticker_def
 
     # зпаисть интегральных показателей за весь период работы бота
     total_info_row = {'ticker': ticker_def,
-                      'return_year_mean': return_year_mean,
-                      'return_year_std': return_year_std,
+                      'return_bot_year_mean': return_bot_year_mean,
+                      'return_bot_year_std': return_bot_year_std,
                       'sharpe': sharpe,
-                      'total_profit': sum(year_profit_list)}
+                      'total_profit': sum(profit_year_list)}
 
     df_integral_total = df_integral_total_def.append(total_info_row, ignore_index=True) # , ignore_index=False
 
@@ -97,7 +139,7 @@ r = file_clear(path_analytic)
 
 # старт применения алгоритма бота
 # df_integral_total = pd.DataFrame()
-col_names =  ['ticker', 'total_profit', 'return_year_mean', 'return_year_std', 'sharpe']
+col_names =  ['ticker', 'total_profit', 'return_bot_year_mean', 'return_bot_year_std', 'sharpe']
 df_integral_total  = pd.DataFrame(columns = col_names)
 
 with open(path_analytic, 'a') as f:
@@ -118,19 +160,16 @@ with open(path_analytic, 'a') as f:
             df_integral, df_integral_total = integral_indicators_bot_sigle(df, df_integral_total, ticker)
 
             df_integral.to_csv(f, index=False) if i == 0 else df_integral.to_csv(f, index=False, header=0)
-
             print(df_integral_total)
-
 
             f_total.truncate(0)
             df_integral_total.to_csv(f_total, index=False)
 
+            # таймеры
             duration = timer() - timer_start
             print('Время обработки этапа алгоритма = ', duration)
             duration = timer() - start
             print('Время обработки алгоритма = ', duration)
-
-
 
 # таймер
 duration = timer() - start

@@ -1,3 +1,28 @@
+
+def compare_ticker_lists(list_1, list_2):
+    # анализ расхождений между нашим списком sp500 2020/05 и акциями из списка sp500 за 2020 - перепроверка актуальности
+
+    list_1_minus_list_2 = [item for item in list_1 if item not in list_2]
+    list_1_common_list_2 = [item for item in list_1 if item in list_2]
+    list_2_minus_list_1 = [item for item in list_2 if item not in list_1]
+
+    print('list_1 = ', list_1)
+    print('list_1 = ', len(list_1))
+    print('list_2 = ', list_2)
+    print('list_2 = ', len(list_2))
+
+    print('list_1_minus_list_2 = ', list_1_minus_list_2)
+    print('list_1_minus_list_2 = ', len(list_1_minus_list_2))
+
+    print('list_1_common_list_2 = ', list_1_common_list_2)
+    print('list_1_common_list_2 = ', len(list_1_common_list_2))
+
+    print('list_2_minus_list_1 = ', list_2_minus_list_1)
+    print('list_2_minus_list_1 = ', len(list_2_minus_list_1))
+
+    return list_1_minus_list_2, list_1_common_list_2, list_2_minus_list_1
+
+
 sp500_2020_05_01_part_1 = [
     'AAPL', 'ABBV', 'ABT', 'ACN', 'ADBE', 'AMGN', 'AMZN', 'AVGO', 'AXP', 'BA', 'BAC', 'BKNG', 'BLK', 'BMY', 'BRK.B',
     'C', 'CAT', 'CB', 'CELG', 'CHTR', 'CMCSA', 'COP', 'COST', 'CRM', 'CSCO', 'CVS', 'CVX', 'DIS', 'FB', 'GE', 'GILD',
@@ -132,35 +157,17 @@ sp500_2020_01_28 = [
     'WEC', 'WELL', 'WFC', 'WHR', 'WLTW', 'WM', 'WMB', 'WMT', 'WRB', 'WRK', 'WU', 'WY', 'WYNN', 'XEC', 'XEL', 'XLNX',
     'XOM', 'XRAY', 'XRX', 'XYL', 'YUM', 'ZBH', 'ZBRA', 'ZION', 'ZTS']
 
-# анализ расхождений между нашим списком sp500 2020/05 и акциями из списка sp500 за 2000
-sp500_2000_difference_with_sp500_2020 = [item for item in sp500_2000_01_03 if item not in sp500_2020_05_01]
-sp500_2000_same_with_sp500_2020 = [item for item in sp500_2000_01_03 if item in sp500_2020_05_01]
-sp500_2020_not_in_sp500_2000 = [item for item in sp500_2020_05_01 if item not in sp500_2000_01_03]
-
-print(len(sp500_2000_01_03))
-
-print('Надо скачать недостающие c 2000 => ', sp500_2000_difference_with_sp500_2020)
-print('Надо скачать недостающие c 2000 => ', len(sp500_2000_difference_with_sp500_2020))
-
-print(sp500_2000_same_with_sp500_2020)
-print(len(sp500_2000_same_with_sp500_2020))
-
-print(sp500_2020_not_in_sp500_2000)
-print(len(sp500_2020_not_in_sp500_2000))
-
-# анализ расхождений между нашим списком sp500 2020/05 и акциями из списка sp500 за 2020 - перепроверка актуальности
-
-sp500_2020_01_difference_with_sp500_2020_05 = [item for item in sp500_2020_01_28 if item not in sp500_2020_05_01]
-sp500_2020_01_same_with_sp500_2020_05 = [item for item in sp500_2020_01_28 if item in sp500_2020_05_01]
-sp500_2020_05_not_in_sp500_2020_01 = [item for item in sp500_2020_05_01 if item not in sp500_2020_01_28]
-
-print(len(sp500_2020_01_28))
-
-print('Надо скачать недостающие по 2020 => ', sp500_2020_01_difference_with_sp500_2020_05)
-print('Надо скачать недостающие по 2020 => ', len(sp500_2020_01_difference_with_sp500_2020_05))
-
-print(sp500_2020_01_same_with_sp500_2020_05)
-print(len(sp500_2020_01_same_with_sp500_2020_05))
-
-print(sp500_2020_05_not_in_sp500_2020_01)
-print(len(sp500_2020_05_not_in_sp500_2020_01))
+# # анализ расхождений между нашим списком sp500 2020/05 и акциями из списка sp500 за 2000
+# compare_ticker_lists(sp500_2000_01_03, sp500_2020_05_01)
+#
+# # анализ расхождений между нашим списком sp500 2020/05 и акциями из списка sp500 за 2020 - перепроверка актуальности
+# compare_ticker_lists(sp500_2020_01_28, sp500_2020_05_01)
+#
+# # анализ расхождений между
+# compare_ticker_lists(losers_2000, sp500_2020_01_28)
+#
+# # анализ расхождений между
+# compare_ticker_lists(losers_2000, sp500_2000_01_03)
+#
+# # анализ расхождений между
+# compare_ticker_lists(sp500_2020_01_28, sp500_2020_05_01 + losers_2000)
