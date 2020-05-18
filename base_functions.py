@@ -58,6 +58,20 @@ def find_last_days_year(df_def):
     return date_first_list, date_last_list, year_list
 
 
+def rolling_std(df_def):
+    # расчет скользящего среднего приведенного к годовому c окном WINDOW_ROLLING_STD
+    # ВНИМАНИЕ! первый период временно обогощается средними данными периода - в идеале надо наполнять историческими данными прошлых периодов
+    global WINDOW_ROLLING_STD
+
+    rolling_std_calc = df_def['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
+    rolling_std_mean = np.mean(rolling_std_calc)
+
+    for i in range(WINDOW_ROLLING_STD):  # первый период обогощаем средними данными периода
+        rolling_std_calc[i] = rolling_std_mean
+
+    return rolling_std_calc
+
+
 # path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 #
 # rrr = {}
