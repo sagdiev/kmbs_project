@@ -35,7 +35,7 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
     ticker_i = TICKER_HISTORY_LIST[i]
 
-    df_bot_start = bot_generator_start_day(df_csv, param_dict)
+    df_bot_start = bot_generator_initiation_first_day(df_csv, param_dict)
     dfx[str(ticker_i)] = df_bot_start
 
     # dfx[str(ticker_i)] = df_csv
@@ -58,7 +58,12 @@ for j in range(len(date_list)):
 
             # print(ticker_i, ' ', date_j, ' соответствует ', df_ticker_i['Time'][k], ' df_ticker_i дата = ', df_ticker_i['Open'][k])
 
-            # bot_generator_next_day(df_ticker_i, j)
+            # todo проверка: нужен ли второй вход
+            bot_generator_next_day(df_ticker_i, j)
+
+            # todo ребаланссировка параметров бота или решения входит/не входить
+            bot_generator_restart_day(df_ticker_i, j)
+
 
 
 
