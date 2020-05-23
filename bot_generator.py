@@ -244,25 +244,25 @@ def prod(j, array):
     else:
         return prod(j-1, array) * (1-array[j])
 
-
-def param_rebalance(param_dict_rebalance_def, rolling_std_def):
-    PROCENT_BASE = [0, 0.05, 0.10, 0.25, 0.30]  # эксперимент 17
-    R_BASE = 5
-    R_FIN_BASE = 7
-    PROCENT_LOSS_BASE = 3
-
-    print('param_dict_def = ', param_dict_rebalance_def)
-
-    coef = rolling_std_def / 0.37195826601590254
-    param_dict_rebalance_def['procent'] = [x * coef for x in param_dict_rebalance_def['procent']]
-
-    print('rebalanced_param_dict_def[procent] = ', param_dict_rebalance_def['procent'])
-
-    # r = param_dict_def.get('r')
-    # r_fin = param_dict_def.get('r_fin')
-    # procent_loss = param_dict_def.get('procent_loss')
-
-    return param_dict_rebalance_def
+#
+# def param_rebalance(param_dict_rebalance_def, rolling_std_def):
+#     PROCENT_BASE = [0, 0.05, 0.10, 0.25, 0.30]  # эксперимент 17
+#     R_BASE = 5
+#     R_FIN_BASE = 7
+#     PROCENT_LOSS_BASE = 3
+#
+#     print('param_dict_def = ', param_dict_rebalance_def)
+#
+#     coef = rolling_std_def / 0.37195826601590254
+#     param_dict_rebalance_def['procent'] = [x * coef for x in param_dict_rebalance_def['procent']]
+#
+#     print('rebalanced_param_dict_def[procent] = ', param_dict_rebalance_def['procent'])
+#
+#     # r = param_dict_def.get('r')
+#     # r_fin = param_dict_def.get('r_fin')
+#     # procent_loss = param_dict_def.get('procent_loss')
+#
+#     return param_dict_rebalance_def
 
 
 

@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_29_two_ticker'
+EXPERIMENT = 'experiment_32_multi'
 EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
 TICKER = 'history'
@@ -19,9 +19,12 @@ TICKER = 'history'
 
 # TICKER_HISTORY_LIST = losers_2000
 # TICKER_HISTORY_LIST = crypto_history
-# TICKER_HISTORY_LIST = ['BAC']
-# TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN']
-TICKER_HISTORY_LIST = ['AAPL', 'AABA_TEST']
+# TICKER_HISTORY_LIST = ['SPX']
+TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F']
+# TICKER_HISTORY_LIST = ['AAPL']
+# TICKER_HISTORY_LIST = ['AABA_TEST']
+# TICKER_HISTORY_LIST = ['ABBV']
+
 
 # print('len TICKER_HISTORY_LIST = ', len(TICKER_HISTORY_LIST))
 
@@ -92,7 +95,12 @@ PROCENT_LOSS_BASE = 3
 # параметры биржи
 FEE = 7  # стоимость одного выполненного ордера на бирже
 
-# experiment_22_history = PROCENT_BASE = [0, 0.07, 0.14] total_bot = 10000
-# experiment_23_history = PROCENT_BASE = [0, 0.05, 0.10] total_bot = 10000
-# experiment_24_history = PROCENT_BASE = [0, 0.15, 0.20] total_bot = 10000
-# experiment_25_history = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000
+# experiment_22_history = PROCENT_BASE = [0, 0.07, 0.14] total_bot = 10000, 5, 7, 3
+# experiment_23_history = PROCENT_BASE = [0, 0.05, 0.10] total_bot = 10000, 5, 7, 3
+# experiment_24_history = PROCENT_BASE = [0, 0.15, 0.20] total_bot = 10000, 5, 7, 3
+# experiment_25_history = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000, 5, 7, 3
+
+
+# experiment_30_losers_2000 = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000, 5, 7, 3 losers
+# experiment_31_spx = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000, 5, 7, 3 losers
+

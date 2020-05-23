@@ -1,15 +1,10 @@
 import pandas as pd
 
-d1 = {'col1': [1, 2], 'col2': [3, 4]}
-df1 = pd.DataFrame(data=d1)
-print(df1)
 
-d2 = {'col1': [6, 9], 'col2': [3, 4]}
-df2 = pd.DataFrame(data=d2)
-print(df2)
+count_buy_step_plan = [667.429494083104, 741.5883267590044, 1744.9137100211872]
 
-dfx = {'df1': df1, 'df2': df2}
+step = {'buy_step_plan': count_buy_step_plan, 'fee_count': 1}
 
-print(dfx)
+x = step.get('buy_step_plan')
 
-print(dfx['df2'])
+print(x)

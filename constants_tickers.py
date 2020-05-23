@@ -78,8 +78,8 @@ currency_history = [
     '^USDGBP', '^USDJPY', '^USDNOK', '^USDSEK', '^USDSGD']
 
 crypto_history = [
-    '^XRPUSD', '^xmrusd', '^xlmusd', '^USDTUSD', '^LTCUSD', '^ETHUSD',
-    '^EOSUSD', '^etcusd', '^dashusd', '^BTCUSD', '^BCHUSD', '^adausd']
+    '^XRPUSD', '^XMRUSD', '^XMLUSD', '^USDTUSD', '^LTCUSD', '^ETHUSD',
+    '^EOSUSD', '^ETCUSD', '^DASHUSD', '^BTCUSD', '^BCHUSD', '^ADAUSD']
 
 losers_2000 = [
     'AABA', 'ABX', 'ACV', 'ADCT', 'AES', 'AET', 'AGC', 'AL', 'AM', 'APC', 'ARC', 'ARNC', 'ASH', 'AT', 'ATI', 'AVP',
@@ -167,7 +167,13 @@ sp500_2020_01_28 = [
 # compare_ticker_lists(losers_2000, sp500_2020_01_28)
 #
 # # анализ расхождений между
-# compare_ticker_lists(losers_2000, sp500_2000_01_03)
+# compare_ticker_lists(losers_2000, sp500_2020_05_01)
 #
 # # анализ расхождений между
-# compare_ticker_lists(sp500_2020_01_28, sp500_2020_05_01 + losers_2000)
+# compare_ticker_lists(losers_2000, sp500_2000_01_03)
+#
+# анализ расхождений между
+# compare_ticker_lists(sp500_2000_01_03, sp500_2020_05_01 + losers_2000 + sp500_2020_01_28)
+
+# анализ расхождений между
+# compare_ticker_lists(sp500_2000_01_03, sp500_2020_05_01 + losers_2000 + sp500_2020_01_28)
