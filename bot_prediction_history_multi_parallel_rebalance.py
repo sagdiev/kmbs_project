@@ -25,6 +25,7 @@ print(param_dict)
 
 date_list = DATE_LIST_ETALON
 dfx = {}  # сборный словарь всех датафреймов
+profit_i = 0
 
 # считываем все csv кривых в один словарь датафреймов
 for i in range(COUNT_EXPERIMENTS_GLOBAL):
@@ -40,7 +41,11 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
 k_list = [0] * len(TICKER_HISTORY_LIST)
 first_step_status_list = [True] * len(TICKER_HISTORY_LIST)
-# print('len(date_list) =', len(date_list))
+
+profit_list = [0] * len(TICKER_HISTORY_LIST)
+profit_portfolio_accumulated = 0
+param_dict_list = [param_dict] * len(TICKER_HISTORY_LIST)
+total_amount_bot_list = [total_amount_bot] * len(TICKER_HISTORY_LIST)
 
 for j in range(1, len(date_list)):
     date_j = date_list[j]
@@ -49,6 +54,7 @@ for j in range(1, len(date_list)):
         ticker_i = TICKER_HISTORY_LIST[i]
         print(j, ticker_i)
         df_ticker_i = dfx[str(ticker_i)]
+        param_i = param_dict_list[i]
         # print(df_ticker_i)
         k = k_list[i]
 
@@ -59,19 +65,38 @@ for j in range(1, len(date_list)):
 
             if date_j in df_ticker_i['Time'].tolist() and first_step_status_list[i] is True:
                 # print('date_j = ', date_j, first_step_status_list[i])
-                df_ticker_i = bot_generator_initiation_first_day(df_ticker_i, param_dict, ticker_i, k)
+                df_ticker_i = bot_generator_initiation_first_day(df_ticker_i, param_i, ticker_i, k)
                 # print('initiation day: ', 'k =', k, 'j =', j)
                 # print(df_ticker_i)
+                profit_i = df_ticker_i['total_profit'][k]
+
                 first_step_status_list[i] = False
                 k_list[i] += 1
 
             elif date_j in df_ticker_i['Time'].tolist() and first_step_status_list[i] is False:
                 # print('next day: ', 'k =', k, 'j =', j)
 
-                df_ticker_i = bot_generator_next_day(df_ticker_i, param_dict, k)
+                df_ticker_i = bot_generator_next_day(df_ticker_i, param_i, k)
+                profit_i = df_ticker_i['total_profit'][k]
+
+                # ВАРИАНТ 1 Реинвестирование с понижением резервных сумм для упавших акций
+                total_amount_bot_list[i] = total_amount_bot + profit_i
+
+                # ВАРИАНТ 2 Реинвестирование без понижения резервных сумм для упавших акций (рисковей для одной акции, но возможно лучше для всего портфеля)
+                # if profit_i > 0:
+                #     total_amount_bot_list[i] = total_amount_bot + profit_i
+                # else:
+                #     total_amount_bot_list[i] = total_amount_bot
+
+                param_dict_list[i] = param_generate_base_point_total_amount(
+                    point_bot, total_amount_bot_list[i], step_count_bot)
+                print(param_dict_list[i])
+
 
                 restart_signal = True
-                df_ticker_i = bot_generator_restart_day(df_ticker_i, param_dict, k, restart_signal)
+                df_ticker_i = bot_generator_restart_day(df_ticker_i, param_i, k, restart_signal)
+
+                profit_i = df_ticker_i['total_profit'][k]
 
                 k_list[i] += 1
 
@@ -79,6 +104,14 @@ for j in range(1, len(date_list)):
                 print('пропускаем ', date_j, ' для ', ticker_i)
 
             dfx[str(ticker_i)] = df_ticker_i
+            # print(df_ticker_i)
+            print('profit_i ', ticker_i, ' = ', profit_i)
+            # profit_list[i] = profit_i
+
+    # #общая накопленная прибыль
+    # print(profit_list)
+    # profit_portfolio_accumulated = sum(profit_list)
+    # print('ИТОГО ПРОФИТ ПОРТФЕЛЯ после шага ', j, ' = ', profit_portfolio_accumulated)
 
 # запись в файл бота
 for i in range(COUNT_EXPERIMENTS_GLOBAL):
