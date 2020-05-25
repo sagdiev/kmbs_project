@@ -269,9 +269,9 @@ def bot_generator_next_day(df, param, day_number):
         df.loc[i, column_sell_buy] = 'waiting'
         df.loc[i, column_fee_count] = fee_count
 
-        print('Ожидание')
+        # print('Ожидание')
 
-    print('profit ', i, ' =', profit)
+    # print('profit ', i, ' =', profit)
 
     return df_round(df)
 

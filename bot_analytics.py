@@ -54,7 +54,6 @@ def integral_indicators_bot_sigle(df_def, df_integral_total_def, ticker_def):
         temporary_down_end = cost_sum_invested_end - sum_invested_end
         fee_end = fee_count_year * FEE
 
-
         profit_year = profit_end - profit_start
         profit_year_corrected = profit_year + temporary_down_end
         profit_year_corrected_fee = profit_year_corrected - fee_end
@@ -80,7 +79,6 @@ def integral_indicators_bot_sigle(df_def, df_integral_total_def, ticker_def):
         print('return_bot_year ', year_i, '= ', return_bot_year_i)
 
         # year_profit_end = [df_def['total_profit'][j] for j in range(len(df_def)) if df_def['Time'][j] == date_last_i][0]
-
 
     return_bot_year_mean = np.mean(return_bot_year_list)
     return_bot_year_std = np.std(return_bot_year_list)

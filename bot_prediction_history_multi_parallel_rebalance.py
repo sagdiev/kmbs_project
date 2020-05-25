@@ -49,7 +49,7 @@ total_amount_bot_list = [total_amount_bot] * len(TICKER_HISTORY_LIST)
 
 for j in range(1, len(date_list)):
     date_j = date_list[j]
-    print(date_j)
+    print(date_j, '\n')
     for i in range(COUNT_EXPERIMENTS_GLOBAL):
         ticker_i = TICKER_HISTORY_LIST[i]
         print(j, ticker_i)
@@ -59,7 +59,7 @@ for j in range(1, len(date_list)):
         k = k_list[i]
 
         if k in range(len(df_ticker_i)):
-            print('start', k, ticker_i)
+            # print('start', k, ticker_i)
             # print('first_step_status_list ', ticker_i, first_step_status_list[i])
             # print('date_j =', date_j)
 
@@ -80,13 +80,24 @@ for j in range(1, len(date_list)):
                 profit_i = df_ticker_i['total_profit'][k]
 
                 # ВАРИАНТ 1 Реинвестирование с понижением резервных сумм для упавших акций
-                total_amount_bot_list[i] = total_amount_bot + profit_i
+                # total_amount_bot_list[i] = total_amount_bot + profit_i
+                # ===================================================================
 
-                # ВАРИАНТ 2 Реинвестирование без понижения резервных сумм для упавших акций (рисковей для одной акции, но возможно лучше для всего портфеля)
+                # # ВАРИАНТ 2 Реинвестирование без понижения резервных сумм для упавших акций
+                                            # (рисковей для одной акции, но возможно лучше для всего портфеля)
                 # if profit_i > 0:
                 #     total_amount_bot_list[i] = total_amount_bot + profit_i
                 # else:
-                #     total_amount_bot_list[i] = total_amount_bot
+                #     total_amount_bot_list[i] = total_amount_bot +
+                # =====================================================================
+
+                # # ВАРИАНТ 3 Реинвестирование с понижением резервных сумм для упавших акций
+                #                             # но без повышения растущих (самая консервативная стратегия)
+                if profit_i > 0:
+                    total_amount_bot_list[i] = total_amount_bot
+                else:
+                    total_amount_bot_list[i] = total_amount_bot + profit_i
+                # # =======================================================================
 
                 param_dict_list[i] = param_generate_base_point_total_amount(
                     point_bot, total_amount_bot_list[i], step_count_bot)
@@ -101,13 +112,16 @@ for j in range(1, len(date_list)):
                 k_list[i] += 1
 
             else:
-                print('пропускаем ', date_j, ' для ', ticker_i)
+                f = 1  # удалить
+                # print('пропускаем ', date_j, ' для ', ticker_i)
 
             dfx[str(ticker_i)] = df_ticker_i
             # print(df_ticker_i)
-            print('profit_i ', ticker_i, ' = ', profit_i)
+            # print('profit_i ', ticker_i, ' = ', profit_i)
             # profit_list[i] = profit_i
-
+    # таймер
+    duration = timer() - start
+    print('Время обработки шага ', j, ' = ', duration)
     # #общая накопленная прибыль
     # print(profit_list)
     # profit_portfolio_accumulated = sum(profit_list)
