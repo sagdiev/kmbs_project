@@ -4,8 +4,8 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-# EXPERIMENT = 'experiment_40_history'
-EXPERIMENT = 'experiment_41_multi_rebalance_own'
+EXPERIMENT = 'experiment_52_history'
+# EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
 TICKER = 'history'
@@ -19,16 +19,17 @@ TICKER = 'history'
 #     sp500_2020_05_01_part_6
 
 # TICKER_HISTORY_LIST = sp500_2020_05_01_part_1
-TICKER_HISTORY_LIST = sp500_top10_all_2000_2013_plus_some
+# TICKER_HISTORY_LIST = portfolio_selected_from_2000_2020
 # TICKER_HISTORY_LIST = losers_2000
 # TICKER_HISTORY_LIST = crypto_history
 # TICKER_HISTORY_LIST = ['SPX']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
-# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C']
+TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
 
+PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 
 # print('len TICKER_HISTORY_LIST = ', len(TICKER_HISTORY_LIST))
 
@@ -86,14 +87,20 @@ DATE_EXPERIMENT_START = datetime(date_year_start, date_month_start, date_day_sta
 
 # PROCENT_BASE = [0, 0.05, 0.10, 0, 0]  # эксперимент
 # PROCENT_BASE = [0, 0.15, 0.20, 0, 0]  # эксперимент
-PROCENT_BASE = [0, 0.10, 0.15, 0.20, 0.25]  # эксперимент
+# PROCENT_BASE = [0, 0.10, 0.15, 0.20, 0.25]  # эксперимент
 # PROCENT_BASE = [0, 0.07, 0.14, 0, 0]  # эксперимент
 # PROCENT_BASE = [0, 0.035, 0.07, 0, 0]  # эксперимент
-# PROCENT_BASE = [0, 0.15, 0.20, 0.25, 0.30]  # эксперимент
+PROCENT_BASE = [0, 0.07, 0.11, 0.15, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.05, 0.08, 0.12, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.12, 0.17, 0.20, 0]  # эксперимент
 
 R_BASE = 5
 R_FIN_BASE = 7
 PROCENT_LOSS_BASE = 3
+
+POINT_BOT_START = 1
+STEP_BOT_START = 3
+TOTAL_RESERVED_BOT_START = 10000
 
 # параметры биржи
 FEE = 7  # стоимость одного выполненного ордера на бирже
@@ -106,4 +113,17 @@ FEE = 7  # стоимость одного выполненного ордера
 
 # experiment_30_losers_2000 = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000, 5, 7, 3 losers
 # experiment_31_spx = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000, 5, 7, 3 losers
+
+# experiment_42_history = PROCENT_BASE = [0, 0.10, 0.15] total_bot = 10000, 5, 7, 3,  step = 3
+# experiment_43_history = PROCENT_BASE = [0, 0.10, 0.15, 0.25] total_bot = 10000, 5, 7, 3,  step = 4
+# experiment_44_history = PROCENT_BASE = [0, 0.10, 0.15, 0.25] total_bot = 10000, 10, 15, 5,  step = 4
+# experiment_45_history = PROCENT_BASE = [0, 0.15, 0.20, 0.25] total_bot = 10000, 10, 15, 5,  step = 4
+# experiment_46_history = PROCENT_BASE = [0, 0.07, 0.11, 0.15] total_bot = 10000, 10, 15, 5,  step = 4
+# experiment_47_history = PROCENT_BASE = [0, 0.07, 0.11, 0.15] total_bot = 10000, 5, 7, 3,  step = 4
+# experiment_48_history = PROCENT_BASE = [0, 0.05, 0.08, 0.12] total_bot = 10000, 5, 7, 3,  step = 4
+# experiment_42_history = PROCENT_BASE = [0, 0.05, 0.08] total_bot = 10000, 5, 7, 3,  step = 3
+
+# experiment_50_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
+# experiment_51_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
+# experiment_52_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
 

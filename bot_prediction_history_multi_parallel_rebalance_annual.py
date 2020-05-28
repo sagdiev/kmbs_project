@@ -14,7 +14,7 @@ start = timer()
 
 # папки и файлы
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
-# os.makedirs(path_bot)
+os.makedirs(path_bot)
 
 # параметры бота
 point_bot = POINT_BOT_START
@@ -39,17 +39,35 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     df_bot_start = df_csv
     dfx[str(ticker_i)] = df_bot_start
 
-k_list = [0] * len(TICKER_HISTORY_LIST)
-first_step_status_list = [True] * len(TICKER_HISTORY_LIST)
+len_list = len(TICKER_HISTORY_LIST)
+rebalance_period = 10000  # 252 если годовой (это количество дней в базах), может быть другой для экспериментов
 
-profit_list = [0] * len(TICKER_HISTORY_LIST)
+k_list = [0] * len_list
+first_step_status_list = [True] * len_list
+
+profit_list = [0] * len_list
 profit_portfolio_accumulated = 0
-param_dict_list = [param_dict] * len(TICKER_HISTORY_LIST)
-total_amount_bot_list = [total_amount_bot] * len(TICKER_HISTORY_LIST)
+param_dict_list = [param_dict] * len_list
+total_amount_bot_list = [total_amount_bot] * len_list
+annual_profit_take_list = [0] * len_list
+
+reinvest_year_signal = True
+annual_profit_take_signal = False
 
 for j in range(1, len(date_list)):
     date_j = date_list[j]
     print(date_j, '\n')
+
+    if j % rebalance_period == 0:
+        reinvest_year_signal = False
+        annual_profit_take_signal = True
+    elif j % rebalance_period < rebalance_period / 12 * 10:
+        reinvest_year_signal = True
+        annual_profit_take_signal = False
+    else:
+        reinvest_year_signal = False
+        annual_profit_take_signal = False
+
     for i in range(COUNT_EXPERIMENTS_GLOBAL):
         ticker_i = TICKER_HISTORY_LIST[i]
         print(j, ticker_i)
@@ -78,29 +96,38 @@ for j in range(1, len(date_list)):
 
                 df_ticker_i = bot_generator_next_day(df_ticker_i, param_i, k)
                 profit_i = df_ticker_i['total_profit'][k]
+                annual_profit_take_i = annual_profit_take_list[i]
+                print('annual_profit_take_i', annual_profit_take_i)
 
-                # ВАРИАНТ 1 Реинвестирование с понижением резервных сумм для упавших акций
-                # total_amount_bot_list[i] = total_amount_bot + profit_i
-                # ===================================================================
+                if reinvest_year_signal is True:
 
-                # # ВАРИАНТ 2 Реинвестирование без понижения резервных сумм для упавших акций
-                                            # (рисковей для одной акции, но возможно лучше для всего портфеля)
-                # if profit_i > 0:
-                #     total_amount_bot_list[i] = total_amount_bot + profit_i
-                # else:
-                #     total_amount_bot_list[i] = total_amount_bot
-                # =====================================================================
+                    # ВАРИАНТ 1 Реинвестирование с понижением резервных сумм для упавших акций
+                    # total_amount_bot_list[i] = total_amount_bot + profit_i
+                    # ===================================================================
 
-                # # ВАРИАНТ 3 Реинвестирование с понижением резервных сумм для упавших акций
-                #                             # но без повышения растущих (самая консервативная стратегия)
-                # if profit_i > 0:
-                #     total_amount_bot_list[i] = total_amount_bot
-                # else:
-                #     total_amount_bot_list[i] = total_amount_bot + profit_i
-                # # =======================================================================
+                    # # ВАРИАНТ 2 Реинвестирование без понижения резервных сумм для упавших акций
+                                                # (рисковей для одной акции, но возможно лучше для всего портфеля)
+                    if profit_i - annual_profit_take_i > 0:
+                        total_amount_bot_list[i] = total_amount_bot + profit_i - annual_profit_take_i
+                    else:
+                        total_amount_bot_list[i] = total_amount_bot
+                    # =====================================================================
 
-                # param_dict_list[i] = param_generate_base_point_total_amount(
-                #     point_bot, total_amount_bot_list[i], step_count_bot)
+                    # # ВАРИАНТ 3 Реинвестирование с понижением резервных сумм для упавших акций
+                    #                             # но без повышения растущих (самая консервативная стратегия)
+                    # if profit_i > 0:
+                    #     total_amount_bot_list[i] = total_amount_bot
+                    # else:
+                    #     total_amount_bot_list[i] = total_amount_bot + profit_i
+                    # # =======================================================================
+
+                else:
+                    total_amount_bot_list[i] = total_amount_bot
+
+
+
+                param_dict_list[i] = param_generate_base_point_total_amount(
+                    point_bot, total_amount_bot_list[i], step_count_bot)
                 # print(param_dict_list[i])
 
 
@@ -119,6 +146,11 @@ for j in range(1, len(date_list)):
             # print(df_ticker_i)
             # print('profit_i ', ticker_i, ' = ', profit_i)
             # profit_list[i] = profit_i
+
+        if annual_profit_take_signal is True:
+            if profit_i - annual_profit_take_i > 0:
+                annual_profit_take_list[i] = profit_i # - annual_profit_take_i
+
     # таймер
     duration = timer() - start
     print('Время обработки шага ', j, ' = ', duration)

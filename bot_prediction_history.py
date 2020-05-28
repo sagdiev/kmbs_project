@@ -16,12 +16,12 @@ start = timer()
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-# os.makedirs(path_bot)
+os.makedirs(path_bot)
 
 # параметры бота
-point_bot = 1
-step_count_bot = 3
-total_amount_bot = 10000
+point_bot = POINT_BOT_START
+step_count_bot = STEP_BOT_START
+total_amount_bot = TOTAL_RESERVED_BOT_START
 param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot, step_count_bot)
 # amount_first = 1000
 # param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)

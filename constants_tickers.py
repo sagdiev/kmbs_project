@@ -163,6 +163,15 @@ sp500_top10_all_2000_2013_plus_some = [
     'GE', 'XOM', 'PFE', 'C', 'CSCO', 'WMT', 'MSFT', 'AIG', 'MRK', 'INTC', 'AAPL', 'GOOGL', 'JNJ', 'PG', 'CVX', 'JPM',
     'WFC', 'T', 'IBM', 'BRK.B', 'BAC', 'PM', 'KO', 'PEP', 'HD', 'VZ', 'MA', 'UNH', 'V', 'FB', 'AMZN']
 
+portfolio_selected_from_2000_2020 = [
+    'AAPL', 'ABT', 'ACN', 'ACV', 'ADBE', 'ALB', 'AMCR', 'AMZN', 'APC', 'APD', 'ASH', 'AT', 'AVGO', 'AVP', 'AXP', 'BA',
+    'BAC', 'BBT', 'BC', 'BFO', 'BIG', 'BKNG', 'BMY', 'C', 'CAT', 'CCU', 'CEN', 'CHA', 'CMCSA', 'COST', 'CSCO', 'CTB',
+    'CVX', 'D', 'DIS', 'DUK', 'EC', 'FB', 'FMC', 'GE', 'GILD', 'GOOGL', 'GRA', 'GT', 'GTE', 'H', 'HAL', 'HCR', 'HD',
+    'HON', 'IBM', 'INTC', 'JNJ', 'JPM', 'KO', 'LMT', 'LYB', 'LYV', 'M', 'MA', 'MBI', 'MCD', 'MDT', 'MMM', 'MO', 'MSFT',
+    'MTG', 'NEE', 'NEM', 'NFLX', 'NKE', 'NUE', 'NVDA', 'NYT', 'OI', 'ONE', 'ORCL', 'PCG', 'PEG', 'PEP', 'PFE', 'PG',
+    'PM', 'PYPL', 'QCOM', 'RAD', 'SBUX', 'SLB', 'SO', 'SRE', 'SYY', 'T', 'TMO', 'UNH', 'UNP', 'USB', 'V', 'VMC', 'VZ',
+    'WFC', 'WMB', 'WMT', 'XOM']
+
 
 
 

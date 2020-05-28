@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from timeit import default_timer as timer
+# from pandas_datareader import data, wb
 
 from constants import *
 from bot_generator import *
@@ -21,19 +22,42 @@ r = file_clear(path_bi)
 
 # старт применения алгоритма бота
 
+# считываение файлов дополнительной информации о тикерах
+df_ticker_info = pd.read_csv(PATH_FILE_TICKER_INFO, sep=',')
+print("Файл считан: ", PATH_FILE_TICKER_INFO)
+print(df_ticker_info)
+
 with open(path_bi, 'a') as f:
 
     for i in range (COUNT_EXPERIMENTS_GLOBAL):
 
-        # считываение файлы
+        # считываение файлов кривых
         path_bot_i = path_file(path_bot, i + 1)
         df = pd.read_csv(path_bot_i, sep=',')
-        print("Файл считан: ", path_bot_i)
-        print(df)
+        # print("Файл считан: ", path_bot_i)
+        # print(df)
 
         df['curve_number'] = 'curve_' + str(i + 1)
-        # df['ticker'] = ticker
         df['ticker'] = TICKER_HISTORY_LIST[i]
+
+
+        # ticker_info = path_file()
+
+        # print())
+        df['sector'] = 'no_info'
+        df['sector'] = 'no_info_2'
+        for j in range(1,len(df_ticker_info)):
+                # print(j)
+                ticker_sector = str(df_ticker_info['sector'][j])
+                # print(j, ticker_sector)
+                ticker_symbol = str(df_ticker_info['symbol'][j])
+                if df.loc[0, 'ticker'] == ticker_symbol:
+                    # print(df['ticker'][0], ticker_symbol, ticker_sector)
+                    df['sector'] = ticker_sector
+                    print(df['ticker'][0], df['sector'][0], '<=', ticker_symbol, ticker_sector)
+                # print()
+        # df['ticker'] = ticker
+
         # for j in range(len(list(df['Ticker']))):
         #     print(df['Ticker'][j])
         #     df['Ticker'][j] = date_convert(df['Ticker'][j])

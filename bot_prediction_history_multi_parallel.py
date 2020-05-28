@@ -14,12 +14,12 @@ start = timer()
 
 # папки и файлы
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
-# os.makedirs(path_bot)
+os.makedirs(path_bot)
 
 # параметры бота
-point_bot = 1
-step_count_bot = 3
-total_amount_bot = 10000
+point_bot = POINT_BOT_START
+step_count_bot = STEP_BOT_START
+total_amount_bot = TOTAL_RESERVED_BOT_START
 param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot, step_count_bot)
 print(param_dict)
 
@@ -54,31 +54,33 @@ for j in range(1, len(date_list)):
 
         if k in range(len(df_ticker_i)):
             print('start', k, ticker_i)
-            # print('first_step_status_list ', ticker_i, first_step_status_list[i])
-            # print('date_j =', date_j)
+            date_k_ticker = df_ticker_i['Time']
+            if date_k_ticker == date_j:
+                # print('first_step_status_list ', ticker_i, first_step_status_list[i])
+                # print('date_j =', date_j)
 
-            if date_j in df_ticker_i['Time'].tolist() and first_step_status_list[i] is True:
-                # print('date_j = ', date_j, first_step_status_list[i])
-                df_ticker_i = bot_generator_initiation_first_day(df_ticker_i, param_dict, ticker_i, k)
-                # print('initiation day: ', 'k =', k, 'j =', j)
-                # print(df_ticker_i)
-                first_step_status_list[i] = False
-                k_list[i] += 1
+                if date_j in df_ticker_i['Time'].tolist() and first_step_status_list[i] is True:
+                    # print('date_j = ', date_j, first_step_status_list[i])
+                    df_ticker_i = bot_generator_initiation_first_day(df_ticker_i, param_dict, ticker_i, k)
+                    # print('initiation day: ', 'k =', k, 'j =', j)
+                    # print(df_ticker_i)
+                    first_step_status_list[i] = False
+                    k_list[i] += 1
 
-            elif date_j in df_ticker_i['Time'].tolist() and first_step_status_list[i] is False:
-                # print('next day: ', 'k =', k, 'j =', j)
+                elif date_j in df_ticker_i['Time'].tolist() and first_step_status_list[i] is False:
+                    # print('next day: ', 'k =', k, 'j =', j)
 
-                df_ticker_i = bot_generator_next_day(df_ticker_i, param_dict, k)
+                    df_ticker_i = bot_generator_next_day(df_ticker_i, param_dict, k)
 
-                restart_signal = True
-                df_ticker_i = bot_generator_restart_day(df_ticker_i, param_dict, k, restart_signal)
+                    restart_signal = True
+                    df_ticker_i = bot_generator_restart_day(df_ticker_i, param_dict, k, restart_signal)
 
-                k_list[i] += 1
+                    k_list[i] += 1
 
-            else:
-                print('пропускаем ', date_j, ' для ', ticker_i)
+                else:
+                    print('пропускаем ', date_j, ' для ', ticker_i)
 
-            dfx[str(ticker_i)] = df_ticker_i
+                dfx[str(ticker_i)] = df_ticker_i
 
 # запись в файл бота
 for i in range(COUNT_EXPERIMENTS_GLOBAL):
