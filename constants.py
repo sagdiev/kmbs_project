@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_53_history'
+EXPERIMENT = 'experiment_43_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -30,8 +30,12 @@ TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
 # TICKER_HISTORY_LIST = ['C']
 
 TICKER_WEIGHT = [5, 1, 1, 1]
-COLUMNS_WEIGHT_IMPACTED = ['day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
-                           'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell']
+COLUMNS_WEIGHT_IMPACTED = [
+    'day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
+    'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell']
+
+COLUMNS_FOR_SUMMARY = [
+    'day_profit', 'total_profit', 'costs_of_bying', 'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment']
 
 PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 

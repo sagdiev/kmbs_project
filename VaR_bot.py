@@ -23,7 +23,7 @@ from scipy.stats import norm
 ####################################################################################################################
 # df = pd.read_csv(r'C:\Users\Maksym\Desktop\MP\stock_data\barchart/AAPL.csv', sep=',')
 # df = pd.read_csv(r'C:\Users\Maksym\Desktop\MP\python\pj_1\bot_results/bot_BTCUSD_76.csv', sep=',')
-df = pd.read_csv('sandbox_src/experiment_43_history.csv', sep=',')
+df = pd.read_csv('/Users/Artem/Documents/GitHub/kmbs_project/data_bot_analytic/experiment_43_history_summary.csv', sep=',')
 df.drop(df.tail(1).index,inplace=True)
 df.sort_index(ascending=False, inplace=True)
 df.reset_index(drop=True, inplace=True)
@@ -37,13 +37,11 @@ std_dev = np.std(df) #std
 
 
 # Determine the mean and standard deviation of the daily returns. Plot the normal curve against the daily returns
-df.hist(bins=40, density=True, histtype='stepfilled', alpha=0.5)
+df.hist(bins=100, density=True, histtype='stepfilled', alpha=0.5)
 x = np.linspace(mean - 3*std_dev, mean + 3*std_dev, 100)
 plt.plot(x, scs.norm.pdf(x, mean, std_dev), "r")
 plt.show()
 # HISTOGRAM OF DAILY RETURNS AND ITS STANDARD DEVIATION
-
-
 
 
 # 4. Calculate the VaR using point percentile function
@@ -55,6 +53,15 @@ print("Conf Level 90%, Value at Risk: ", var_90)
 print("Conf Level 1%, Value at Risk: ", var_x)
 print("Conf Level 95%, Value at Risk: ", var_95)
 print("Conf Level 99%, Value at Risk: ", var_99)
+
+
+# Determine the mean and standard deviation of the daily returns. Plot the normal curve against the daily returns
+df.hist(bins=100, density=True, histtype='stepfilled', alpha=0.5)
+x = np.linspace(mean - 3*std_dev, mean + 3*std_dev, 100)
+plt.plot(x, scs.norm.pdf(x, mean, std_dev), "r")
+plt.show()
+# HISTOGRAM OF DAILY RETURNS AND ITS STANDARD DEVIATION
+
 
 #
 #
