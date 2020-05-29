@@ -15,7 +15,7 @@ def date_convert(date_string):
 
 
 def date_convert_inverse(datetime_object):
-    # конвертация из даnы в текстовый вид
+    # конвертация из даты в текстовый вид
     date_string = datetime_object.strftime('%m/%d/%Y')
 
     return date_string

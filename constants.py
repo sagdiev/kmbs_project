@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_43_history'
+EXPERIMENT = 'experiment_54_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -29,7 +29,7 @@ TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
 
-TICKER_WEIGHT = [5, 1, 1, 1]
+TICKER_WEIGHT = [5, 2, 1, 8]
 COLUMNS_WEIGHT_IMPACTED = [
     'day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
     'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell']

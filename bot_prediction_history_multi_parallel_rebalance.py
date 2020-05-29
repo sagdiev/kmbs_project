@@ -79,7 +79,7 @@ for j in range(1, len(date_list)):
                 df_ticker_i = bot_generator_next_day(df_ticker_i, param_i, k)
                 profit_i = df_ticker_i['total_profit'][k]
 
-                # ВАРИАНТ 1 Реинвестирование с понижением резервных сумм для упавших акций
+                # # ВАРИАНТ 1 Реинвестирование с понижением резервных сумм для упавших акций
                 # total_amount_bot_list[i] = total_amount_bot + profit_i
                 # ===================================================================
 
@@ -93,10 +93,10 @@ for j in range(1, len(date_list)):
 
                 # # ВАРИАНТ 3 Реинвестирование с понижением резервных сумм для упавших акций
                 #                             # но без повышения растущих (самая консервативная стратегия)
-                # if profit_i > 0:
-                #     total_amount_bot_list[i] = total_amount_bot
-                # else:
-                #     total_amount_bot_list[i] = total_amount_bot + profit_i
+                if profit_i > 0:
+                    total_amount_bot_list[i] = total_amount_bot
+                else:
+                    total_amount_bot_list[i] = total_amount_bot + profit_i
                 # # =======================================================================
 
                 # param_dict_list[i] = param_generate_base_point_total_amount(

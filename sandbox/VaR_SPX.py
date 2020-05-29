@@ -23,12 +23,13 @@ from scipy.stats import norm
 ####################################################################################################################
 # df = pd.read_csv(r'C:\Users\Maksym\Desktop\MP\stock_data\barchart/AAPL.csv', sep=',')
 # df = pd.read_csv(r'C:\Users\Maksym\Desktop\MP\python\pj_1\bot_results/bot_BTCUSD_76.csv', sep=',')
-df = pd.read_csv('/Users/Artem/Documents/GitHub/kmbs_project/data_bot_analytic/experiment_43_history_summary.csv', sep=',')
+df = pd.read_csv('/Users/Artem/Documents/GitHub/kmbs_project/data_history/SPX.csv', sep=',')
+#
 df.drop(df.tail(1).index,inplace=True)
-df.sort_index(ascending=False, inplace=True)
+# df.sort_index(ascending=False, inplace=True)
 df.reset_index(drop=True, inplace=True)
 # df = df['Open']
-df = df['total_profit']
+df = df['Open']
 df = df.pct_change().dropna() # returns
 print("dokhodnost", df)
 
@@ -46,11 +47,11 @@ plt.show()
 
 # 4. Calculate the VaR using point percentile function
 var_90 = norm.ppf(1-0.9, mean, std_dev) # з вірогідністю (90%) 10% ми (не)"звалимось" нижче цієї суми протягом 1 дня
-var_x = norm.ppf(1-0.01, mean, std_dev) # з вірогідністю (1%) 99% ми (не)"звалимось" нижче цієї суми протягом 1 дня
+# var_x = norm.ppf(1-0.01, mean, std_dev) # з вірогідністю (1%) 99% ми (не)"звалимось" нижче цієї суми протягом 1 дня
 var_95 = norm.ppf(1-0.95, mean, std_dev) # з вірогідністю (95%) 5% ми (не)"звалимось" нижче цієї суми протягом 1 дня
 var_99 = norm.ppf(1-0.99, mean, std_dev) # з вірогідністю (99%) 1% ми (не) "звалимось" нижче цієї суми протягом 1 дня
 print("Conf Level 90%, Value at Risk: ", var_90)
-print("Conf Level 1%, Value at Risk: ", var_x)
+# print("Conf Level 1%, Value at Risk: ", var_x)
 print("Conf Level 95%, Value at Risk: ", var_95)
 print("Conf Level 99%, Value at Risk: ", var_99)
 
