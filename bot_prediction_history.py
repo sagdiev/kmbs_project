@@ -16,7 +16,7 @@ start = timer()
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-os.makedirs(path_bot)
+# os.makedirs(path_bot)
 
 # параметры бота
 point_bot = POINT_BOT_START

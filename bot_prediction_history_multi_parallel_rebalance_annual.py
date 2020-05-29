@@ -40,7 +40,7 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     dfx[str(ticker_i)] = df_bot_start
 
 len_list = len(TICKER_HISTORY_LIST)
-rebalance_period = 10000  # 252 если годовой (это количество дней в базах), может быть другой для экспериментов
+rebalance_period = 252  # 252 если годовой (это количество дней в базах), может быть другой для экспериментов
 
 k_list = [0] * len_list
 first_step_status_list = [True] * len_list

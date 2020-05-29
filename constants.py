@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_52_history'
+EXPERIMENT = 'experiment_53_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -28,6 +28,10 @@ TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
+
+TICKER_WEIGHT = [5, 1, 1, 1]
+COLUMNS_WEIGHT_IMPACTED = ['day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
+                           'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell']
 
 PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 
@@ -87,10 +91,10 @@ DATE_EXPERIMENT_START = datetime(date_year_start, date_month_start, date_day_sta
 
 # PROCENT_BASE = [0, 0.05, 0.10, 0, 0]  # эксперимент
 # PROCENT_BASE = [0, 0.15, 0.20, 0, 0]  # эксперимент
-# PROCENT_BASE = [0, 0.10, 0.15, 0.20, 0.25]  # эксперимент
+PROCENT_BASE = [0, 0.10, 0.15, 0.20, 0.25]  # эксперимент
 # PROCENT_BASE = [0, 0.07, 0.14, 0, 0]  # эксперимент
 # PROCENT_BASE = [0, 0.035, 0.07, 0, 0]  # эксперимент
-PROCENT_BASE = [0, 0.07, 0.11, 0.15, 0]  # эксперимент
+# PROCENT_BASE = [0, 0.07, 0.11, 0.15, 0]  # эксперимент
 # PROCENT_BASE = [0, 0.05, 0.08, 0.12, 0]  # эксперимент
 # PROCENT_BASE = [0, 0.12, 0.17, 0.20, 0]  # эксперимент
 
@@ -99,7 +103,7 @@ R_FIN_BASE = 7
 PROCENT_LOSS_BASE = 3
 
 POINT_BOT_START = 1
-STEP_BOT_START = 3
+STEP_BOT_START = 4
 TOTAL_RESERVED_BOT_START = 10000
 
 # параметры биржи
@@ -126,4 +130,6 @@ FEE = 7  # стоимость одного выполненного ордера
 # experiment_50_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
 # experiment_51_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
 # experiment_52_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
+
+
 

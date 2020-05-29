@@ -40,6 +40,20 @@ with open(path_bi, 'a') as f:
         df['curve_number'] = 'curve_' + str(i + 1)
         df['ticker'] = TICKER_HISTORY_LIST[i]
 
+        # довавление весов для тикеров
+        weight = [x / sum(TICKER_WEIGHT) for x in TICKER_WEIGHT]
+        print(weight)
+
+        # print(df['total_profit'])
+        # df['total_profit'] = df['total_profit'] * weight[i]
+        # print(df['total_profit'])
+
+        for y in range(len(COLUMNS_WEIGHT_IMPACTED)):
+            print(df[COLUMNS_WEIGHT_IMPACTED[y]])
+            df[COLUMNS_WEIGHT_IMPACTED[y]] = df[COLUMNS_WEIGHT_IMPACTED[y]] * weight[i]
+            print(df[COLUMNS_WEIGHT_IMPACTED[y]])
+
+        # добавление сектора
         for j in range(1,len(df_ticker_info)):
                 # print(j)
                 ticker_sector = str(df_ticker_info['sector'][j])
@@ -49,6 +63,7 @@ with open(path_bi, 'a') as f:
                     # print(df['ticker'][0], ticker_symbol, ticker_sector)
                     df['sector'] = ticker_sector
                     print(df['ticker'][0], df['sector'][0], '<=', ticker_symbol, ticker_sector)
+
 
         df.to_csv(f, index=False) if i == 0 else df.to_csv(f, index=False, header=0)
 
