@@ -39,6 +39,8 @@ with open(path_bi, 'a') as f:
 
         df['curve_number'] = 'curve_' + str(i + 1)
         df['ticker'] = TICKER_HISTORY_LIST[i]
+        df['equity_line'] = df['sum_invested'] + df['reserved_sum_investment']
+        df['return'] = df['equity_line'].pct_change()
 
         for j in range(1,len(df_ticker_info)):
                 # print(j)

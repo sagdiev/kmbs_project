@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_54_history'
+EXPERIMENT = 'experiment_53_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
