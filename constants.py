@@ -24,18 +24,21 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = crypto_history
 # TICKER_HISTORY_LIST = ['SPX']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
-TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
+# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
+TICKER_HISTORY_LIST = ['AAPL', 'F']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
 
-TICKER_WEIGHT = [5, 2, 1, 8]
+# TICKER_WEIGHT = [5, 2, 1, 8]
+TICKER_WEIGHT = [1] * len(TICKER_HISTORY_LIST)
 COLUMNS_WEIGHT_IMPACTED = [
     'day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
-    'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell']
+    'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell', 'equity_line']
 
 COLUMNS_FOR_SUMMARY = [
-    'day_profit', 'total_profit', 'costs_of_bying', 'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment']
+    'day_profit', 'total_profit', 'costs_of_bying', 'sum_invested', 'cost_of_sum_investment',
+    'reserved_sum_investment', 'equity_line']
 
 PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 
