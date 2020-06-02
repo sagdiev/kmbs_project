@@ -73,5 +73,7 @@ def bot_bi_preparation_weight(experiment_def, prefix_experiment_def, weight_def)
     duration = timer() - start
     print('Время обработки алгоритма = ', duration)
 
+    return df
+
 # # start test
 # bot_bi_preparation_weight(EXPERIMENT, TICKER_WEIGHT)
