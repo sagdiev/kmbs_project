@@ -16,13 +16,13 @@ start = timer()
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 # path_curve = path_file_without_prefix(path_folder_curve, path_file_curve, experiment, ticker)
 # path_curve = path_file_history_without_prefix(path_folder_history, history_ticker)
-os.makedirs(path_bot)
+# os.makedirs(path_bot)
 
 # параметры бота
-point_bot = POINT_BOT_START
-step_count_bot = STEP_BOT_START
-total_amount_bot = TOTAL_RESERVED_BOT_START
-param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot, step_count_bot)
+# point_bot = POINT_BOT_START
+# step_count_bot = STEP_BOT_START
+# total_amount_bot = TOTAL_RESERVED_BOT_START
+# param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot, step_count_bot)
 # amount_first = 1000
 # param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
 
@@ -32,7 +32,7 @@ param_dict = param_generate_base_point_total_amount(point_bot, total_amount_bot,
 # r_fin = param_dict.get('r_fin')
 # procent_loss = param_dict.get('procent_loss')
 
-print(param_dict)
+# print(param_dict)
 
 # procent = [0, 0.15, 0.20]
 # amounts_S = [1000, 1000, 2000]
@@ -65,11 +65,11 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     print("Файл считан: ", path_curve_i)
     print(df)
 
-    rolling_std_cacl = df['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
-    rolling_std_mean = np.mean(rolling_std_cacl)
-
-    # x = param_rebalance(param_dict, 0.37195826601590254)
-    print('rolling_std_mean = ', rolling_std_mean)
+    # rolling_std_cacl = df['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
+    # rolling_std_mean = np.mean(rolling_std_cacl)
+    #
+    # # x = param_rebalance(param_dict, 0.37195826601590254)
+    # print('rolling_std_mean = ', rolling_std_mean)
 
     # применение бота
     # df, profit = bot_martingale(df, amounts_S, procent, r, r_fin, procent_loss)

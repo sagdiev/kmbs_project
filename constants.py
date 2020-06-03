@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_53_history'
+EXPERIMENT = 'experiment_54_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -25,7 +25,8 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = ['SPX']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
 # TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
-TICKER_HISTORY_LIST = ['AAPL', 'F']
+TICKER_HISTORY_LIST = ['AMZN', 'AXP']
+# TICKER_HISTORY_LIST = ['AAPL', 'F']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
@@ -142,4 +143,4 @@ FEE = 7  # стоимость одного выполненного ордера
 # experiment_52_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
 
 
-
+# experiment_53_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3 TICKER_HISTORY_LIST = ['AAPL', 'F']
