@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_54_history'
+EXPERIMENT = 'experiment_59_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -25,7 +25,10 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = ['SPX']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
 # TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
-TICKER_HISTORY_LIST = ['AMZN', 'AXP']
+# TICKER_HISTORY_LIST = ['AMZN', 'AXP']
+# TICKER_HISTORY_LIST = ['MSFT', 'PG']
+# TICKER_HISTORY_LIST = ['AAPL', 'GE']
+TICKER_HISTORY_LIST = ['AAPL', 'PFE']
 # TICKER_HISTORY_LIST = ['AAPL', 'F']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
@@ -36,6 +39,10 @@ TICKER_WEIGHT = [1] * len(TICKER_HISTORY_LIST)
 COLUMNS_WEIGHT_IMPACTED = [
     'day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
     'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell', 'equity_line']
+
+COLUMNS_WEIGHT_IMPACTED_SHORT = [
+    'day_profit', 'total_profit',
+    'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'equity_line']
 
 COLUMNS_FOR_SUMMARY = [
     'day_profit', 'total_profit', 'costs_of_bying', 'sum_invested', 'cost_of_sum_investment',
@@ -65,16 +72,18 @@ PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 
 # main constants
 
-PERIOD = 252*5  # период, на котором рассматриваем поведение бота
+YEAR_DAYS = 252
+
+PERIOD = YEAR_DAYS * 5  # период, на котором рассматриваем поведение бота
 DT = 1  # единица времени, пучть будет 1 день
 
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
 
 COUNT_WEIGHT_EXPERIMENTS = 20  # к-во экпериментов с весами Марковица
-WEIGHT_START = [0, 1]
+WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
 
-WINDOW_ROLLING_STD = 252  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
+WINDOW_ROLLING_STD = YEAR_DAYS  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
 
 # настройки путей папок и файлов
 PATH_FOLDER_CURVE = 'data_curve'
@@ -143,4 +152,11 @@ FEE = 7  # стоимость одного выполненного ордера
 # experiment_52_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3
 
 
-# experiment_53_history = PROCENT_BASE = [0, 0.07, 0.11] total_bot = 10000, 5, 7, 3,  step = 3 TICKER_HISTORY_LIST = ['AAPL', 'F']
+# experiment_53_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'F']
+# experiment_54_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AMZN', 'AXP']
+# experiment_55_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
+# experiment_55_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['MSFT', 'PG']
+
+# experiment_57_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'F']
+# experiment_58_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
+# experiment_59_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'PFE']

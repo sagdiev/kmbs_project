@@ -51,7 +51,7 @@ if len(TICKER_HISTORY_LIST) == 2:
     # plt.show()
 
     plot = figure()
-    plot.circle(std_markowitz_list, mean_markowitz_list, size=10)
+    plot.circle(std_markowitz_list, mean_markowitz_list, size=5)
     output_file('plots/plot_' + EXPERIMENT + '_weight_exp.html')
     show(plot)
 

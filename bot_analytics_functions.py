@@ -34,11 +34,11 @@ def bot_analytics_summary(experiment_def, prefix_experiment_def):
 
     for j in range(len(date_list)):
         date_j = date_list[j]
-        print('\n', date_j)
+        print('\n', 'experiment ', prefix_experiment_def, ' ', date_j)
         for i in range(len(COLUMNS_FOR_SUMMARY)):
             column_i = COLUMNS_FOR_SUMMARY[i]
             df_summary.loc[j, column_i] = df.loc[df['Time'] == date_j, column_i].sum()
-            print(column_i, df_summary.loc[j, column_i])
+            # print(column_i, df_summary.loc[j, column_i])
 
     df_summary['return'] = df_summary['equity_line'].pct_change()
 

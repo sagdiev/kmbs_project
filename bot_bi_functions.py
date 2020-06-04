@@ -39,7 +39,7 @@ def bot_bi_preparation_weight(experiment_def, prefix_experiment_def, weight_def)
 
             df['curve_number'] = 'curve_' + str(i + 1)
             df['ticker'] = TICKER_HISTORY_LIST[i]
-            df['equity_line'] = df['sum_invested'] + df['reserved_sum_investment']
+            df['equity_line'] = df['total_profit'] + df['reserved_sum_investment']
             df['return'] = df['equity_line'].pct_change()
 
             # довавление весов для тикеров
@@ -51,9 +51,9 @@ def bot_bi_preparation_weight(experiment_def, prefix_experiment_def, weight_def)
             # print(df['total_profit'])
 
             for y in range(len(COLUMNS_WEIGHT_IMPACTED)):
-                print(df[COLUMNS_WEIGHT_IMPACTED[y]])
+                # print(df[COLUMNS_WEIGHT_IMPACTED[y]])
                 df[COLUMNS_WEIGHT_IMPACTED[y]] = df[COLUMNS_WEIGHT_IMPACTED[y]] * weight[i]
-                print(df[COLUMNS_WEIGHT_IMPACTED[y]])
+                # print(df[COLUMNS_WEIGHT_IMPACTED[y]])
 
             # добавление сектора
             for j in range(1,len(df_ticker_info)):
@@ -77,3 +77,7 @@ def bot_bi_preparation_weight(experiment_def, prefix_experiment_def, weight_def)
 
 # # start test
 # bot_bi_preparation_weight(EXPERIMENT, TICKER_WEIGHT)
+
+# weight_def = [3 , 2/3]
+# weight = [x / sum(weight_def) for x in weight_def]
+# print(weight)
