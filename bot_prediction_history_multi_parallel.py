@@ -14,7 +14,7 @@ start = timer()
 
 # папки и файлы
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
-os.makedirs(path_bot)
+# os.makedirs(path_bot)
 
 # параметры бота
 point_bot = POINT_BOT_START

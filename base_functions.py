@@ -72,6 +72,19 @@ def rolling_std(df_def):
     return rolling_std_calc
 
 
+def date_drop_in_df(df_def, date_start_def, date_finish_def):
+    # отсекаем лишние периоды
+    date_list = df_def['Time'].unique().tolist()
+    df_dated = pd.DataFrame()
+    for j in range(len(date_list)):
+        date_j = date_list[j]
+        date_j_converted = date_convert(date_j)
+        if date_j_converted >= date_finish_def or date_j_converted <= date_start_def:
+            df_def.drop(df_def[df_def['Time'] == date_j].index, axis=0, inplace=True)
+
+    return df_def
+
+
 # path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 #
 # rrr = {}

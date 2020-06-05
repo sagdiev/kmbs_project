@@ -6,6 +6,7 @@ from constants import *
 from bot_generator import *
 from path_file_generator import *
 from parameters_generator import *
+from base_functions import *
 
 
 # START
@@ -61,9 +62,12 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     path_curve_i = path_file_history(PATH_FOLDER_HISTORY, TICKER_HISTORY_LIST, i)
     df = pd.read_csv(path_curve_i, sep=',')
     # df.sort_index(ascending=False, inplace=True)
+    df = date_drop_in_df(df, DATE_EXPERIMENT_START, DATE_EXPERIMENT_FINISH)
     df.reset_index(drop=True, inplace=True)
     print("Файл считан: ", path_curve_i)
     print(df)
+
+
 
     rolling_std_cacl = df['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
     rolling_std_mean = np.mean(rolling_std_cacl)

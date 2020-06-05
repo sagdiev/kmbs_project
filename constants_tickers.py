@@ -82,17 +82,17 @@ crypto_history = [
     '^EOSUSD', '^ETCUSD', '^DASHUSD', '^BTCUSD', '^BCHUSD', '^ADAUSD']
 
 losers_2000 = [
-    'AABA', 'ABX', 'ACV', 'ADCT', 'AES', 'AET', 'AGC', 'AL', 'AM', 'APC', 'ARC', 'ARNC', 'ASH', 'AT', 'ATI', 'AVP',
-    'BBBY', 'BBT', 'BC', 'BCR', 'BEAM', 'BFO', 'BGG', 'BHGE', 'BIG', 'BMS', 'BUD', 'CA', 'CAR', 'CBS', 'CCE', 'CCK',
+    'AABA', 'ABX', 'ACV', 'AES', 'AET', 'AGC', 'AL', 'AM', 'APC', 'ARC', 'ASH', 'AT', 'ATI', 'AVP',
+    'BBBY', 'BBT', 'BC', 'BCR', 'BFO', 'BGG', 'BHGE', 'BIG', 'BMS', 'BUD', 'CA', 'CAR', 'CBS', 'CCE', 'CCK',
     'CCU', 'CEN', 'CG', 'CHA', 'COMS', 'CPWR', 'CR', 'CTB', 'CTX', 'DDS', 'DELL', 'DLX', 'EC', 'EFU', 'EHC', 'EMC',
     'FDC', 'FMCC', 'FNMA', 'G', 'GAS', 'GRA', 'GT', 'GTE', 'H', 'HCR', 'HI', 'IFF', 'ITT', 'JCP', 'JP', 'KATE', 'KBH',
     'KMG', 'LPX', 'LSI', 'LXK', 'M', 'MAT', 'MBI', 'MDP', 'MDR', 'MIL', 'MTG', 'NAV', 'NC', 'NSM', 'NYT', 'ODP', 'OI',
     'ONE', 'PBI', 'PBY', 'PCG', 'PCH', 'PD', 'PLL', 'PSFT', 'PTC', 'PX', 'R', 'RAD', 'RDC']
 
 sp500_2000_01_03 = [
-    'AABA', 'AAMRQ', 'AAPL', 'ABI', 'ABS', 'ABT', 'ABX', 'ACKH', 'ACV', 'ADBE', 'ADCT', 'ADI', 'ADM', 'ADP', 'ADSK',
+    'AABA', 'AAMRQ', 'AAPL', 'ABI', 'ABS', 'ABT', 'ABX', 'ACKH', 'ACV', 'ADBE', 'ADI', 'ADM', 'ADP', 'ADSK',
     'AEE', 'AEP', 'AES', 'AET', 'AFL', 'AFS.A', 'AGC', 'AGN', 'AIG', 'AL', 'ALL', 'AM', 'AMAT', 'AMD', 'AMGN', 'ANDW',
-    'AON', 'APA', 'APC', 'APD', 'ARC', 'ARNC', 'ASH', 'ASO', 'AT', 'ATI', 'AVP', 'AVY', 'AW', 'AXP', 'AZA.A', 'AZO',
+    'AON', 'APA', 'APC', 'APD', 'ARC', 'ASH', 'ASO', 'AT', 'ATI', 'AVP', 'AVY', 'AW', 'AXP', 'AZA.A', 'AZO',
     'BA', 'BAC', 'BAX', 'BBBY', 'BBT', 'BBY', 'BC', 'BCR', 'BDK', 'BDX', 'BEAM', 'BEN', 'BF.B', 'BFO', 'BGG', 'BHGE',
     'BHMSQ', 'BIG', 'BK', 'BLL', 'BLS', 'BMC', 'BMET', 'BMS', 'BMY', 'BNI', 'BOL', 'BR', 'BSC', 'BSX', 'BUD', 'C', 'CA',
     'CAG', 'CAH', 'CAR', 'CAT', 'CB', 'CBE', 'CBS', 'CCE', 'CCK', 'CCL', 'CCTYQ', 'CCU', 'CEG', 'CEN', 'CFC', 'CG',
@@ -127,7 +127,7 @@ sp500_2020_01_28 = [
     'A', 'AAL', 'AAP', 'AAPL', 'ABBV', 'ABC', 'ABMD', 'ABT', 'ACN', 'ADBE', 'ADI', 'ADM', 'ADP', 'ADS', 'ADSK', 'AEE',
     'AEP', 'AES', 'AFL', 'AGN', 'AIG', 'AIV', 'AIZ', 'AJG', 'AKAM', 'ALB', 'ALGN', 'ALK', 'ALL', 'ALLE', 'ALXN', 'AMAT',
     'AMCR', 'AMD', 'AME', 'AMGN', 'AMP', 'AMT', 'AMZN', 'ANET', 'ANSS', 'ANTM', 'AON', 'AOS', 'APA', 'APD', 'APH',
-    'APTV', 'ARE', 'ARNC', 'ATO', 'ATVI', 'AVB', 'AVGO', 'AVY', 'AWK', 'AXP', 'AZO', 'BA', 'BAC', 'BAX', 'BBY', 'BDX',
+    'APTV', 'ARE', 'ATO', 'ATVI', 'AVB', 'AVGO', 'AVY', 'AWK', 'AXP', 'AZO', 'BA', 'BAC', 'BAX', 'BBY', 'BDX',
     'BEN', 'BF.B', 'BIIB', 'BK', 'BKNG', 'BKR', 'BLK', 'BLL', 'BMY', 'BR', 'BRK.B', 'BSX', 'BWA', 'BXP', 'C', 'CAG',
     'CAH', 'CAT', 'CB', 'CBOE', 'CBRE', 'CCI', 'CCL', 'CDNS', 'CDW', 'CE', 'CERN', 'CF', 'CFG', 'CHD', 'CHRW', 'CHTR',
     'CI', 'CINF', 'CL', 'CLX', 'CMA', 'CMCSA', 'CME', 'CMG', 'CMI', 'CMS', 'CNC', 'CNP', 'COF', 'COG', 'COO', 'COP',

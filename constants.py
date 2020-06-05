@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_59_history'
+EXPERIMENT = 'experiment_62.2_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -16,23 +16,29 @@ TICKER = 'history'
 #     sp500_2020_05_01_part_3 +\
 #     sp500_2020_05_01_part_4 +\
 #     sp500_2020_05_01_part_5 +\
-#     sp500_2020_05_01_part_6
+#     sp500_2020_05_01_part_6 +\
+#     losers_2000 +\
+#     portfolio_selected_from_2000_2020
 
+# TICKER_HISTORY_LIST = sp500_2020_05_01_part_1
 # TICKER_HISTORY_LIST = sp500_2020_05_01_part_1
 # TICKER_HISTORY_LIST = portfolio_selected_from_2000_2020
 # TICKER_HISTORY_LIST = losers_2000
 # TICKER_HISTORY_LIST = crypto_history
 # TICKER_HISTORY_LIST = ['SPX']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
-# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'GE']
+TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE']
 # TICKER_HISTORY_LIST = ['AMZN', 'AXP']
 # TICKER_HISTORY_LIST = ['MSFT', 'PG']
 # TICKER_HISTORY_LIST = ['AAPL', 'GE']
-TICKER_HISTORY_LIST = ['AAPL', 'PFE']
+# TICKER_HISTORY_LIST = ['AAPL', 'PFE']
 # TICKER_HISTORY_LIST = ['AAPL', 'F']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
+# TICKER_HISTORY_LIST = ['C', 'GE', 'F']
+
+TICKER_HISTORY_LIST = list(set(TICKER_HISTORY_LIST))
 
 # TICKER_WEIGHT = [5, 2, 1, 8]
 TICKER_WEIGHT = [1] * len(TICKER_HISTORY_LIST)
@@ -80,10 +86,11 @@ DT = 1  # единица времени, пучть будет 1 день
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
 
-COUNT_WEIGHT_EXPERIMENTS = 20  # к-во экпериментов с весами Марковица
-WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
+COUNT_WEIGHT_EXPERIMENTS = 100  # к-во экпериментов с весами Марковица
+# WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
+WEIGHT_START = []
 
-WINDOW_ROLLING_STD = YEAR_DAYS  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
+WINDOW_ROLLING_STD = 10  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
 
 # настройки путей папок и файлов
 PATH_FOLDER_CURVE = 'data_curve'
@@ -100,11 +107,17 @@ PATH_FOLDER_HISTORY = 'data_history'
 
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
-# # date calculation start of experiment
-date_year_start = 2020
-date_month_start = 5
-date_day_start = 1
-DATE_EXPERIMENT_START = datetime(date_year_start, date_month_start, date_day_start)
+# непосредственно для экспериментов
+DATE_EXPERIMENT_START = datetime(2000, 1, 1)
+DATE_EXPERIMENT_FINISH = datetime(2009, 12, 31)
+
+# для подготовки и форматирования исторических данных
+DATE_GLOBAL_START = datetime(2000, 1, 1)
+DATE_GLOBAL_FINISH = datetime(2019, 12, 31)
+
+# date_year_start = 2000
+# date_month_start = 1
+# date_day_start = 1
 # date_experiment_start_format = date_experiment_start.strftime("%Y_%m_%d")
 
 # Базоыве параметы бота, на основе которых определюяются относительные параметры всех ботов
@@ -160,3 +173,5 @@ FEE = 7  # стоимость одного выполненного ордера
 # experiment_57_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'F']
 # experiment_58_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
 # experiment_59_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'PFE']
+# experiment_60_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
+

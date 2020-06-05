@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 from timeit import default_timer as timer
 import matplotlib.pyplot as plt
+import random
 
 # from pandas_datareader import data, wb
 from bokeh.io import output_file, show
@@ -20,7 +21,7 @@ from bot_analytics_functions import *
 start = timer()
 
 count_weight_experiment = COUNT_WEIGHT_EXPERIMENTS
-weight_experiment_i = WEIGHT_START
+weight_experiment_i = [1]* COUNT_WEIGHT_EXPERIMENTS
 
 mean_markowitz_list = []
 std_markowitz_list = []
@@ -29,16 +30,33 @@ path_folder_bi = folder_check(PATH_FOLDER_BI)
 path_bi = path_folder_bi + '/' + EXPERIMENT + '.csv'
 print(path_bi)
 
-if len(TICKER_HISTORY_LIST) == 2:
+try:
+    file_clear = open(path_bi,"r+")
+    file_clear.truncate(0)
+    file_clear.close()
+    print('Старый файл ', path_bi, ' очищен')
+except Exception:
+    print('Файл ', path_bi, ' будет создавться первый раз')
+
+if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
 
     with open(path_bi, 'a') as f:
 
         for i in range(count_weight_experiment + 1):
-            weight_experiment_i[0] = i / count_weight_experiment
-            weight_experiment_i[1] = 1 - i / count_weight_experiment
-            print('i = ', i, 'i / count_weight_experiment = ', i / count_weight_experiment, ' : ', weight_experiment_i)
+            print(TICKER_HISTORY_LIST)
+            weight_experiment_i = random.sample(range(100), len(TICKER_HISTORY_LIST))
+            print('weight_experiment_i =', weight_experiment_i)
+            weight_experiment_i = [x / sum(weight_experiment_i) for x in weight_experiment_i]
+            print(weight_experiment_i)
+
+            # weight_experiment_i[0] = i / count_weight_experiment
+            # weight_experiment_i[1] = 1 - i / count_weight_experiment
+            # print('i = ', i, 'i / count_weight_experiment = ', i / count_weight_experiment, ' : ', weight_experiment_i)
+
 
             prefix_experiment_i = '_weight_exp_' + str(i + 1)
+            print('\n\n START expneriment ', prefix_experiment_i)
+            print('weight_experiment = ', weight_experiment_i)
             experiment_i = EXPERIMENT
 
             # подготовка обработки BI (объединение построчно всех bot-файлов в один)
@@ -61,8 +79,8 @@ if len(TICKER_HISTORY_LIST) == 2:
 
             df_experiment_summary_i['weights'] = str(weight_experiment_i)
 
-            weights_tickers = str(TICKER_HISTORY_LIST[0]) + ': ' + str(weight_experiment_i[0]) + ', ' \
-                              + str(TICKER_HISTORY_LIST[1]) + ': ' + str(weight_experiment_i[1])
+            weights_tickers = str(TICKER_HISTORY_LIST[0]) + ': ' + str(round(weight_experiment_i[0],2)) + ', ' \
+                              + str(TICKER_HISTORY_LIST[1]) + ': ' + str(round(weight_experiment_i[1],2))
             df_experiment_summary_i['weights_tickers'] = weights_tickers
 
             df_experiment_summary_i['prefix_experiment'] = str(prefix_experiment_i)
