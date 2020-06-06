@@ -4,7 +4,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_62.2_history'
+EXPERIMENT = 'experiment_63.2_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -86,11 +86,12 @@ DT = 1  # единица времени, пучть будет 1 день
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
 
-COUNT_WEIGHT_EXPERIMENTS = 100  # к-во экпериментов с весами Марковица
+COUNT_WEIGHT_EXPERIMENTS = 200  # к-во экпериментов с весами Марковица
+SEED_EXPERIMENT = 3
 # WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
 WEIGHT_START = []
 
-WINDOW_ROLLING_STD = 10  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
+WINDOW_ROLLING_STD = YEAR_DAYS  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
 
 # настройки путей папок и файлов
 PATH_FOLDER_CURVE = 'data_curve'
@@ -108,8 +109,8 @@ PATH_FOLDER_HISTORY = 'data_history'
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
 # непосредственно для экспериментов
-DATE_EXPERIMENT_START = datetime(2000, 1, 1)
-DATE_EXPERIMENT_FINISH = datetime(2009, 12, 31)
+DATE_EXPERIMENT_START = datetime(2008, 1, 1)
+DATE_EXPERIMENT_FINISH = datetime(2008, 12, 31)
 
 # для подготовки и форматирования исторических данных
 DATE_GLOBAL_START = datetime(2000, 1, 1)
@@ -174,4 +175,13 @@ FEE = 7  # стоимость одного выполненного ордера
 # experiment_58_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
 # experiment_59_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'PFE']
 # experiment_60_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
+
+
+# experiment_62_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2010-2019
+# experiment_62.2_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2000-2009
+
+# experiment_63.2008_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2008 Portfolio_count = 200
+# experiment_63.2_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2008 Portfolio_count = 200
+
+
 

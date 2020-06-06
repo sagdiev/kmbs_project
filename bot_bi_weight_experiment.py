@@ -20,8 +20,6 @@ from bot_analytics_functions import *
 # START
 start = timer()
 
-count_weight_experiment = COUNT_WEIGHT_EXPERIMENTS
-weight_experiment_i = [1]* COUNT_WEIGHT_EXPERIMENTS
 
 mean_markowitz_list = []
 std_markowitz_list = []
@@ -29,6 +27,8 @@ std_markowitz_list = []
 path_folder_bi = folder_check(PATH_FOLDER_BI)
 path_bi = path_folder_bi + '/' + EXPERIMENT + '.csv'
 print(path_bi)
+
+weights_tickers = ''
 
 try:
     file_clear = open(path_bi,"r+")
@@ -38,21 +38,21 @@ try:
 except Exception:
     print('Файл ', path_bi, ' будет создавться первый раз')
 
+weight_experiment_list, type_weights_list = \
+    random_portfolio_weights_list_seed(COUNT_WEIGHT_EXPERIMENTS , len(TICKER_HISTORY_LIST), SEED_EXPERIMENT)
+
 if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
 
     with open(path_bi, 'a') as f:
 
-        for i in range(count_weight_experiment + 1):
+        for i in range(COUNT_WEIGHT_EXPERIMENTS):
             print(TICKER_HISTORY_LIST)
-            weight_experiment_i = random.sample(range(100), len(TICKER_HISTORY_LIST))
-            print('weight_experiment_i =', weight_experiment_i)
-            weight_experiment_i = [x / sum(weight_experiment_i) for x in weight_experiment_i]
-            print(weight_experiment_i)
+            weights_tickers = ''
+            weight_experiment_i = weight_experiment_list[i]
 
+            # всмомогательный вариант равномерного распределения весов в случае двух акций
             # weight_experiment_i[0] = i / count_weight_experiment
             # weight_experiment_i[1] = 1 - i / count_weight_experiment
-            # print('i = ', i, 'i / count_weight_experiment = ', i / count_weight_experiment, ' : ', weight_experiment_i)
-
 
             prefix_experiment_i = '_weight_exp_' + str(i + 1)
             print('\n\n START expneriment ', prefix_experiment_i)
@@ -65,6 +65,7 @@ if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
             # подготовка файла Аналитики (подсчет суммарно действий всех bot'ов)
             df_experiment_summary_i = bot_analytics_summary(experiment_i, prefix_experiment_i)
 
+            # дополнительные расчеты показателей портфеля
             return_mean = np.mean(df_experiment_summary_i['return'])
             return_std = np.std(df_experiment_summary_i['return'])
             return_mean_annual = return_mean * YEAR_DAYS
@@ -76,54 +77,34 @@ if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
 
             df_experiment_summary_i['return_mean_annual'] = return_mean_annual
             df_experiment_summary_i['return_std_annual'] = return_std_annual
+            df_experiment_summary_i['information_ratio'] = return_mean_annual / return_std_annual
+
+            for k in range(len(TICKER_HISTORY_LIST)):
+                weights_tickers = \
+                    weights_tickers + str(TICKER_HISTORY_LIST[k]) + ': ' + str(round(weight_experiment_i[k],2)) + ','
 
             df_experiment_summary_i['weights'] = str(weight_experiment_i)
-
-            weights_tickers = str(TICKER_HISTORY_LIST[0]) + ': ' + str(round(weight_experiment_i[0],2)) + ', ' \
-                              + str(TICKER_HISTORY_LIST[1]) + ': ' + str(round(weight_experiment_i[1],2))
             df_experiment_summary_i['weights_tickers'] = weights_tickers
+            df_experiment_summary_i['type_weights'] = type_weights_list[i]
 
-            df_experiment_summary_i['prefix_experiment'] = str(prefix_experiment_i)
-
-
-
-            df_experiment_summary_i.to_csv(f, index=False) if i == 0 else df_experiment_summary_i.to_csv(f, index=False, header=0)
+            # записываем файл
+            df_experiment_summary_i.to_csv(f, index=False) if i == 0 \
+                else df_experiment_summary_i.to_csv(f, index=False, header=0)
 
             duration = timer() - start
             print('Время обработки варианта весов  №', i + 1, weight_experiment_i, ' ', duration)
 
     print(mean_markowitz_list)
     print(std_markowitz_list)
-    # plt.scatter(std_markowitz_list, mean_markowitz_list)
-    # plt.show()
 
     plot = figure()
     plot.circle(std_markowitz_list, mean_markowitz_list, size=5)
     output_file('plots/plot_' + EXPERIMENT + '_weight_exp.html')
     show(plot)
 
-
-
 else:
     print('Количество активов в эксперименте превышает 2. Измените константы')
-
 
 # таймер
 duration = timer() - start
 print('Время обработки алгоритма = ', duration)
-
-
-
-# xs = [x[0] for x in li]
-# ys = [x[1] for x in li]
-
-#
-# # # for j in range(count_weight_experiment):
-# # plot = figure()
-# # plot.circle(mean_markowitz_list,
-# #             std_markowitz_list, size=1)
-# # # output_file('pandas.html')
-# # show(plot)
-
-
-

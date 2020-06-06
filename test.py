@@ -1,8 +1,15 @@
+from base_functions import *
 
-count_weight_experiment = 20
-weight_experiment_i =[1, 0]
+print(random_weights_seed(5, 3))
+print(random_weights_seed(5, 3))
 
-for i in range(count_weight_experiment + 1):
-    weight_experiment_i[0] = i / count_weight_experiment
-    weight_experiment_i[1] = 1 - i / count_weight_experiment
-    print('i = ', i, 'i / count_weight_experiment = ', i / count_weight_experiment, ' : ', weight_experiment_i)
+random.seed(3)
+random_example = random.sample(range(100), 5)
+print('random_example ', random_example)
+
+print(random_portfolio_weights_list_seed(20 , 5, 3))
+print(len(random_portfolio_weights_list_seed(20 , 5, 3)))
+
+random_example = random_portfolio_weights_list_seed(COUNT_WEIGHT_EXPERIMENTS , len(TICKER_HISTORY_LIST), SEED_EXPERIMENT)
+
+print('random_example to code = ', random_example)

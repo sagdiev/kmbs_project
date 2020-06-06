@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from datetime import datetime
+import random
 
 from constants import *
 from bot_generator import *
@@ -84,6 +85,49 @@ def date_drop_in_df(df_def, date_start_def, date_finish_def):
 
     return df_def
 
+
+def random_weights_seed(count_items_portfolio, seed_for_random):
+    random.seed(seed_for_random)
+    random_portfolio_weights = random.sample(range(100), count_items_portfolio)
+    random_portfolio_weights = [ x / sum(random_portfolio_weights) for x in random_portfolio_weights]
+
+    return random_portfolio_weights
+
+
+def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio, seed_for_random):
+    weight_zero = [0] * count_items_portfolio
+    portfolio_weights = []
+    type_weights =[]
+
+    for i in range(count_items_portfolio):
+        weights_ones_i = weight_zero
+        weights_ones_i = [ 1 if k == i else weight_zero[k] for k in range(count_items_portfolio)]
+        # print(weights_ones_i)
+        portfolio_weights.append(weights_ones_i)
+        # print(portfolio_weights)
+        type_weights.append('single_bot')
+
+    native_weights = [ 1 / count_items_portfolio ] * count_items_portfolio
+    portfolio_weights.append(native_weights)
+    type_weights.append('native_portfolio')
+
+    for j in range(count_portfolios - count_items_portfolio):
+        random_portfolio_weights = random_weights_seed(count_items_portfolio, seed_for_random)
+        portfolio_weights.append(random_portfolio_weights)
+        type_weights.append('random_portfolio')
+        seed_for_random += 1
+
+    return portfolio_weights, type_weights
+
+
+# print(random_portfolio_weights_list_seed(20 , 5, 3))
+
+
+# random_portfolio_weights_seed(5, 3)
+#
+# random.seed(3)
+# random_example = random.sample(range(100), 5)
+# print('random_example ', random_example)
 
 # path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 #
