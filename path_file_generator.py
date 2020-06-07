@@ -47,5 +47,3 @@ def path_file_history(folder_name, history_ticker, prefix): # генериров
     print(path_file_history)
 
     return path_file_history
-
-

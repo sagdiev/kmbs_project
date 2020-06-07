@@ -6,88 +6,7 @@ from constants import *
 from constants_bot_generator import *
 
 from base_functions import *
-# from bot_generator import *
 
-
-def bot_generator_restart_day(df, param, i, restart_signal):
-    # print('СТАРТ перезапуска')
-    t = int(df.loc[i, column_t])
-    # print('t_previous =', t)
-    if t in [0, 1, 2, 3, 4]:
-        # print('пропускаем рестарт')
-        return df
-
-    if restart_signal == True:
-
-        procent = param.get('procent')
-        amounts_S = param.get('amounts_S')
-        r = param.get('r')
-
-        t = int(0)
-        p0 = df[column_price][i]
-        count_buy_step_plan = calc_count_buy_step_plan(amounts_S, p0, procent)
-        # print('ПРИ РЕСТАРТЕ count_buy_step_plan =', count_buy_step_plan)
-        k0 = count_buy_step_plan[0]
-        K = k0
-        S0 = k0 * p0
-        C = S0
-        B = S0
-        S = sum(amounts_S)
-        profit = df.loc[i, column_profit]  # просто фиксируем, что осталась та же после продаж в этот день (удалить)
-        day_profit = df.loc[i, column_day_profit] # просто фиксируем, что осталась та же после продаж в этот день
-        p_sell = p0 * (1 + r / 100)
-        p_buy = p0 * (1 - procent[1])
-        fee_count = df.loc[i, column_fee_count] + 1  # счетчик +1 на случай, если предыдущая покупка была в этот же день
-
-        # sell_buy_status = 'buy' # todo потом подумать, что писать при пеерзакупке через период (если в тот же день, то sell или Stop Loss
-        count_sell = 0
-
-        df.loc[i, column_t] = t
-        df[column_buy_step_plan] = np.nan
-        df[column_buy_step_plan] = df[column_buy_step_plan].astype('object')
-        df.at[i, column_buy_step_plan] = count_buy_step_plan
-        df.loc[i, column_p_sell] = p_sell
-        df.loc[i, column_p_buy] = p_buy
-        # df.loc[i, column_sell_buy] = sell_buy_status # todo потом подумать, что писать при пеерзакупке через период (если в тот же день, то sell или Stop Loss
-        df.loc[i, column_profit] = profit
-        # print('ПРИ РЕСТАРТЕ profit =', profit)
-        df.loc[i, column_day_profit] = day_profit
-        df.loc[i, column_count_buy] = k0
-        df.loc[i, column_count_total_buy] = K
-        # print('count_total_buy =', K)
-        # print('count_day =',i)
-        df.loc[i, column_count_sell] = count_sell
-        df.loc[i, column_costs_of_bying] = S0
-        df.loc[i, column_sum_invested] = C
-        df.loc[i, column_cost_of_sum_investment] = B
-        df.loc[i, column_reserved_sum_investment] = S
-        df.loc[i, column_fee_count] = fee_count
-
-        print(df[column_sum_invested][0])
-
-        print('Рестарт бота произведен')
-
-
-
-    else: # Просто ОЖИДАНИЕ без каких либо действий без входа в позиции вообще + сохранение записей о состоянии прибыли
-
-        # просто запись сохранения предыдущей прибыли, если пропускаем шаг
-        if df.loc[i - 1, column_t] == -1:
-            # print('НАДО СОХРАНИТЬ ПРИБЫЛЬ')
-            df.loc[i, column_profit] = df.loc[i - 1, column_profit]
-
-        t = int(-1)
-        fee_count = 0
-        day_profit = 0
-        df.loc[i, column_sell_buy] = 'waiting'
-        df.loc[i, column_t] = t
-        df.loc[i, column_day_profit] = day_profit
-        # print('ПРИ РЕСТАРТЕ profit = ', df.loc[i, column_profit])
-        df.loc[i, column_fee_count] = fee_count
-
-        # print('Рестарт ожидание')
-
-    return df
 
 def bot_generator_initiation_first_day(df, param, ticker, i):
     # print('Старт')
@@ -276,6 +195,85 @@ def bot_generator_next_day(df, param, day_number):
     return df_round(df)
 
 
+def bot_generator_restart_day(df, param, i, restart_signal):
+    # print('СТАРТ перезапуска')
+    t = int(df.loc[i, column_t])
+    # print('t_previous =', t)
+    if t in [0, 1, 2, 3, 4]:
+        # print('пропускаем рестарт')
+        return df
+
+    if restart_signal == True:
+
+        procent = param.get('procent')
+        amounts_S = param.get('amounts_S')
+        r = param.get('r')
+
+        t = int(0)
+        p0 = df[column_price][i]
+        count_buy_step_plan = calc_count_buy_step_plan(amounts_S, p0, procent)
+        # print('ПРИ РЕСТАРТЕ count_buy_step_plan =', count_buy_step_plan)
+        k0 = count_buy_step_plan[0]
+        K = k0
+        S0 = k0 * p0
+        C = S0
+        B = S0
+        S = sum(amounts_S)
+        profit = df.loc[i, column_profit]  # просто фиксируем, что осталась та же после продаж в этот день (удалить)
+        day_profit = df.loc[i, column_day_profit] # просто фиксируем, что осталась та же после продаж в этот день
+        p_sell = p0 * (1 + r / 100)
+        p_buy = p0 * (1 - procent[1])
+        fee_count = df.loc[i, column_fee_count] + 1  # счетчик +1 на случай, если предыдущая покупка была в этот же день
+
+        # sell_buy_status = 'buy' # todo потом подумать, что писать при пеерзакупке через период (если в тот же день, то sell или Stop Loss
+        count_sell = 0
+
+        df.loc[i, column_t] = t
+        df[column_buy_step_plan] = np.nan
+        df[column_buy_step_plan] = df[column_buy_step_plan].astype('object')
+        df.at[i, column_buy_step_plan] = count_buy_step_plan
+        df.loc[i, column_p_sell] = p_sell
+        df.loc[i, column_p_buy] = p_buy
+        # df.loc[i, column_sell_buy] = sell_buy_status # todo потом подумать, что писать при пеерзакупке через период (если в тот же день, то sell или Stop Loss
+        df.loc[i, column_profit] = profit
+        # print('ПРИ РЕСТАРТЕ profit =', profit)
+        df.loc[i, column_day_profit] = day_profit
+        df.loc[i, column_count_buy] = k0
+        df.loc[i, column_count_total_buy] = K
+        # print('count_total_buy =', K)
+        # print('count_day =',i)
+        df.loc[i, column_count_sell] = count_sell
+        df.loc[i, column_costs_of_bying] = S0
+        df.loc[i, column_sum_invested] = C
+        df.loc[i, column_cost_of_sum_investment] = B
+        df.loc[i, column_reserved_sum_investment] = S
+        df.loc[i, column_fee_count] = fee_count
+
+        print(df[column_sum_invested][0])
+
+        print('Рестарт бота произведен')
+
+    else: # Просто ОЖИДАНИЕ без каких либо действий без входа в позиции вообще + сохранение записей о состоянии прибыли
+
+        # просто запись сохранения предыдущей прибыли, если пропускаем шаг
+        if df.loc[i - 1, column_t] == -1:
+            # print('НАДО СОХРАНИТЬ ПРИБЫЛЬ')
+            df.loc[i, column_profit] = df.loc[i - 1, column_profit]
+
+        t = int(-1)
+        fee_count = 0
+        day_profit = 0
+        df.loc[i, column_sell_buy] = 'waiting'
+        df.loc[i, column_t] = t
+        df.loc[i, column_day_profit] = day_profit
+        # print('ПРИ РЕСТАРТЕ profit = ', df.loc[i, column_profit])
+        df.loc[i, column_fee_count] = fee_count
+
+        # print('Рестарт ожидание')
+
+    return df
+
+
 def df_round(df):
 
     df['day_profit'] = round(df['day_profit'], 0)
@@ -293,7 +291,7 @@ def df_round(df):
     return df
 
 
-def  calc_count_buy_step_plan(amounts_S, p0, procent):
+def calc_count_buy_step_plan(amounts_S, p0, procent):
     step_list = []
     for j in range(len(amounts_S)):
         step_list.append(amounts_S[j] / p0) if j == 0 else step_list.append(amounts_S[j] / (p0 * prod(j, procent)))

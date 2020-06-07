@@ -27,8 +27,10 @@ window_size = WINDOW_ROLLING_STD
 point = 1
 amount_first = 1000
 step_count = 3
+total_reserved = 10000
 
-param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
+# param_dict = param_generate_base_point_amount_first(point, amount_first, step_count)
+param_dict = param_generate_base_point_total_amount(point, total_reserved, step_count)
 
 procent = param_dict.get('procent')
 amounts_S = param_dict.get('amounts_S')

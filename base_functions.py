@@ -2,9 +2,11 @@ import numpy as np
 import pandas as pd
 from datetime import datetime
 import random
+import itertools
 
 from constants import *
 from bot_generator import *
+from parameters_generator import *
 from path_file_generator import *
 
 
@@ -99,6 +101,7 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
     portfolio_weights = []
     type_weights =[]
 
+    # единичные веса
     for i in range(count_items_portfolio):
         weights_ones_i = weight_zero
         weights_ones_i = [ 1 if k == i else weight_zero[k] for k in range(count_items_portfolio)]
@@ -107,10 +110,12 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
         # print(portfolio_weights)
         type_weights.append('single_bot')
 
+    # одинаковые веса
     native_weights = [ 1 / count_items_portfolio ] * count_items_portfolio
     portfolio_weights.append(native_weights)
     type_weights.append('native_portfolio')
 
+    # случайные веса
     for j in range(count_portfolios - count_items_portfolio):
         random_portfolio_weights = random_weights_seed(count_items_portfolio, seed_for_random)
         portfolio_weights.append(random_portfolio_weights)
