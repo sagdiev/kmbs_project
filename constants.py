@@ -1,10 +1,13 @@
 from datetime import date, datetime, timedelta
+import os
+import sys
+
 from typing import Dict
 
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_64.1_history'
+EXPERIMENT = 'experiment_62.7_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -27,16 +30,18 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = crypto_history
 # TICKER_HISTORY_LIST = ['SPX']
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
-# TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE']
+TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE']
 # TICKER_HISTORY_LIST = ['AMZN', 'AXP']
 # TICKER_HISTORY_LIST = ['MSFT', 'PG']
 # TICKER_HISTORY_LIST = ['AAPL', 'GE']
+# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C']
 # TICKER_HISTORY_LIST = ['AAPL', 'PFE']
 # TICKER_HISTORY_LIST = ['AAPL', 'F']
+# TICKER_HISTORY_LIST = ['AAPL', 'C']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
-TICKER_HISTORY_LIST = ['AAPL']
+# TICKER_HISTORY_LIST = ['AAPL']
 # TICKER_HISTORY_LIST = ['C', 'GE', 'F']
 
 TICKER_HISTORY_LIST = list(set(TICKER_HISTORY_LIST))
@@ -86,8 +91,8 @@ DT = 1  # единица времени, пучть будет 1 день
 
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
-COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 50
-COUNT_WEIGHT_EXPERIMENTS = 200  # к-во экпериментов с весами Марковица
+COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 1  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
+COUNT_WEIGHT_EXPERIMENTS = 15  # к-во экпериментов с весами Марковица
 SEED_EXPERIMENT = 3
 # WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
 WEIGHT_START = []
@@ -160,8 +165,9 @@ POINT_RANDOM_MAX = 1
 STEP_RANDOM_MAX = 5
 TOTAL_RANDOM_MAX = 10000
 
-# параметры биржи
+# параметры биржи и рынка
 FEE = 4  # стоимость одного выполненного ордера на бирже
+RATE_BENCHMARK = 0.01  # безрисковый процент биржи
 
 # experiment_22_history = PROCENT_BASE = [0, 0.07, 0.14] total_bot = 10000, 5, 7, 3
 # experiment_23_history = PROCENT_BASE = [0, 0.05, 0.10] total_bot = 10000, 5, 7, 3
@@ -195,10 +201,20 @@ FEE = 4  # стоимость одного выполненного ордера
 # experiment_58_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
 # experiment_59_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'PFE']
 # experiment_60_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'GE']
+# experiment_66_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'С']
+# experiment_66.1_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'С'] reNew Returns
+# experiment_67_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'F', 'С']
+
+
+
 
 # porfolio 2000-2009 + 2010-2019 5 stocks Markiwitz
 # experiment_62_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2010-2019
 # experiment_62.2_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2000-2009
+# experiment_62.4_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] ALL
+# experiment_62.5_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2019 reNew Returns
+# experiment_62.6_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE'] 2019 без С
+# experiment_62.7_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2010-2019
 
 # porfolio 2008 5 stocks
 # experiment_63.2008_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'C', 'GE'] 2008 Portfolio_count = 200
@@ -206,5 +222,10 @@ FEE = 4  # стоимость одного выполненного ордера
 
 # random parameters try
 # experiment_64.1_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['AAPL'] 2019 Random_parameters
+
+# SPX
+# experiment_65.1_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['SPX'] 2000-2019
+
+
 
 

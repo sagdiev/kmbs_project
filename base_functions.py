@@ -125,6 +125,50 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
     return portfolio_weights, type_weights
 
 
+def logbook_text_compelling(running_file_def, param_dict_list_def):
+    logbook_text_def = '\n\n\n' + \
+        '==========================================================================================================' + \
+        '\n\n' \
+        '\nЭКСПЕРИМЕНТ: ' + str(EXPERIMENT) + \
+        '\nВРЕМЯ НАЧАЛА: ' + str(date.today()) + \
+        '\nИНИЦИИРУЮЩИ ФАЙЛ: ' + str(running_file_def) + \
+        '\nСПИСОК АКТИВОВ: ' + str(TICKER_HISTORY_LIST) + \
+        '\nПЕРВЫЙ ПАРАМЕТР: ' + str(param_dict_list_def[0]) + \
+        '\nВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: ' + str(param_dict_list_def) + \
+        '\nКОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: ' + str(COUNT_RANDOM_PARAMETERS_EXPERIMENTS) + \
+        '\nКОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: ' + str(COUNT_WEIGHT_EXPERIMENTS) + \
+        '\nКОЭФФИЦИЕНТ СЛУЧАНОСТИ: ' + str(SEED_EXPERIMENT) + \
+        '\nDATE_EXPERIMENT_START:' + str(DATE_EXPERIMENT_START) + \
+        '\nDATE_EXPERIMENT_FINISH: ' + str(DATE_EXPERIMENT_FINISH)
+
+    with open('experiments_logbook.txt', 'a') as file:
+        file.write(logbook_text_def)
+
+    return logbook_text_def
+
+
+def logbook_text_compelling_start_algorithm(running_file_def):
+    logbook_text_def = '\n' \
+        '\nИНИЦИИРУЮЩИЙ ФАЙЛ ЗАПУЩЕН: ' + str(running_file_def) + \
+        '\nЭКСПЕРИМЕНТ: ' + str(EXPERIMENT) + \
+        '\nВРЕМЯ НАЧАЛА АЛГОРИТМА: ' + str(datetime.today())
+
+    with open('experiments_logbook.txt', 'a') as file:
+        file.write(logbook_text_def)
+
+    return logbook_text_def
+
+
+def logbook_text_compelling_finish_algorithm(running_file_def, duration_def):
+    logbook_text_def = '\nВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: ' + str(duration_def / 60) + ' минут'
+
+    with open('experiments_logbook.txt', 'a') as file:
+        file.write(logbook_text_def)
+
+    return logbook_text_def
+
+
+
 # print(random_portfolio_weights_list_seed(20 , 5, 3))
 
 

@@ -1,0 +1,124 @@
+
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_62.5_history
+ВРЕМЯ НАЧАЛА: 2020-06-08
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/bot_prediction_history.py
+СПИСОК АКТИВОВ: ['C', 'F', 'AXP', 'GE', 'AAPL']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 1
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 50
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2019-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+
+
+ЭКСПЕРИМЕНТ: experiment_62.5_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_prediction_history.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 0.5362795925 минут
+
+
+ЭКСПЕРИМЕНТ: experiment_62.5_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08
+
+
+ЭКСПЕРИМЕНТ: experiment_62.5_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 1.2479302795 минут
+
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ВРЕМЯ НАЧАЛА: 2020-06-08
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/bot_prediction_history.py
+СПИСОК АКТИВОВ: ['AAPL', 'GE', 'F', 'AXP']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 1
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 50
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2019-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_prediction_history.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 0.4454225367833333 минут
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 1.3167950508666666 минут
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_analytics.py
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_analytics.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 0.009224258583333334 минут
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_analytics_summary.py
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08
+
+
+ЭКСПЕРИМЕНТ: experiment_62.6_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_analytics_summary.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 0.04402113435 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ВРЕМЯ НАЧАЛА: 2020-06-08
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/bot_prediction_history.py
+СПИСОК АКТИВОВ: ['F', 'AXP', 'AAPL', 'GE']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 1
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 50
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2019-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_prediction_history.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 1.36071263885 минут
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08
+
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ИНИЦИИРУЮЩИ ФАЙЛ ЗАВЕРШЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ВРЕМЯ НЧАЧЛ АЛГОРИТМА: 0.37418653160000004 минут
+
+ИНИЦИИРУЮЩИЙ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08 23:43:20.870852
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 0.36433926848333337 минут
+
+ИНИЦИИРУЮЩИЙ ФАЙЛ ЗАПУЩЕН: /Users/Artem/Documents/GitHub/kmbs_project/bot_bi_weight_experiment.py
+ЭКСПЕРИМЕНТ: experiment_62.7_history
+ВРЕМЯ НАЧАЛА АЛГОРИТМА: 2020-06-08 23:48:15.361511
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 0.38359159953333327 минут

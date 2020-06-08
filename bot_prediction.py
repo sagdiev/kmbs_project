@@ -10,17 +10,17 @@ from path_file_generator import *
 # START
 start = timer()
 
+# записываем данные эксперимента в журнал
+with open('experiments_logbook.txt', 'w') as file:
+    running_file = sys.argv[0]
+    logbook_text = logbook_text_compelling(running_file)
+    print(logbook_text)
+    file.write(logbook_text)
+
 # папки и файлы
 path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, EXPERIMENT, TICKER)
 path_curve = path_file_without_prefix(PATH_FOLDER_CURVE, PATH_FILE_CURVE, EXPERIMENT, TICKER)
 # os.makedirs(path_bot)
-
-# параметры бота
-# procent = [0, 0.15, 0.20, 0.25, 0.30]
-# amounts_S = [1000, 1000, 2000, 4000, 8000]
-# r_fin = 4
-# procent_loss = 3
-# r = 5
 
 procent = [0, 0.15, 0.20]
 amounts_S = [1000, 1000, 2000]

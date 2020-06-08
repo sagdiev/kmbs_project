@@ -46,7 +46,7 @@ def bot_martingale(df, param_dict_def):
 
 
     p0 = df.loc[0, column_price]
-    print(p0)
+    # print(p0)
 
     # визначаємо яку кількість акцій потрібно купувати на відповідному етапі докуповування
     number = []

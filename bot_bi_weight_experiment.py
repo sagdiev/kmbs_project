@@ -20,6 +20,10 @@ from bot_analytics_functions import *
 # START
 start = timer()
 
+# записываем данные о начале обратоки этого файла в журнал
+running_file = sys.argv[0]
+logbook_text = logbook_text_compelling_start_algorithm(running_file)
+print(logbook_text)
 
 mean_markowitz_list = []
 std_markowitz_list = []
@@ -66,18 +70,18 @@ if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
             df_experiment_summary_i = bot_analytics_summary(experiment_i, prefix_experiment_i)
 
             # дополнительные расчеты показателей портфеля
-            return_mean = np.mean(df_experiment_summary_i['return'])
-            return_std = np.std(df_experiment_summary_i['return'])
-            return_mean_annual = return_mean * YEAR_DAYS
-            return_std_annual = return_std * np.sqrt(YEAR_DAYS)
+            # return_mean = np.mean(df_experiment_summary_i['return'])
+            # return_std = np.std(df_experiment_summary_i['return'])
+            # return_mean_annual = return_mean * YEAR_DAYS
+            # return_std_annual = return_std * np.sqrt(YEAR_DAYS)
 
-            print(return_mean_annual, return_std_annual)
-            mean_markowitz_list.append(return_mean_annual)
-            std_markowitz_list.append(return_std_annual)
+            # print(return_mean_annual, return_std_annual)
+            mean_markowitz_list.append(df_experiment_summary_i['return_mean_annual'][0])
+            std_markowitz_list.append(df_experiment_summary_i['return_std_annual'][0])
 
-            df_experiment_summary_i['return_mean_annual'] = return_mean_annual
-            df_experiment_summary_i['return_std_annual'] = return_std_annual
-            df_experiment_summary_i['information_ratio'] = return_mean_annual / return_std_annual
+            # df_experiment_summary_i['return_mean_annual'] = return_mean_annual
+            # df_experiment_summary_i['return_std_annual'] = return_std_annual
+            # df_experiment_summary_i['information_ratio'] = return_mean_annual / return_std_annual
 
             for k in range(len(TICKER_HISTORY_LIST)):
                 weights_tickers = \
@@ -87,7 +91,7 @@ if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
             df_experiment_summary_i['weights_tickers'] = weights_tickers
             df_experiment_summary_i['type_weights'] = type_weights_list[i]
 
-            # записываем файл
+            # записываем файл path_bi обновленные данные
             df_experiment_summary_i.to_csv(f, index=False) if i == 0 \
                 else df_experiment_summary_i.to_csv(f, index=False, header=0)
 
@@ -108,3 +112,6 @@ else:
 # таймер
 duration = timer() - start
 print('Время обработки алгоритма = ', duration)
+
+# записываем данные об окончании в журнал
+logbook_text_compelling_finish_algorithm(running_file, duration)
