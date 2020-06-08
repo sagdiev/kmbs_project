@@ -11,10 +11,10 @@ from bokeh.plotting import figure
 
 from constants import *
 from bot_generator import *
-from path_file_generator import *
-from base_functions import *
-from bot_bi_functions import *
-from bot_analytics_functions import *
+from funtions_path_file_generator import *
+from functions_base import *
+from functions_bot_bi import *
+from functions_bot_analytics import *
 
 
 # START

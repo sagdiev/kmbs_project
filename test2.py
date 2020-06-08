@@ -1,7 +1,7 @@
 import pandas as pd
 from constants import *
-from path_file_generator import *
-from base_functions import *
+from funtions_path_file_generator import *
+from functions_base import *
 
 
 # приведение файлов исторических данных к стандартизированному формату

@@ -1,4 +1,4 @@
-from base_functions import *
+from functions_base import *
 import random
 
 # print(random_weights_seed(5, 3))

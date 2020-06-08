@@ -4,9 +4,9 @@ from timeit import default_timer as timer
 
 from constants import *
 from bot_generator import *
-from path_file_generator import *
-from parameters_generator import *
-from base_functions import *
+from funtions_path_file_generator import *
+from functions_parameters_generator import *
+from functions_base import *
 
 
 # START

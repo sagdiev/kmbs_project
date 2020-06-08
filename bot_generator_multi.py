@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from constants import *
 from constants_bot_generator import *
 
-from base_functions import *
+from functions_base import *
 
 
 def bot_generator_initiation_first_day(df, param, ticker, i):

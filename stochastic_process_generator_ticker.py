@@ -6,7 +6,7 @@ import stochastic.continuous
 import stochastic.diffusion
 from timeit import default_timer as timer
 from constants import *
-from path_file_generator import *
+from funtions_path_file_generator import *
 
 
 class StochasticProcess():

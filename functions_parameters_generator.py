@@ -5,7 +5,7 @@ from timeit import default_timer as timer
 
 from constants import *
 from bot_generator import *
-from path_file_generator import *
+from funtions_path_file_generator import *
 
 
 def random_bot_parameters_seed(count_parameters_experiments, seed_for_random):
