@@ -22,7 +22,6 @@ def bot_analytics_summary(experiment_def, prefix_experiment_def):
     # считываение файлы
     df = pd.read_csv(path_bi, sep=',')
     print("Файл считан: ", path_bi)
-    # print(df)
 
     df_summary = pd.DataFrame(columns=['Time'] + COLUMNS_WEIGHT_IMPACTED)
 
@@ -30,7 +29,6 @@ def bot_analytics_summary(experiment_def, prefix_experiment_def):
     print(date_list)
 
     df_summary['Time'] = date_list
-    # print(df_summary)
 
     for j in range(len(date_list)):
         date_j = date_list[j]
@@ -38,38 +36,25 @@ def bot_analytics_summary(experiment_def, prefix_experiment_def):
         for i in range(len(COLUMNS_FOR_SUMMARY)):
             column_i = COLUMNS_FOR_SUMMARY[i]
             df_summary.loc[j, column_i] = df.loc[df['Time'] == date_j, column_i].sum()
-            # print(column_i, df_summary.loc[j, column_i])
 
     # подсчет прибыльности по дням
-    # старый неверный вариант
-    # df_summary['return'] = df_summary['equity_line'].pct_change()
-
-    # дополнительные расчеты показателей портфеля
-    # df_summary['delta_of_temporary_down'] = df_summary['temporary_down'][0] - df_summary['temporary_down'][-1]
+    # TODO добавить временные просадки df_summary['delta_of_temporary_down'] = df_summary['temporary_down'][0] - df_summary['temporary_down'][-1]
     # df_summary['return'] = (df_summary['day_profit'] + df_summary['delta_of_temporary_down']) / df_summary['reserved_sum_investment']
 
     df_summary['return'] = df_summary['day_profit'] / df_summary['reserved_sum_investment']
+    df_summary['return_log'] = np.log(((df_summary['day_profit'] + df_summary['reserved_sum_investment']) / df_summary['reserved_sum_investment']).astype(float))
 
-    print(df_summary['return'])
-    print(df_summary['reserved_sum_investment'])
-
+    # стандпртные показатели портфеля
     return_mean = np.mean(df_summary['return'])
     return_std = np.std(df_summary['return'])
     return_mean_annual = return_mean * YEAR_DAYS
     return_std_annual = return_std * np.sqrt(YEAR_DAYS)
 
     df_summary['return_mean_annual'] = return_mean_annual
-    print(df_summary['return_mean_annual'])
     df_summary['return_std_annual'] = return_std_annual
     df_summary['information_ratio'] = return_mean_annual / return_std_annual
 
-    # логарифмические дополнительные расчеты показателей портфеля
-    df_summary['return_log'] = np.log(((df_summary['day_profit'] + df_summary['reserved_sum_investment']) / df_summary['reserved_sum_investment']).astype(float))
-    # df_summary['return_log'].astype(float)
-
-
-    # df_summary['return_log'] = np.log((df_summary['day_profit'] + df_summary['reserved_sum_investment']) / df_summary['reserved_sum_investment'])
-
+    # логарифмические показатели портфеля
     return_mean_log = np.mean(df_summary['return_log'])
     return_std_log = np.std(df_summary['return_log'])
     return_mean_annual_log = return_mean_log * YEAR_DAYS
@@ -78,9 +63,6 @@ def bot_analytics_summary(experiment_def, prefix_experiment_def):
     df_summary['return_mean_annual_log'] = return_mean_annual_log
     df_summary['return_std_annual_log'] = return_std_annual_log
     df_summary['information_ratio_log'] = return_mean_annual_log / return_std_annual_log
-
-
-
 
     return df_summary
 
