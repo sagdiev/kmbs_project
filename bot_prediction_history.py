@@ -45,16 +45,17 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     # print("Файл считан: ", path_curve_i)
     print(df_i)
 
-    # подсчет интегральных показателей самой акции - просто для сравнения
-    df_i['returns_stock_price'] = df_i['Open'].pct_change()  # так оперделяем Returns самой акции без применения бота
-    integral_indicators_dict_stock = caclulation_integral_indicators(df_i, 'returns_stock_price')
-    df_i['stock_mean'] = integral_indicators_dict_stock.get('mean_annual')
-    df_i['stock_std'] = integral_indicators_dict_stock.get('std_annual')
-    df_i['stock_information_ratio'] = integral_indicators_dict_stock.get('information_ratio_annual')
-    # df_i['stock_sharpe_ratio'] = integral_indicators_dict_stock.get('sharpe_ratio')
-    # df_i['stock_max_drawdown'] = integral_indicators_dict_stock.get('max_drawdown')
-    # df_i['stock_VaR_95'] = integral_indicators_dict_stock.get('VaR_95')
-    # df_i['stock_CVaR_95'] = integral_indicators_dict_stock.get('CVaR_95')
+    if TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_SOURCE_CURVE is True:
+        # подсчет интегральных показателей самой акции - просто для сравнения
+        df_i['returns_stock_price'] = df_i['Open'].pct_change()  # так оперделяем Returns самой акции без применения бота
+        integral_indicators_dict_stock = caclulation_integral_indicators(df_i, 'returns_stock_price')
+        df_i['stock_mean'] = integral_indicators_dict_stock.get('mean_annual')
+        df_i['stock_std'] = integral_indicators_dict_stock.get('std_annual')
+        df_i['stock_information_ratio'] = integral_indicators_dict_stock.get('information_ratio_annual')
+        # df_i['stock_sharpe_ratio'] = integral_indicators_dict_stock.get('sharpe_ratio')
+        df_i['stock_max_drawdown'] = integral_indicators_dict_stock.get('max_drawdown')
+        df_i['stock_VaR_95'] = integral_indicators_dict_stock.get('VaR_95')
+        # df_i['stock_CVaR_95'] = integral_indicators_dict_stock.get('CVaR_95')
 
     # подсчет каждого варианта параметров
     for param_dict in param_dict_list:
@@ -76,18 +77,19 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
         df['Curve'] = str(TICKER_HISTORY_LIST[i])
 
-        # подсчет интегральных показателей результатов работы бота
-        df['return_procent_simple'] = df['day_profit'] / df['reserved_sum_investment']  # так оперделяем Returns бота
-        # TODO учесть временные просадки
-        # TODO df['return_log'] = np.log(df['return'])
-        integral_indicators_dict_bot = caclulation_integral_indicators(df, 'return_procent_simple')
-        df['bot_mean'] = integral_indicators_dict_bot.get('mean_annual')
-        df['bot_std'] = integral_indicators_dict_bot.get('std_annual')
-        df['bot_information_ratio'] = integral_indicators_dict_bot.get('information_ratio_annual')
-        # df['bot_sharpe_ratio'] = integral_indicators_dict_bot.get('sharpe_ratio')
-        # df['bot_max_drawdown'] = integral_indicators_dict_bot.get('max_drawdown')
-        # df['bot_VaR_95'] = integral_indicators_dict_bot.get('VaR_95')
-        # df['bot_CVaR_95'] = integral_indicators_dict_bot.get('CVaR_95')
+        if TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_EACH_BOT is True:
+            # подсчет интегральных показателей результатов работы бота
+            df['return_procent_simple'] = df['day_profit'] / df['reserved_sum_investment']  # так оперделяем Returns бота
+            # TODO учесть временные просадки
+            # TODO df['return_log'] = np.log(df['return'])
+            integral_indicators_dict_bot = caclulation_integral_indicators(df, 'return_procent_simple')
+            df['bot_mean'] = integral_indicators_dict_bot.get('mean_annual')
+            df['bot_std'] = integral_indicators_dict_bot.get('std_annual')
+            df['bot_information_ratio'] = integral_indicators_dict_bot.get('information_ratio_annual')
+            # df['bot_sharpe_ratio'] = integral_indicators_dict_bot.get('sharpe_ratio')
+            df['bot_max_drawdown'] = integral_indicators_dict_bot.get('max_drawdown')
+            df['bot_VaR_95'] = integral_indicators_dict_bot.get('VaR_95')
+            # df['bot_CVaR_95'] = integral_indicators_dict_bot.get('CVaR_95')
 
 
         # запись в файл бота

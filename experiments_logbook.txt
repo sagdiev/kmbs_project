@@ -764,3 +764,122 @@ DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
 КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
 DATE_EXPERIMENT_START:2010-01-01 00:00:00
 DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 89.06516439916666 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_72.1_IBM_2017_2018_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['IBM']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2017-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2018-12-31 00:00:00
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_72.1_IBM_2017_2018_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['IBM']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2017-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2018-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 2.64898714015 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_72.2_IBM_2019_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['IBM']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2019-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 1.5269982758666667 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_73.2_PFE_2019_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['PFE']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2019-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 0.63502867435 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_73.2_PFE_2019_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['PFE']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2017-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2018-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 2.0726096499 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_73.1_PFE_2017_2018_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['PFE']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2017-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2018-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 1.9427917176833336 минут
+
+
+==========================================================================================================
+
+
+ЭКСПЕРИМЕНТ: experiment_73.2_PFE_2019_history
+ВРЕМЯ НАЧАЛА: 2020-06-14
+ИНИЦИИРУЮЩИ ФАЙЛ: /Users/Artem/Documents/GitHub/kmbs_project/main_pipeline_history.py
+СПИСОК АКТИВОВ: ['PFE']
+ПЕРВЫЙ ПАРАМЕТР: {'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}
+ВСЕ ПАРАМЕТРЫ ЭКСПЕРИМЕНТА: [{'procent': [0, 0.1, 0.15, 0.2], 'amounts_S': [1250, 1250, 2500, 5000], 'r': 5, 'r_fin': 7, 'procent_loss': 3, 'step': 4}, {'procent': [0.0, 0.12, 0.22, 0.14, 0.26], 'amounts_S': [833, 833, 833, 3333, 4167], 'r': 10, 'r_fin': 5, 'procent_loss': 2, 'step': 5}, {'procent': [0.0, 0.13], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 3, 'step': 2}, {'procent': [0.0, 0.12, 0.17, 0.23], 'amounts_S': [1667, 1667, 5000, 1667], 'r': 4, 'r_fin': 9, 'procent_loss': 2, 'step': 4}, {'procent': [0.0, 0.09, 0.21, 0.22], 'amounts_S': [1250, 2500, 2500, 3750], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.13], 'amounts_S': [5000, 5000], 'r': 3, 'r_fin': 7, 'procent_loss': 7, 'step': 2}, {'procent': [0.0, 0.03, 0.14, 0.23], 'amounts_S': [1250, 1250, 1250, 6250], 'r': 2, 'r_fin': 8, 'procent_loss': 6, 'step': 4}, {'procent': [0.0, 0.03], 'amounts_S': [5000, 5000], 'r': 6, 'r_fin': 4, 'procent_loss': 6, 'step': 2}, {'procent': [0.0, 0.08, 0.09], 'amounts_S': [2500, 5000, 2500], 'r': 6, 'r_fin': 8, 'procent_loss': 6, 'step': 3}, {'procent': [0.0, 0.07, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 2, 'r_fin': 8, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.1, 0.16, 0.21, 0.34], 'amounts_S': [1000, 2000, 1000, 5000, 1000], 'r': 2, 'r_fin': 7, 'procent_loss': 3, 'step': 5}, {'procent': [0.0, 0.05, 0.16], 'amounts_S': [1667, 3333, 5000], 'r': 2, 'r_fin': 4, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.08, 0.1, 0.23], 'amounts_S': [1250, 1250, 3750, 3750], 'r': 9, 'r_fin': 4, 'procent_loss': 1, 'step': 4}, {'procent': [0.0, 0.07, 0.12], 'amounts_S': [2000, 4000, 4000], 'r': 3, 'r_fin': 7, 'procent_loss': 5, 'step': 3}, {'procent': [0.0, 0.11, 0.13], 'amounts_S': [1429, 2857, 5714], 'r': 2, 'r_fin': 8, 'procent_loss': 2, 'step': 3}, {'procent': [0.0, 0.12, 0.21], 'amounts_S': [1667, 1667, 6667], 'r': 6, 'r_fin': 10, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.04, 0.12, 0.11], 'amounts_S': [2000, 4000, 2000, 2000], 'r': 3, 'r_fin': 4, 'procent_loss': 5, 'step': 4}, {'procent': [0.0, 0.11, 0.22], 'amounts_S': [2000, 4000, 4000], 'r': 9, 'r_fin': 2, 'procent_loss': 3, 'step': 3}, {'procent': [0.0, 0.11, 0.08, 0.15], 'amounts_S': [1429, 1429, 1429, 5714], 'r': 8, 'r_fin': 2, 'procent_loss': 7, 'step': 4}, {'procent': [0.0, 0.12], 'amounts_S': [3333, 6667], 'r': 4, 'r_fin': 2, 'procent_loss': 1, 'step': 2}]
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ ПАРАМЕТРОМ: 20
+КОЛИЧЕСТВО ЭКСПЕРИМЕНТОВ С ВЕСАМИ: 1
+КОЭФФИЦИЕНТ СЛУЧАНОСТИ: 3
+DATE_EXPERIMENT_START:2019-01-01 00:00:00
+DATE_EXPERIMENT_FINISH: 2019-12-31 00:00:00
+ВРЕМЯ ЗАВЕРШЕНИЯ АЛГОРИТМА: 0.6982878804833332 минут

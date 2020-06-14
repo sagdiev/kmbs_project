@@ -1,6 +1,7 @@
 import math
 import numpy
 import numpy.random as nrand
+from scipy.stats import norm
 
 """
 Взято с http://www.turingfinance.com/computational-investing-with-python-week-one/
@@ -47,7 +48,15 @@ def hpm(returns, threshold, order):
     return numpy.sum(diff ** order) / len(returns)
 
 
-def var(returns, alpha):
+def var_normal(returns, alpha):
+    # This method calculates the historical simulation var of the returns
+    mean = numpy.mean(returns)
+    std_dev = vol(returns)
+    var_normal_def = norm.ppf(1 - alpha, mean, std_dev)  # з вірогідністю (95%) 5% ми (не)"звалимось" нижче цього % протягом 1 дня
+    return var_normal_def
+
+
+def var_non_parametric(returns, alpha):
     # This method calculates the historical simulation var of the returns
     sorted_returns = numpy.sort(returns)
     # print(sorted_returns)
@@ -58,7 +67,7 @@ def var(returns, alpha):
     return sorted_returns[index]
 
 
-def cvar(returns, alpha):
+def cvar_non_parametric(returns, alpha):
     # This method calculates the condition VaR of the returns
     sorted_returns = numpy.sort(returns)
     # Calculate the index associated with alpha
@@ -155,11 +164,11 @@ def modigliani_ratio(er, returns, benchmark, rf):
 
 
 def excess_var(er, returns, rf, alpha):
-    return (er - rf) / var(returns, alpha)
+    return (er - rf) / var_non_parametric(returns, alpha)
 
 
 def conditional_sharpe_ratio(er, returns, rf, alpha):
-    return (er - rf) / cvar(returns, alpha)
+    return (er - rf) / cvar_non_parametric(returns, alpha)
 
 
 def omega_ratio(er, returns, rf, target=0):
@@ -202,8 +211,8 @@ def test_risk_metrics():
     print("beta =", beta(r, m))
     print("hpm(0.0)_1 =", hpm(r, 0.0, 1))
     print("lpm(0.0)_1 =", lpm(r, 0.0, 1))
-    print("VaR(0.05) =", var(r, 0.05))
-    print("CVaR(0.05) =", cvar(r, 0.05))
+    print("VaR(0.05)_non_parametric =", var_non_parametric(r, 0.05))
+    print("CVaR(0.05)_non_parametric =", cvar_non_parametric(r, 0.05))
     print("Drawdown(5) =", dd(r, 5))
     print("Max Drawdown =", max_dd(r))
 
