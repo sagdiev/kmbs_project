@@ -18,7 +18,7 @@ def path_file_without_prefix(folder_name, file_name, experiment, ticker):  # г�
 
 def path_folder(folder_name, experiment, ticker):  # создание папки, если еще не существует
     path_folder_ticker = folder_name + '/' + ticker + '/' + experiment + '/'
-    folder_check(folder_name)
+    folder_check(path_folder_ticker)
 
     return path_folder_ticker
 

@@ -39,6 +39,16 @@ def bot_martingale(df, param_dict_def):
     r = param_dict_def.get('r')
     r_fin = param_dict_def.get('r_fin')
     procent_loss = param_dict_def.get('procent_loss')
+    parameter_step = param_dict_def.get('step')
+
+    df['parameter_procent'] = str(procent)
+    df['parameter_amounts_S'] = str(amounts_S)
+    df['parameter_r'] = r
+    df['parameter_r_fin'] = r_fin
+    df['parameter_procent_loss'] = procent_loss
+    df['parameter_step'] = parameter_step
+
+
 
     count_step = [0] * (len(amounts_S) + 1)
     size_profit = [0] * (len(amounts_S) + 1)
@@ -154,6 +164,7 @@ def bot_martingale(df, param_dict_def):
 
                 df.loc[i, column_p_sell] = p_sell
                 df.loc[i, column_p_buy] = p_buy
+                df.loc[i, column_day_profit] = 0
                 df.loc[i, column_profit] = profit
                 df.loc[i, column_sell_buy] = 'buy'
                 df.loc[i, column_count_buy] = k0
@@ -211,6 +222,7 @@ def bot_martingale(df, param_dict_def):
 
             df.loc[i, column_p_sell] = df.loc[i - 1, column_p_sell]
             df.loc[i, column_p_buy] = df.loc[i - 1, column_p_buy]
+            df.loc[i, column_day_profit] = 0
             df.loc[i, column_profit] = profit
             df.loc[i, column_sum_invested] = C
             df.loc[i, column_cost_of_sum_investment] = B
@@ -244,6 +256,7 @@ def prod(j, array):
     else:
         return prod(j-1, array) * (1-array[j])
 
+
 #
 # def param_rebalance(param_dict_rebalance_def, rolling_std_def):
 #     PROCENT_BASE = [0, 0.05, 0.10, 0.25, 0.30]  # эксперимент 17
@@ -263,6 +276,3 @@ def prod(j, array):
 #     # procent_loss = param_dict_def.get('procent_loss')
 #
 #     return param_dict_rebalance_def
-
-
-

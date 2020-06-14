@@ -67,10 +67,11 @@ def rolling_std(df_def):
     global WINDOW_ROLLING_STD
 
     rolling_std_calc = df_def['Open'].pct_change().rolling(WINDOW_ROLLING_STD).std(ddof=0)
-    rolling_std_mean = np.mean(rolling_std_calc)
+    rolling_std = np.mean(rolling_std_calc)
 
-    for i in range(WINDOW_ROLLING_STD):  # первый период обогощаем средними данными периода
-        rolling_std_calc[i] = rolling_std_mean
+    # первый период обогощаем средними данными периода
+    for i in range(WINDOW_ROLLING_STD):
+        rolling_std_calc[i] = rolling_std
 
     return rolling_std_calc
 

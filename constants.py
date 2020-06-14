@@ -7,11 +7,13 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_62.7_history'
+EXPERIMENT = 'experiment_71_AAPL_history'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
 TICKER = 'history'
+
+
 
 # TICKER_HISTORY_LIST = \
 #     sp500_2020_05_01_part_1 +\
@@ -29,8 +31,9 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = losers_2000
 # TICKER_HISTORY_LIST = crypto_history
 # TICKER_HISTORY_LIST = ['SPX']
+# TICKER = 'SPX'
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
-TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE']
+# TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE']
 # TICKER_HISTORY_LIST = ['AMZN', 'AXP']
 # TICKER_HISTORY_LIST = ['MSFT', 'PG']
 # TICKER_HISTORY_LIST = ['AAPL', 'GE']
@@ -41,7 +44,7 @@ TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
-# TICKER_HISTORY_LIST = ['AAPL']
+TICKER_HISTORY_LIST = ['AAPL']
 # TICKER_HISTORY_LIST = ['C', 'GE', 'F']
 
 TICKER_HISTORY_LIST = list(set(TICKER_HISTORY_LIST))
@@ -86,12 +89,13 @@ PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 
 YEAR_DAYS = 252
 
-PERIOD = YEAR_DAYS * 5  # период, на котором рассматриваем поведение бота
+PERIOD = YEAR_DAYS * 1  # период, на котором рассматриваем поведение бота
 DT = 1  # единица времени, пучть будет 1 день
 
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
+# COUNT_EXPERIMENTS_GLOBAL = 200  # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
-COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 1  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
+COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 50  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
 COUNT_WEIGHT_EXPERIMENTS = 15  # к-во экпериментов с весами Марковица
 SEED_EXPERIMENT = 3
 # WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
@@ -107,6 +111,7 @@ PATH_FOLDER_BOT_ANALYTIC = 'data_bot_analytic'
 PATH_FILE_BOT = 'bot'
 PATH_FOLDER_BI = 'data_bi'
 PATH_FOLDER_HISTORY = 'data_history'
+PATH_FOLDER_PARAMETERS = 'data_parameters'
 
 # date calculation now
 # date_today = date.today()
@@ -115,7 +120,7 @@ PATH_FOLDER_HISTORY = 'data_history'
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
 # непосредственно для экспериментов
-DATE_EXPERIMENT_START = datetime(2019, 1, 1)
+DATE_EXPERIMENT_START = datetime(2010, 1, 1)
 DATE_EXPERIMENT_FINISH = datetime(2019, 12, 31)
 
 # для подготовки и форматирования исторических данных
@@ -225,6 +230,7 @@ RATE_BENCHMARK = 0.01  # безрисковый процент биржи
 
 # SPX
 # experiment_65.1_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['SPX'] 2000-2019
+# experiment_70_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['SPX'] 2000-2019 with param in csv
 
 
 

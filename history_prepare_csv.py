@@ -2,6 +2,7 @@ import pandas as pd
 from constants import *
 from funtions_path_file_generator import *
 from functions_base import *
+from functions_integral_indicators import *
 
 
 # приведение файлов исторических данных к стандартизированному формату
@@ -38,6 +39,17 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
                 print(df['ticker'][0], df['sector'][0], '<=', ticker_symbol, ticker_sector)
             else:
                 df['sector'] = 'no sector info'
+
+    # подсчет интегральных показателей самой акции - просто для сравнения
+    df['returns_stock_price'] = df['Open'].pct_change()  # так оперделяем Returns самой акции без применения бота
+    integral_indicators_dict_stock = caclulation_integral_indicators(df, 'returns_stock_price')
+    df['stock_mean'] = integral_indicators_dict_stock.get('mean_annual')
+    df['stock_std'] = integral_indicators_dict_stock.get('std_annual')
+    df['stock_information_ratio'] = integral_indicators_dict_stock.get('information_ratio_annual')
+    # df['stock_sharpe_ratio'] = integral_indicators_dict_stock.get('sharpe_ratio')
+    # df['stock_max_drawdown'] = integral_indicators_dict_stock.get('max_drawdown')
+    # df['stock_VaR_95'] = integral_indicators_dict_stock.get('VaR_95')
+    # df['stock_CVaR_95'] = integral_indicators_dict_stock.get('CVaR_95')
 
     print(df)
 

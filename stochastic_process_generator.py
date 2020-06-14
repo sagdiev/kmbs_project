@@ -48,8 +48,8 @@ print("period = ", PERIOD)
 print("dt = ", DT)
 
 # setting parameters
-mu = 0
-sigma = 0.1
+mu = 0.0001
+sigma = 0.002
 s0 = 1000
 
 # path

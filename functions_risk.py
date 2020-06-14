@@ -50,10 +50,12 @@ def hpm(returns, threshold, order):
 def var(returns, alpha):
     # This method calculates the historical simulation var of the returns
     sorted_returns = numpy.sort(returns)
+    # print(sorted_returns)
     # Calculate the index associated with alpha
     index = int(alpha * len(sorted_returns))
-    # VaR should be positive
-    return abs(sorted_returns[index])
+    # print(index)
+    # TODO не понятно, почему автор написал: VaR should be positive
+    return sorted_returns[index]
 
 
 def cvar(returns, alpha):
@@ -66,8 +68,8 @@ def cvar(returns, alpha):
     for i in range(1, index):
         sum_var += sorted_returns[i]
     # Return the average VaR
-    # CVaR should be positive
-    return abs(sum_var / index)
+    # TODO не понятно, почему автор написал: CVaR should be positive
+    return sum_var / index
 
 
 def prices(returns, base):
@@ -234,5 +236,5 @@ def test_risk_adjusted_metrics():
 
 
 # if __name__ == "__main__":
-#     test_risk_metrics()
-#     test_risk_adjusted_metrics()
+#      test_risk_metrics()
+#      test_risk_adjusted_metrics()

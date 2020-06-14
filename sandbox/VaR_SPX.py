@@ -23,7 +23,7 @@ from scipy.stats import norm
 ####################################################################################################################
 # df = pd.read_csv(r'C:\Users\Maksym\Desktop\MP\stock_data\barchart/AAPL.csv', sep=',')
 # df = pd.read_csv(r'C:\Users\Maksym\Desktop\MP\python\pj_1\bot_results/bot_BTCUSD_76.csv', sep=',')
-df = pd.read_csv('/Users/Artem/Documents/GitHub/kmbs_project/data_history/SPX.csv', sep=',')
+df = pd.read_csv('/Users/Artem/Documents/GitHub/kmbs_project/data_bot/history/experiment_69_history/bot_1.csv', sep=',')
 #
 df.drop(df.tail(1).index,inplace=True)
 # df.sort_index(ascending=False, inplace=True)
@@ -35,6 +35,9 @@ print("dokhodnost", df)
 
 mean = np.mean(df) #mu
 std_dev = np.std(df) #std
+
+print('mean: ', mean)
+print('std_dev: ', std_dev)
 
 
 # Determine the mean and standard deviation of the daily returns. Plot the normal curve against the daily returns
