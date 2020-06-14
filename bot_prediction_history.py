@@ -47,8 +47,10 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
     if TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_SOURCE_CURVE is True:
         # подсчет интегральных показателей самой акции - просто для сравнения
+
         df_i['returns_stock_price'] = df_i['Open'].pct_change()  # так оперделяем Returns самой акции без применения бота
-        integral_indicators_dict_stock = caclulation_integral_indicators(df_i, 'returns_stock_price')
+        df_i['returns_stock_price_log'] = np.log( 1 +  df_i['returns_stock_price'] )  # используем только логарифмические приросты
+        integral_indicators_dict_stock = caclulation_integral_indicators(df_i, 'returns_stock_price_log')
         df_i['stock_mean'] = integral_indicators_dict_stock.get('mean_annual')
         df_i['stock_std'] = integral_indicators_dict_stock.get('std_annual')
         df_i['stock_skew'] = integral_indicators_dict_stock.get('skewness_day')
@@ -81,10 +83,11 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
         if TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_EACH_BOT is True:
             # подсчет интегральных показателей результатов работы бота
-            df['return_procent_simple'] = df['day_profit'] / df['reserved_sum_investment']  # так оперделяем Returns бота
+            df['return_bot_procent_simple'] = df['day_profit'] / df['reserved_sum_investment']  # так оперделяем Returns бота
+            df['return_bot_procent_log'] = np.log(1 + df['return_bot_procent_simple'])  # используем только логарифмические приросты
             # TODO учесть временные просадки
             # TODO df['return_log'] = np.log(df['return'])
-            integral_indicators_dict_bot = caclulation_integral_indicators(df, 'return_procent_simple')
+            integral_indicators_dict_bot = caclulation_integral_indicators(df, 'return_bot_procent_log')
             df['bot_mean'] = integral_indicators_dict_bot.get('mean_annual')
             df['bot_std'] = integral_indicators_dict_bot.get('std_annual')
             df['bot_skew'] = integral_indicators_dict_bot.get('skewness_day')
@@ -104,7 +107,7 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
 
         # таймеры
         duration = timer() - timer_start
-        print('Время обработки одного бота = ', duration)
+        print('\nВремя обработки одного бота = ', duration)
         duration = timer() - start
         print('Время обработки всего = ', duration)
 

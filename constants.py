@@ -7,7 +7,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_74.3_T_2000_2009_history_30_param'
+EXPERIMENT = 'experiment_74.4_T_2019_history_5_param'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -97,7 +97,7 @@ DT = 1  # единица времени, пучть будет 1 день
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 # COUNT_EXPERIMENTS_GLOBAL = 200  # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
-COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 30  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
+COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 5  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
 COUNT_WEIGHT_EXPERIMENTS = 1  # к-во экпериментов с весами Марковица
 SEED_EXPERIMENT = 3
 # WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
@@ -125,9 +125,9 @@ PATH_FOLDER_PARAMETERS = 'data_parameters'
 
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
-# непосредственно для экспериментов
-DATE_EXPERIMENT_START = datetime(2000, 1, 1)
-DATE_EXPERIMENT_FINISH = datetime(2009, 12, 31)
+# даты непосредственно для экспериментов
+DATE_EXPERIMENT_START = datetime(2019, 1, 1)
+DATE_EXPERIMENT_FINISH = datetime(2019, 12, 31)
 
 # для подготовки и форматирования исторических данных
 DATE_GLOBAL_START = datetime(2000, 1, 1)
@@ -157,7 +157,7 @@ POINT_BOT_START = 1
 STEP_BOT_START = 4
 TOTAL_RESERVED_BOT_START = 10000
 
-# параметры для рандомных параметров
+# минимальные и максимальные рандомные параметры
 PROCENT_RANDOM_MIN= [0, 0.03, 0.05, 0.10, 0.15]
 AMOUNT_S_WEIGHT_RANDOM_MIN = [1, 1, 1, 1, 1]
 R_RANDOM_MIN = 2
