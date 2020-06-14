@@ -15,6 +15,16 @@ def vol(returns):
     return numpy.std(returns)
 
 
+# def vol(returns):
+#     # Return the standard deviation of returns
+#     return numpy.std(returns)
+#
+#
+# def vol(returns):
+#     # Return the standard deviation of returns
+#     return numpy.std(returns)
+
+
 def beta(returns, market):
     # Create a matrix of [returns, market]
     m = numpy.matrix([returns, market])

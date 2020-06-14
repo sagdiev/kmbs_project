@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import scipy.stats as stats
 from datetime import datetime
 # import random
 # import itertools
@@ -18,11 +19,15 @@ def caclulation_integral_indicators(df_def, column_name_of_returns):
         risk_free = RATE_BENCHMARK
 
         # Expected return
-        mean = numpy.mean(returns)
-        std = vol(returns)
-
+        mean = np.mean(returns)
         mean_annual = mean * YEAR_DAYS
+
+        std = vol(returns)
         std_annual = std * np.sqrt(YEAR_DAYS)
+
+        skewness_day = stats.skew(returns, bias=False)
+        kurtosis_day = stats.kurtosis(returns, bias=False)
+
 
         # VaR_01 = var(returns, 0.01)
         # VaR_05 = var(returns, 0.05)
@@ -92,6 +97,8 @@ def caclulation_integral_indicators(df_def, column_name_of_returns):
         integral_indicators_dict_def = {
                 'mean_annual': mean_annual,
                 'std_annual': std_annual,
+                'skewness_day': skewness_day,
+                'kurtosis_day': kurtosis_day,
                 'information_ratio_annual': information_ratio_annual,
                 # 'sharpe_ratio': sharpe,
                 'max_drawdown': max_drawdown,

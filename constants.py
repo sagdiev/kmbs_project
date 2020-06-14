@@ -7,7 +7,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_73.2_PFE_2019_history'
+EXPERIMENT = 'experiment_74.3_T_2000_2009_history_30_param'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -46,7 +46,7 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = ['C']
 # TICKER_HISTORY_LIST = ['AAPL']
 # TICKER_HISTORY_LIST = ['IBM']
-TICKER_HISTORY_LIST = ['PFE']
+TICKER_HISTORY_LIST = ['T']
 # TICKER_HISTORY_LIST = ['C', 'GE', 'F']
 
 TICKER_HISTORY_LIST = list(set(TICKER_HISTORY_LIST))
@@ -97,7 +97,7 @@ DT = 1  # единица времени, пучть будет 1 день
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 # COUNT_EXPERIMENTS_GLOBAL = 200  # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
-COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 20  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
+COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 30  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
 COUNT_WEIGHT_EXPERIMENTS = 1  # к-во экпериментов с весами Марковица
 SEED_EXPERIMENT = 3
 # WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
@@ -126,8 +126,8 @@ PATH_FOLDER_PARAMETERS = 'data_parameters'
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
 # непосредственно для экспериментов
-DATE_EXPERIMENT_START = datetime(2019, 1, 1)
-DATE_EXPERIMENT_FINISH = datetime(2019, 12, 31)
+DATE_EXPERIMENT_START = datetime(2000, 1, 1)
+DATE_EXPERIMENT_FINISH = datetime(2009, 12, 31)
 
 # для подготовки и форматирования исторических данных
 DATE_GLOBAL_START = datetime(2000, 1, 1)
@@ -245,8 +245,11 @@ RATE_BENCHMARK = 0.01  # безрисковый процент биржи
 # experiment_72.1_IBM_2017_2018_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['IBM'] 2017-2018 with 20 param in csv
 # experiment_72.2_IBM_2019_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['IBM'] 2019 with 20 param in csv
 
-# IBM
+# PFE
 # experiment_73.1_PFE_2017_2018_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['PFE'] 2017-2018 with 20 param in csv
 # experiment_73.2_PFE_2019_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['PFE'] 2019 with 20 param in csv
 
+# T
+# experiment_74.1_PFE_2017_2018_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['T'] 2017-2018 with 20 param in csv
+# experiment_74.2_PFE_2019_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['T'] 2019 with 20 param in csv
 
