@@ -47,8 +47,6 @@ def bot_generator_initiation_first_day(df, param, ticker, i):
     df.loc[i, column_day_profit] = day_profit
     df.loc[i, column_count_buy] = k0
     df.loc[i, column_count_total_buy] = K
-    # print(K)
-    # print(i)
     df.loc[i, column_count_sell] = count_sell
     df.loc[i, column_costs_of_bying] = S0
     df.loc[i, column_sum_invested] = C
@@ -77,7 +75,6 @@ def bot_generator_next_day(df, param, day_number):
 
     t = int(df.loc[i - 1, column_t])
     # print('НАЧАЛО СЛЕДУЮЩЕГО ДНЯ t and type(t) = ', t, type(t))
-    # print(i)
     if t == -1:
         return df
     # print('t and type(t) = ', t, type(t))
@@ -122,7 +119,6 @@ def bot_generator_next_day(df, param, day_number):
             # print('ПРИ ЗАКУПКЕ count_buy_step_plan =', count_buy_step_plan)
 
             k0 = count_buy_step_plan[t]
-            # print(k0)
             K = K + k0
             p0 = price_current
             S0 = k0 * p0

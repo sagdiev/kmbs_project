@@ -102,8 +102,14 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
     portfolio_weights = []
     type_weights =[]
 
+    # одинаковые веса
+    native_weights = [ 1 / count_items_portfolio ] * count_items_portfolio
+    portfolio_weights.append(native_weights)
+    type_weights.append('native_portfolio')
+
     # единичные веса
-    for i in range(count_items_portfolio):
+    # for i in range(count_items_portfolio):   todo вернуть назад
+    for i in range(count_items_portfolio - 55):
         weights_ones_i = weight_zero
         weights_ones_i = [ 1 if k == i else weight_zero[k] for k in range(count_items_portfolio)]
         # print(weights_ones_i)
@@ -111,13 +117,9 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
         # print(portfolio_weights)
         type_weights.append('single_bot')
 
-    # одинаковые веса
-    native_weights = [ 1 / count_items_portfolio ] * count_items_portfolio
-    portfolio_weights.append(native_weights)
-    type_weights.append('native_portfolio')
-
     # случайные веса
-    for j in range(count_portfolios - count_items_portfolio):
+    # for j in range(count_portfolios - count_items_portfolio):     todo вернуть назад
+    for j in range(count_portfolios - count_items_portfolio + 55):
         random_portfolio_weights = random_weights_seed(count_items_portfolio, seed_for_random)
         portfolio_weights.append(random_portfolio_weights)
         type_weights.append('random_portfolio')
@@ -169,6 +171,85 @@ def logbook_text_compelling_finish_algorithm(running_file_def, duration_def):
     return logbook_text_def
 
 
+def convert_day_stock_df_to_week(df_def):
+    # TODO не завершено -доделать позже
+    # Converting date to pandas datetime format
+    df_def['Time'] = pd.to_datetime(df_def['Time'])
+
+    df_def['Week_Number'] = df_def['Time'].dt.week
+    df_def['Month'] = df_def['Time'].dt.month
+    df_def['Year'] = df_def['Time'].dt.year
+
+    for i in range(len(df_def)):
+        df_def.loc[i, 'Time'] = date_convert_inverse(df_def.loc[i, 'Time'] )
+
+    # Grouping based on required values
+
+    df_result = df_def.groupby(['Year', 'Month', 'Week_Number']).agg(
+        {'Time': 'first',
+         'Open': 'first',
+         'day_profit_unrealized_pnl': 'sum',
+         'reserved_sum_investment': 'last',
+         'day_profit': 'sum',
+         'total_profit': 'last',
+         'count_buy': 'last'})
+
+    print(df_result)
+    # df_result = df_agg.copy()
+    # df2 = df_def.groupby(['Year', 'Week_Number']).agg(
+    #     {'Open': 'first',
+    #      'High': 'max',
+    #      'Low': 'min',
+    #      'Close': 'last',
+    #      'day_profit_unrealized_pnl': 'sum'})
+
+    # for i in range(0,len(df_result)):
+    #     print(i)
+    #     print('len(df_result) ', len(df_result))
+    #     print(df_result.loc[i, 'Time'])
+    #     df_result.loc[i, 'Time'] = date_convert_inverse(df_result.loc[i, 'Time'] )
+
+
+
+    df_result.to_csv('Weekly_OHLC.csv')
+    print('*** Program ended ***')
+
+    print(df_result)
+
+    return df_result
+
+
+def convert_day_stock_df_to_month(df_def):
+    # TODO не завершено -доделать позже
+    # Converting date to pandas datetime format
+    df_def['Time'] = pd.to_datetime(df_def['Time'])
+
+    # df_def['Week_Number'] = df_def['Time'].dt.week
+    df_def['Month'] = df_def['Time'].dt.month
+    df_def['Year'] = df_def['Time'].dt.year
+
+    # Grouping based on required values
+    df2 = df_def.groupby(['Year', 'Month']).agg(
+        {'Time': 'first',
+         'Open': 'first',
+         'day_profit_unrealized_pnl': 'sum',
+         'reserved_sum_investment': 'last',
+         'total_profit': 'last'})
+
+    # df2 = df_def.groupby(['Year', 'Week_Number']).agg(
+    #     {'Open': 'first',
+    #      'High': 'max',
+    #      'Low': 'min',
+    #      'Close': 'last',
+    #      'day_profit_unrealized_pnl': 'sum'})
+
+    for i in range(len(df_def)):
+        df_def.loc[i, 'Time'] = date_convert_inverse(df_def.loc[i, 'Time'] )
+
+    df2.to_csv('Monthly_OHLC.csv')
+    print('*** Program ended ***')
+
+    print(df_def)
 
 # print(random_portfolio_weights_list_seed(20 , 5, 3))
 

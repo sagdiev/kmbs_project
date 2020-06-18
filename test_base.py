@@ -24,3 +24,21 @@ import random
 count_parameters_experiments = 50
 seed_for_random = 3
 random_bot_parameters_seed(count_parameters_experiments, seed_for_random)
+
+# mu, sigma = 0, 0.1  # mean and standard deviation
+# s = np.random.normal(mu, sigma, 10000)
+# print('\nNormal test for given data "TEST":\n', stats.normaltest(s))
+
+
+logic = {'Open'  : 'first',
+         'High'  : 'max',
+         'Low'   : 'min',
+         'Close' : 'last',
+         'Volume': 'sum'}
+
+offset = pd.offsets.timedelta(days=-6)
+
+f = pd.read_clipboard(parse_dates=['Date'], index_col=['Date'])
+f.resample('W', loffset=offset).apply(logic)
+
+

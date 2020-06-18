@@ -44,13 +44,8 @@ def bot_bi_preparation_weight(experiment_def, prefix_experiment_def, weight_def)
 
                 df['curve_number'] = 'curve_' + str(i + 1)
                 df['ticker'] = TICKER_HISTORY_LIST[i]
-                df['equity_line'] = df['total_profit'] + df['reserved_sum_investment']
-
-                df['return'] = df['day_profit'] / df['reserved_sum_investment']
-                # TODO df['return_log'] = np.log(df['return'])
-                # print(df['return_log'])
-                # df['return_log'] = np.log( (df['day_profit'] + df['reserved_sum_investment'] ) / df['reserved_sum_investment'] )
-
+                df['equity_line'] = df['total_profit'] + df['reserved_sum_investment']  # удалить после проверки пайплайна
+                df['return'] = df['day_profit'] / df['reserved_sum_investment']  # удалить после проверки пайплайна
                 df['parameter_number'] = int( i_cumulative_param / COUNT_EXPERIMENTS_GLOBAL + 1 )
                 print (int(i_cumulative_param / COUNT_EXPERIMENTS_GLOBAL + 1))
 

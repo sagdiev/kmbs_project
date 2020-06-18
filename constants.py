@@ -7,13 +7,11 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_74.4_T_2019_history_5_param'
+EXPERIMENT = 'experiment_87_2008_2009_Portfolio_60_2_steps'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
 TICKER = 'history'
-
-
 
 # TICKER_HISTORY_LIST = \
 #     sp500_2020_05_01_part_1 +\
@@ -30,14 +28,16 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = portfolio_selected_from_2000_2020
 # TICKER_HISTORY_LIST = losers_2000
 # TICKER_HISTORY_LIST = crypto_history
-# TICKER_HISTORY_LIST = ['SPX']
+# TICKER_HISTORY_LIST = ['SPY']
 # TICKER = 'SPX'
+TICKER_HISTORY_LIST = portfolio_selected_adjusted_from_2000_2020_last_is_in_2008_2009
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
-# TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE']
+# TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE', 'C', 'PFE']
 # TICKER_HISTORY_LIST = ['AMZN', 'AXP']
 # TICKER_HISTORY_LIST = ['MSFT', 'PG']
 # TICKER_HISTORY_LIST = ['AAPL', 'GE']
-# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C']
+# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'T']
+# TICKER_HISTORY_LIST = ['NVDA', 'VZ', 'GE', 'PFE']
 # TICKER_HISTORY_LIST = ['AAPL', 'PFE']
 # TICKER_HISTORY_LIST = ['AAPL', 'F']
 # TICKER_HISTORY_LIST = ['AAPL', 'C']
@@ -45,8 +45,8 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = ['AABA_TEST']
 # TICKER_HISTORY_LIST = ['C']
 # TICKER_HISTORY_LIST = ['AAPL']
-# TICKER_HISTORY_LIST = ['IBM']
-TICKER_HISTORY_LIST = ['T']
+# TICKER_HISTORY_LIST = ['PFE']
+# TICKER_HISTORY_LIST = ['T']
 # TICKER_HISTORY_LIST = ['C', 'GE', 'F']
 
 TICKER_HISTORY_LIST = list(set(TICKER_HISTORY_LIST))
@@ -54,16 +54,31 @@ TICKER_HISTORY_LIST = list(set(TICKER_HISTORY_LIST))
 # TICKER_WEIGHT = [5, 2, 1, 8]
 TICKER_WEIGHT = [1] * len(TICKER_HISTORY_LIST)
 COLUMNS_WEIGHT_IMPACTED = [
+    'returns_stock_price',
+    'day_profit',
+    'day_profit_unrealized_pnl',
+    'total_profit',
+    'total_profit_unrealized_pnl',
+    'sum_invested',
+    'cost_of_sum_investment',
+    'reserved_sum_investment',
+    'equity_line']
+
+COLUMNS_WEIGHT_IMPACTED_FULL = [
     'day_profit', 'total_profit', 'count_buy', 'count_total_buy', 'costs_of_bying',
     'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'count_sell', 'equity_line']
 
-COLUMNS_WEIGHT_IMPACTED_SHORT = [
-    'day_profit', 'total_profit',
-    'sum_invested', 'cost_of_sum_investment', 'reserved_sum_investment', 'equity_line']
-
 COLUMNS_FOR_SUMMARY = [
-    'day_profit', 'total_profit', 'costs_of_bying', 'sum_invested', 'cost_of_sum_investment',
-    'reserved_sum_investment', 'equity_line']
+    'returns_stock_price',
+    'day_profit',
+    'day_profit_unrealized_pnl',
+    'total_profit',
+    'total_profit_unrealized_pnl',
+    'costs_of_bying',
+    'sum_invested',
+    'cost_of_sum_investment',
+    'reserved_sum_investment',
+    'equity_line']
 
 PATH_FILE_TICKER_INFO = 'data_src/ticker_info.csv'
 
@@ -97,15 +112,22 @@ DT = 1  # единица времени, пучть будет 1 день
 # count_experiments_global = 50 # к-во экспериментов - сгенерированных крывых
 # COUNT_EXPERIMENTS_GLOBAL = 200  # к-во экспериментов - сгенерированных крывых
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
-COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 5  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
-COUNT_WEIGHT_EXPERIMENTS = 1  # к-во экпериментов с весами Марковица
+
+COUNT_WEIGHT_EXPERIMENTS = 20  # к-во экпериментов с весами Марковица\
+
+COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 1  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
 SEED_EXPERIMENT = 3
 # WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
 WEIGHT_START = []
 
 TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_SOURCE_CURVE = True
 TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_EACH_BOT = True
+TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_EACH_AND_STOCK_BOT_MAX_DRAWDOWN = False
+
+TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_STOCK_PORTFOLIO = True
 TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_BOTS_PORTFOLIO = True
+TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_PORTFOLIO_BOTS_AND_STOCKS_MAX_DRAWDOWN = False
+
 
 WINDOW_ROLLING_STD = YEAR_DAYS  # окно скользящего стреднего для оптимизации параметров бота при следующем старте
 
@@ -126,12 +148,12 @@ PATH_FOLDER_PARAMETERS = 'data_parameters'
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
 # даты непосредственно для экспериментов
-DATE_EXPERIMENT_START = datetime(2019, 1, 1)
-DATE_EXPERIMENT_FINISH = datetime(2019, 12, 31)
+DATE_EXPERIMENT_START = datetime(2008, 1, 1)
+DATE_EXPERIMENT_FINISH = datetime(2009, 12, 31)
 
 # для подготовки и форматирования исторических данных
 DATE_GLOBAL_START = datetime(2000, 1, 1)
-DATE_GLOBAL_FINISH = datetime(2019, 12, 31)
+DATE_GLOBAL_FINISH = datetime(2020, 5, 31)
 
 # date_year_start = 2000
 # date_month_start = 1
@@ -154,18 +176,18 @@ R_BASE = 5
 R_FIN_BASE = 7
 PROCENT_LOSS_BASE = 3
 POINT_BOT_START = 1
-STEP_BOT_START = 4
-TOTAL_RESERVED_BOT_START = 10000
+STEP_BOT_START = 2
+TOTAL_RESERVED_BOT_START = 100000
 
 # минимальные и максимальные рандомные параметры
 PROCENT_RANDOM_MIN= [0, 0.03, 0.05, 0.10, 0.15]
-AMOUNT_S_WEIGHT_RANDOM_MIN = [1, 1, 1, 1, 1]
+AMOUNT_S_WEIGHT_RANDOM_MIN = [1, 1, 1, 2, 3]
 R_RANDOM_MIN = 2
 R_FIN_RANDOM_MIN = 2
 PROCENT_LOSS_RANDOM_MIN = 1
 POINT_RANDOM_MIN = 1
 STEP_RANDOM_MIN = 2
-TOTAL_RANDOM_MIN = 10000
+TOTAL_RANDOM_MIN = 100000
 
 PROCENT_RANDOM_MAX= [0, 0.15, 0.25, 0.30, 0.40]
 AMOUNT_S_WEIGHT_RANDOM_MAX = [1, 2, 4, 6, 10]
@@ -174,7 +196,7 @@ R_FIN_RANDOM_MAX = 10
 PROCENT_LOSS_RANDOM_MAX = 7
 POINT_RANDOM_MAX = 1
 STEP_RANDOM_MAX = 5
-TOTAL_RANDOM_MAX = 10000
+TOTAL_RANDOM_MAX = 100000
 
 # параметры биржи и рынка
 FEE = 4  # стоимость одного выполненного ордера на бирже
@@ -252,4 +274,7 @@ RATE_BENCHMARK = 0.01  # безрисковый процент биржи
 # T
 # experiment_74.1_PFE_2017_2018_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['T'] 2017-2018 with 20 param in csv
 # experiment_74.2_PFE_2019_history = PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4 TICKER_HISTORY_LIST = ['T'] 2019 with 20 param in csv
+
+# experiment_83.4_Portfolio_2000_2019_weight_exp_Markowitz_stock_and_bot_portfolio  PROCENT_BASE = [0, 0.10, 0.15, 0.20] total_bot = 10000, 5, 7, 3,  step = 4
+# TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'T'] - 25 Портфелей
 

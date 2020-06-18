@@ -116,9 +116,7 @@ for j in range(1, len(date_list)):
                 # print('пропускаем ', date_j, ' для ', ticker_i)
 
             dfx[str(ticker_i)] = df_ticker_i
-            # print(df_ticker_i)
-            # print('profit_i ', ticker_i, ' = ', profit_i)
-            # profit_list[i] = profit_i
+
     # таймер
     duration = timer() - start
     print('Время обработки шага ', j, ' = ', duration)

@@ -6,22 +6,24 @@ from constants import *
 from bot_generator import *
 from funtions_path_file_generator import *
 from functions_base import *
+from functions_integral_indicators import *
+
 
 
 def bot_analytics_summary(experiment_def, prefix_experiment_def):
     start = timer()
 
     # папки и файлы
-    # path_bot = path_file_without_prefix(PATH_FOLDER_BOT, PATH_FILE_BOT, experiment_def, TICKER)
     path_folder_bi = folder_check(PATH_FOLDER_BI)
     path_bi = path_folder_bi + '/' + experiment_def + str(prefix_experiment_def) +'.csv'
-    # path_folder_analytic = folder_check(PATH_FOLDER_BOT_ANALYTIC)
-    # path_bi_summary = path_folder_analytic + '/' + experiment_def + str(prefix_experiment_def) +'_summary.csv'
     print(path_bi)
 
     # считываение файлы
     df = pd.read_csv(path_bi, sep=',')
     print("Файл считан: ", path_bi)
+
+    df['test'] = np.log(1 + df['day_profit_unrealized_pnl'])
+    print(df['test'])
 
     df_summary = pd.DataFrame(columns=['Time'] + COLUMNS_WEIGHT_IMPACTED)
 
@@ -37,32 +39,47 @@ def bot_analytics_summary(experiment_def, prefix_experiment_def):
             column_i = COLUMNS_FOR_SUMMARY[i]
             df_summary.loc[j, column_i] = df.loc[df['Time'] == date_j, column_i].sum()
 
-    # подсчет прибыльности по дням
-    # TODO добавить временные просадки df_summary['delta_of_temporary_down'] = df_summary['temporary_down'][0] - df_summary['temporary_down'][-1]
-    # df_summary['return'] = (df_summary['day_profit'] + df_summary['delta_of_temporary_down']) / df_summary['reserved_sum_investment']
+    # подсчет интегральных параметров Портфеля Ботов
+    if TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_BOTS_PORTFOLIO is True:
+        # подсчет интегральных показателей результатов работы бота
+        # оперделяем Returns бота по профитам за день и учетон неализованной прибыли и убытка
+        df_summary['return_bot_procent'] = (df_summary['day_profit_unrealized_pnl'] / df_summary['reserved_sum_investment']).astype(float)
+        df_summary['return_bot_procent_log'] = np.log(1 + df_summary['return_bot_procent']) # логарифмические приросты
+        # внутри функции также есть преобразование в логагифмические приросты там, где это необходимо:
+        integral_indicators_dict_bot = caclulation_integral_indicators(df_summary, 'return_bot_procent')
+        df_summary['bot_mean'] = integral_indicators_dict_bot.get('mean_annual')
+        df_summary['bot_std'] = integral_indicators_dict_bot.get('std_annual')
+        df_summary['bot_skew'] = integral_indicators_dict_bot.get('skewness_day')
+        df_summary['bot_kurt'] = integral_indicators_dict_bot.get('kurtosis_day')
+        df_summary['bot_information_ratio'] = integral_indicators_dict_bot.get('information_ratio_annual')
+        # df['bot_sharpe_ratio'] = integral_indicators_dict_bot.get('sharpe_ratio')
+        df_summary['bot_max_drawdown'] = integral_indicators_dict_bot.get('max_drawdown')
+        df_summary['bot_VaR_95'] = integral_indicators_dict_bot.get('VaR_95')
+        df_summary['bot_VaR_95_10_day'] = integral_indicators_dict_bot.get('VaR_95_normal_to_10_day')
+        df_summary['bot_VaR_95_non_param'] = integral_indicators_dict_bot.get('VaR_95_non_parametric')
+        df_summary['bot_CVaR_95_non_param'] = integral_indicators_dict_bot.get('CVaR_95_non_parametric')
+        df_summary['bot_pvalue_normaltest'] = integral_indicators_dict_bot.get('pvalue_normaltest')
 
-    df_summary['return'] = df_summary['day_profit'] / df_summary['reserved_sum_investment']
-    df_summary['return_log'] = np.log(((df_summary['day_profit'] + df_summary['reserved_sum_investment']) / df_summary['reserved_sum_investment']).astype(float))
-
-    # стандпртные показатели портфеля
-    return_mean = np.mean(df_summary['return'])
-    return_std = np.std(df_summary['return'])
-    return_mean_annual = return_mean * YEAR_DAYS
-    return_std_annual = return_std * np.sqrt(YEAR_DAYS)
-
-    df_summary['return_mean_annual'] = return_mean_annual
-    df_summary['return_std_annual'] = return_std_annual
-    df_summary['information_ratio'] = return_mean_annual / return_std_annual
-
-    # логарифмические показатели портфеля
-    return_mean_log = np.mean(df_summary['return_log'])
-    return_std_log = np.std(df_summary['return_log'])
-    return_mean_annual_log = return_mean_log * YEAR_DAYS
-    return_std_annual_log = return_std_log * np.sqrt(YEAR_DAYS)
-
-    df_summary['return_mean_annual_log'] = return_mean_annual_log
-    df_summary['return_std_annual_log'] = return_std_annual_log
-    df_summary['information_ratio_log'] = return_mean_annual_log / return_std_annual_log
+        # подсчет интегральных параметров Портфеля Акций соотвтствующих ботов
+        if TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_STOCK_PORTFOLIO is True:
+            # подсчет интегральных показателей результатов работы бота
+            # оперделяем Returns бота по профитам за день и учетон неализованной прибыли и убытка
+            df_summary['returns_stock_price'] = df_summary['returns_stock_price'].astype(float)  # нормализуем под float
+            df_summary['return_stock_procent_log'] = np.log(1 + df_summary['returns_stock_price'])  # логарифмические приросты
+            # внутри функции также есть преобразование в логагифмические приросты там, где это необходимо:
+            integral_indicators_dict_stock = caclulation_integral_indicators(df_summary, 'returns_stock_price')
+            df_summary['stock_mean'] = integral_indicators_dict_stock.get('mean_annual')
+            df_summary['stock_std'] = integral_indicators_dict_stock.get('std_annual')
+            df_summary['stock_skew'] = integral_indicators_dict_stock.get('skewness_day')
+            df_summary['stock_kurt'] = integral_indicators_dict_stock.get('kurtosis_day')
+            df_summary['stock_information_ratio'] = integral_indicators_dict_stock.get('information_ratio_annual')
+            # df['bot_sharpe_ratio'] = integral_indicators_dict_bot.get('sharpe_ratio')
+            df_summary['stock_max_drawdown'] = integral_indicators_dict_stock.get('max_drawdown')
+            df_summary['stock_VaR_95'] = integral_indicators_dict_stock.get('VaR_95')
+            df_summary['stock_VaR_95_10_day'] = integral_indicators_dict_stock.get('VaR_95_normal_to_10_day')
+            df_summary['stock_VaR_95_non_param'] = integral_indicators_dict_stock.get('VaR_95_non_parametric')
+            df_summary['stock_CVaR_95_non_param'] = integral_indicators_dict_stock.get('CVaR_95_non_parametric')
+            df_summary['stock_pvalue_normaltest'] = integral_indicators_dict_stock.get('pvalue_normaltest')
 
     return df_summary
 

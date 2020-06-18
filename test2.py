@@ -13,6 +13,8 @@ for i in range(COUNT_EXPERIMENTS_GLOBAL):
     path_curve_i = path_file_history(PATH_FOLDER_HISTORY, TICKER_HISTORY_LIST, i)
     df = pd.read_csv(path_curve_i, sep=',')
 
+
+
     print(df.tail(1))
 
     # print(max(df['Time']))

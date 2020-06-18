@@ -71,7 +71,6 @@ def random_bot_parameters_seed(count_parameters_experiments, seed_for_random):
         procent_loss_random = random.randint(procent_loss_min, procent_loss_max)
         step_random = random.randint(step_min, step_max)
         # print(step_random)
-        # point_random = random.randint(point_min, point_max)
         total_random = random.randint(total_min, total_max)
 
         # отсекаем ненужные елементы параметров по длине step_random
@@ -83,22 +82,10 @@ def random_bot_parameters_seed(count_parameters_experiments, seed_for_random):
 
         param_dict_i = param_to_dict(procent_random, amounts_s_random,
                                      r_random, r_fin_random, procent_loss_random, step_random)
-        # преобразование набора параметров в словарь параметров
-        # param_dict_def = {'procent': procent_def,
-        #                   'amounts_S': amounts_S_def,
-        #                   'r': r_def,
-        #                   'r_fin': r_fin_def,
-        #                   'procent_loss': procent_loss_def}
-
 
         seed_for_random += 1
 
-        # print(param_dict_i)
-
         param_dict_list.append(param_dict_i)
-        # step_random_list.append(step_random)
-
-    # print(param_dict_list)
 
     return param_dict_list
 

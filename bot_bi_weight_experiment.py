@@ -44,6 +44,7 @@ except Exception:
 
 weight_experiment_list, type_weights_list = \
     random_portfolio_weights_list_seed(COUNT_WEIGHT_EXPERIMENTS , len(TICKER_HISTORY_LIST), SEED_EXPERIMENT)
+print('weight_experiment_list = ', weight_experiment_list)
 
 if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
 
@@ -53,13 +54,14 @@ if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
             print(TICKER_HISTORY_LIST)
             weights_tickers = ''
             weight_experiment_i = weight_experiment_list[i]
+            print('weight_experiment_i ', weight_experiment_i)
 
             # всмомогательный вариант равномерного распределения весов в случае двух акций
             # weight_experiment_i[0] = i / count_weight_experiment
             # weight_experiment_i[1] = 1 - i / count_weight_experiment
 
             prefix_experiment_i = '_weight_exp_' + str(i + 1)
-            print('\n\n START expneriment ', prefix_experiment_i)
+            print('\n\n START experiment ', prefix_experiment_i)
             print('weight_experiment = ', weight_experiment_i)
             experiment_i = EXPERIMENT
 
@@ -69,19 +71,10 @@ if len(TICKER_HISTORY_LIST) <= COUNT_EXPERIMENTS_GLOBAL:
             # подготовка файла Аналитики (подсчет суммарно действий всех bot'ов)
             df_experiment_summary_i = bot_analytics_summary(experiment_i, prefix_experiment_i)
 
-            # дополнительные расчеты показателей портфеля
-            # return_mean = np.mean(df_experiment_summary_i['return'])
-            # return_std = np.std(df_experiment_summary_i['return'])
-            # return_mean_annual = return_mean * YEAR_DAYS
-            # return_std_annual = return_std * np.sqrt(YEAR_DAYS)
-
-            # print(return_mean_annual, return_std_annual)
-            mean_markowitz_list.append(df_experiment_summary_i['return_mean_annual'][0])
-            std_markowitz_list.append(df_experiment_summary_i['return_std_annual'][0])
-
-            # df_experiment_summary_i['return_mean_annual'] = return_mean_annual
-            # df_experiment_summary_i['return_std_annual'] = return_std_annual
-            # df_experiment_summary_i['information_ratio'] = return_mean_annual / return_std_annual
+            print(df_experiment_summary_i['bot_mean'])
+            print(df_experiment_summary_i['bot_std'])
+            mean_markowitz_list.append(df_experiment_summary_i['bot_mean'][0])
+            std_markowitz_list.append(df_experiment_summary_i['bot_std'][0])
 
             for k in range(len(TICKER_HISTORY_LIST)):
                 weights_tickers = \

@@ -14,7 +14,7 @@ from functions_bot_bi import *
 start = timer()
 
 bot_bi_preparation_weight(EXPERIMENT, '', TICKER_WEIGHT)
-print(TICKER_WEIGHT)
+print('TICKER_WEIGHT = ', TICKER_WEIGHT)
 
 # таймер
 duration = timer() - start
