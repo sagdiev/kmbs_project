@@ -91,7 +91,7 @@ def date_drop_in_df(df_def, date_start_def, date_finish_def):
 
 def random_weights_seed(count_items_portfolio, seed_for_random):
     random.seed(seed_for_random)
-    random_portfolio_weights = random.sample(range(100), count_items_portfolio)
+    random_portfolio_weights = random.sample(range(10000), count_items_portfolio)
     random_portfolio_weights = [ x / sum(random_portfolio_weights) for x in random_portfolio_weights]
 
     return random_portfolio_weights
@@ -108,8 +108,7 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
     type_weights.append('native_portfolio')
 
     # единичные веса
-    # for i in range(count_items_portfolio):   todo вернуть назад
-    for i in range(count_items_portfolio - 55):
+    for i in range(COUNT_OF_SINGLE_STOCK_PROTFOIO - 1):  # количество одинарных портфелей
         weights_ones_i = weight_zero
         weights_ones_i = [ 1 if k == i else weight_zero[k] for k in range(count_items_portfolio)]
         # print(weights_ones_i)
@@ -118,8 +117,7 @@ def random_portfolio_weights_list_seed(count_portfolios , count_items_portfolio,
         type_weights.append('single_bot')
 
     # случайные веса
-    # for j in range(count_portfolios - count_items_portfolio):     todo вернуть назад
-    for j in range(count_portfolios - count_items_portfolio + 55):
+    for j in range(count_portfolios - COUNT_OF_SINGLE_STOCK_PROTFOIO - 1):
         random_portfolio_weights = random_weights_seed(count_items_portfolio, seed_for_random)
         portfolio_weights.append(random_portfolio_weights)
         type_weights.append('random_portfolio')

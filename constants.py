@@ -7,7 +7,7 @@ from typing import Dict
 from constants_tickers import *
 
 # input main
-EXPERIMENT = 'experiment_87_2008_2009_Portfolio_60_2_steps'
+EXPERIMENT = 'experiment_92.2_2000-2020_2_stock_Portfolio_3_steps'
 # EXPERIMENT = 'experiment_41_multi_rebalance_own'
 # EXPERIMENT_TYPES = ['HISTORY', 'GBM', 'GBM HISTORY ONE', 'GBM HISTORY TWO', 'ARMA ONE']
 EXPERIMENT_TYPE = 'HISTORY'
@@ -30,7 +30,7 @@ TICKER = 'history'
 # TICKER_HISTORY_LIST = crypto_history
 # TICKER_HISTORY_LIST = ['SPY']
 # TICKER = 'SPX'
-TICKER_HISTORY_LIST = portfolio_selected_adjusted_from_2000_2020_last_is_in_2008_2009
+# TICKER_HISTORY_LIST = portfolio_selected_adjusted_from_2000_2020_last
 # TICKER_HISTORY_LIST = ['AAPL', 'ABBV', 'BBY', 'ABT', 'ACN', 'F', 'C']
 # TICKER_HISTORY_LIST = ['AAPL', 'AXP', 'F', 'GE', 'C', 'PFE']
 # TICKER_HISTORY_LIST = ['AMZN', 'AXP']
@@ -39,7 +39,7 @@ TICKER_HISTORY_LIST = portfolio_selected_adjusted_from_2000_2020_last_is_in_2008
 # TICKER_HISTORY_LIST = ['AAPL', 'F', 'C', 'T']
 # TICKER_HISTORY_LIST = ['NVDA', 'VZ', 'GE', 'PFE']
 # TICKER_HISTORY_LIST = ['AAPL', 'PFE']
-# TICKER_HISTORY_LIST = ['AAPL', 'F']
+TICKER_HISTORY_LIST = ['AAPL', 'F']
 # TICKER_HISTORY_LIST = ['AAPL', 'C']
 # TICKER_HISTORY_LIST = ['AMD', 'AMCR']
 # TICKER_HISTORY_LIST = ['AABA_TEST']
@@ -114,10 +114,11 @@ DT = 1  # единица времени, пучть будет 1 день
 COUNT_EXPERIMENTS_GLOBAL = len(TICKER_HISTORY_LIST)  # к-во экспериментов - сгенерированных крывых
 
 COUNT_WEIGHT_EXPERIMENTS = 20  # к-во экпериментов с весами Марковица\
+COUNT_OF_SINGLE_STOCK_PROTFOIO = 1  # количество генерируемых одинарных поритфелей из оной акции (просто все не целесообразно по времени)
 
 COUNT_RANDOM_PARAMETERS_EXPERIMENTS = 1  # 1 базовое значение - выбираем 1 для обычных случаев, без рандомных параметров, а с забанными BASE
 SEED_EXPERIMENT = 3
-# WEIGHT_START = [1, 0]  # начальные веса - обязательно должно быть [1, 0]
+# WEIGHT_START = [1, 0]  # начальные веса - обязатеьно должно быть [1, 0]
 WEIGHT_START = []
 
 TRIGGER_OF_CALCULATION_INTEGRAL_INDICATORS_ON_SOURCE_CURVE = True
@@ -148,7 +149,7 @@ PATH_FOLDER_PARAMETERS = 'data_parameters'
 DATE_LIST_ETALON = DATE_LIST_ETALON_TICKERS
 
 # даты непосредственно для экспериментов
-DATE_EXPERIMENT_START = datetime(2008, 1, 1)
+DATE_EXPERIMENT_START = datetime(2000, 1, 1)
 DATE_EXPERIMENT_FINISH = datetime(2009, 12, 31)
 
 # для подготовки и форматирования исторических данных
@@ -176,7 +177,7 @@ R_BASE = 5
 R_FIN_BASE = 7
 PROCENT_LOSS_BASE = 3
 POINT_BOT_START = 1
-STEP_BOT_START = 2
+STEP_BOT_START = 3
 TOTAL_RESERVED_BOT_START = 100000
 
 # минимальные и максимальные рандомные параметры

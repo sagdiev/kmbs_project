@@ -184,11 +184,16 @@ portfolio_selected_from_2000_2020_last = [
 
 
 portfolio_selected_adjusted_from_2000_2020_last = [
-    'SPY',
     'BA', 'LMT', 'FMC', 'BFO', 'F', 'JPM', 'BAC', 'C', 'BBT', 'KO', 'PEP', 'VMC', 'NC', 'AAPL', 'V', 'MA', 'AXP', 'M',
     'TMO', 'WMT', 'GE', 'PFE', 'GILD', 'ONE', 'SYY', 'NKE', 'NEM', 'UNH', 'HD', 'PG', 'AVP', 'IBM', 'ACN', 'MTG',
     'FB', 'GOOGL', 'BC', 'H', 'DIS', 'NFLX', 'ABT', 'APC', 'GTE', 'XOM', 'NYT', 'MCD', 'SBUX', 'GT', 'INTC', 'NVDA',
     'QCOM', 'MSFT', 'ORCL', 'AMZN', 'T', 'VZ', 'PM', 'D', 'NEE']
+
+portfolio_selected_adjusted_from_2000_2020_last_is_in_2000_2002 = [
+    'SPY',
+    'BA', 'LMT', 'FMC', 'F', 'JPM', 'BAC', 'C', 'BBT', 'KO', 'PEP', 'VMC', 'NC', 'AAPL', 'AXP', 'M', 'TMO',
+    'WMT', 'GE', 'PFE', 'SYY', 'NKE', 'NEM', 'UNH', 'HD', 'PG', 'AVP', 'IBM', 'MTG', 'BC', 'DIS', 'ABT',
+    'APC', 'XOM', 'NYT', 'MCD', 'GT', 'INTC', 'QCOM', 'MSFT', 'ORCL', 'T', 'VZ', 'D', 'NEE']
 
 portfolio_selected_adjusted_from_2000_2020_last_is_in_2008_2009 = [
     'SPY',
@@ -196,6 +201,12 @@ portfolio_selected_adjusted_from_2000_2020_last_is_in_2008_2009 = [
     'TMO', 'WMT', 'GE', 'PFE', 'GILD', 'SYY', 'NKE', 'NEM', 'UNH', 'HD', 'PG', 'AVP', 'IBM', 'ACN', 'MTG',
     'GOOGL', 'BC', 'H', 'DIS', 'NFLX', 'ABT', 'APC', 'GTE', 'XOM', 'NYT', 'MCD', 'SBUX', 'GT', 'INTC', 'NVDA',
     'QCOM', 'MSFT', 'ORCL', 'AMZN', 'T', 'VZ', 'PM', 'D', 'NEE']
+
+portfolio_selected_adjusted_from_2000_2020_COVID = [
+    'SPY',
+    'BA', 'LMT', 'FMC', 'F', 'JPM', 'BAC', 'C', 'KO', 'PEP', 'VMC', 'AAPL', 'V', 'MA', 'AXP', 'TMO', 'WMT', 'GE', 'PFE',
+    'GILD', 'SYY', 'NKE', 'NEM', 'UNH', 'HD', 'PG', 'IBM', 'ACN', 'FB', 'GOOGL', 'DIS', 'NFLX', 'ABT', 'XOM', 'MCD',
+    'SBUX', 'INTC', 'NVDA', 'QCOM', 'MSFT', 'ORCL', 'AMZN', 'T', 'VZ', 'PM', 'D', 'NEE']
 
 
 
@@ -221,3 +232,6 @@ DATE_LIST_ETALON_TICKERS = ['01/03/2000', '01/04/2000', '01/05/2000', '01/06/200
 
 # анализ расхождений между
 # compare_ticker_lists(sp500_2000_01_03, sp500_2020_05_01 + losers_2000 + sp500_2020_01_28)
+
+# анализ расхождений между
+compare_ticker_lists(portfolio_selected_adjusted_from_2000_2020_last, sp500_2000_01_03)
